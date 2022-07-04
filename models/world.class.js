@@ -10,6 +10,7 @@ class World {
     coinBar = new CoinBar();
     throwableObjects = [new ThrowableObject()];
     coins = [];
+    collectableBottles = [new CollectableBottles()];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -39,16 +40,16 @@ class World {
             }
         });
     }
-    
-    checkThrowObjects(){
+
+    checkThrowObjects() {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.char.x, this.char.y);
             this.throwableObjects.push(bottle);
         }
     }
 
-    checkCoins(){
-        this.CollectableObject.push(this.coins);
+    checkCoins() {
+        this.CollectableCoins.push(this.coins);
     }
 
     draw() {
@@ -56,6 +57,8 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
+
+
         //LIFEBAR
         this.ctx.translate(-this.camera_x, 0);//BACK
         this.addToMap(this.statusBar);
@@ -72,9 +75,10 @@ class World {
         this.addToMap(this.char);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-        
-        //this.addObjectsToMap(this.level.coins);
-        
+
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
+
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);

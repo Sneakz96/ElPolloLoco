@@ -1,8 +1,4 @@
-class CollectableObject extends MoveableObject {
-
-    height = 50;
-    width = 50;
-   
+class CollectableCoins extends MoveableObject {
 
     IMAGES_COINS = [
         'img/8.Coin/Moneda1.png',
@@ -14,10 +10,10 @@ class CollectableObject extends MoveableObject {
         this.loadImages(this.IMAGES_COINS);
         this.x = x; // BETWEEN 200 AND 700
         this.y = y;
-        this.width = 80;
-        this.height = 80;
+        this.width = 70;
+        this.height = 70;
         this.animateCoins();
-        
+    
     }
 
     /**
@@ -26,7 +22,14 @@ class CollectableObject extends MoveableObject {
     animateCoins() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COINS);
-
         }, 220);
+    }
+
+    pickUp() {
+        this.level.coins.forEach((coin) => {
+            if (this.char.isColliding(coin)) {
+                this.coinBar.setPercentage();
+            }
+        });
     }
 }

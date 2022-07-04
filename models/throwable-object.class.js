@@ -1,7 +1,7 @@
 class ThrowableObject extends MoveableObject {
 
     height = 80;
-    width = 80;
+    width = 60;
 
     constructor(x, y) {
         super().loadImage('img/7.Marcadores/Icono/Botella.png');

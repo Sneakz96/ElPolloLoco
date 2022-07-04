@@ -47,16 +47,16 @@ class MoveableObject extends DrawableObject {
             return this.y < 230;
         }
     }
-    //isColliding(chicken _BUT ONLY ENDBOSS)
+    
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
             this.y < mo.y + mo.height
-    }
+        }
 
     hit() {
-        this.energy -= 10;
+        this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

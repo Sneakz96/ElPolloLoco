@@ -16,18 +16,18 @@ const Level1 = new Level(
         new Cloud(),
         new Cloud(),
         new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
         new Cloud()
-    ],
-    [
-        new CollectableObject(300, 220),
-        new CollectableObject(300, 280),
-        new CollectableObject(400, 280),
-        new CollectableObject(500, 280),
-        new CollectableObject(750, 280),
-        new CollectableObject(1000, 280),
-    ],
-    [
-
     ],
     [
         new BackgroundObject('./img/5.Fondo/Capas/5.cielo_1920-1080px.png', -0.999),
@@ -57,5 +57,23 @@ const Level1 = new Level(
         new BackgroundObject('./img/5.Fondo/Capas/3.Fondo3/1.png', 3.995),
         new BackgroundObject('./img/5.Fondo/Capas/2.Fondo2/1.png', 3.995),
         new BackgroundObject('./img/5.Fondo/Capas/1.suelo-fondo1/1.png', 3.995)
+    ],
+    [
+        new CollectableCoins(300, 220),
+        new CollectableCoins(300, 280),
+        new CollectableCoins(400, 280),
+        new CollectableCoins(500, 280),
+        new CollectableCoins(750, 280),
+        new CollectableCoins(1000, 280)
+    ],
+    [
+        new CollectableBottles(400),
+        new CollectableBottles(700),
+        new CollectableBottles(1200),
+        new CollectableBottles(1400),
+        new CollectableBottles(1800),
+        new CollectableBottles(1900),
+        new CollectableBottles(2200),
+        new CollectableBottles(2400)
     ]
 );

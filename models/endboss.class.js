@@ -1,7 +1,7 @@
 class Endboss extends MoveableObject {
 
-    width = 225;
-    height = 150;
+    width = 200;
+    height = 200;
 
     IMAGES_WALKING = [
         'img/4.Secuencias_Enemy_gigantขn-Doคa_Gallinota-/2.Ateciขn-ataque/1.Alerta/G5.png',
@@ -18,7 +18,7 @@ class Endboss extends MoveableObject {
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.y = 210;
+        this.y = 220;
         this.x = 3000;
         this.animate();
     }

@@ -10,7 +10,7 @@ class Chicken extends MoveableObject {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
         this.y = 360;
-        this.x = 200 + Math.random() * 500;//Zahl zwischen 200 und 700
+        this.x = 200 + Math.random() * 2800;//Zahl zwischen 200 und 700
 
         this.width = 65;//!!WARUM HÖHE?
         this.height = 60;//!!WARUM BREITE?

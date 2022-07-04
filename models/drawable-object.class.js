@@ -1,8 +1,8 @@
 class DrawableObject {
     x = 20;
     y = 230;
-    height = 120;
-    width = 200;
+    height = 190;
+    width = 120;
     img;
     imageCache = {};
     currentImage = 0;
@@ -14,7 +14,7 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.height, this.width);
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
     /**
      * 
@@ -29,14 +29,15 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof CollectableCoins) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.height, this.width);
+            ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
     }
+    
     reflectImage(ctx) {
         if (this.otherDirection) {
             ctx.save();

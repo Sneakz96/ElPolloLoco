@@ -1,7 +1,7 @@
-class BackgroundObject extends MoveableObject {
+class BackgroundObject extends DrawableObject {
 
-    width = 480;
-    height = 720;
+    width = 720;
+    height = 480;
 
     constructor(imagePath, xMulty) {
         super().loadImage(imagePath);
