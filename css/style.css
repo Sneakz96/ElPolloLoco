@@ -2,8 +2,21 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color:rgba(153, 68, 9, 0.65)
 }
 
 canvas{
     background-color: black;
+}
+
+.control{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+}
+
+.control img{
+    height: 50px;
 }

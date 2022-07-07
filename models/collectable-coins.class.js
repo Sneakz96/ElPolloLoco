@@ -13,7 +13,6 @@ class CollectableCoins extends MoveableObject {
         this.width = 70;
         this.height = 70;
         this.animateCoins();
-    
     }
 
     /**
@@ -28,7 +27,7 @@ class CollectableCoins extends MoveableObject {
     pickUp() {
         this.level.coins.forEach((coin) => {
             if (this.char.isColliding(coin)) {
-                this.coinBar.setPercentage();
+                this.coinBar.setPercentage(this.coinBar.percentage +20);
             }
         });
     }

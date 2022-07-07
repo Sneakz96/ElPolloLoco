@@ -4,16 +4,15 @@ class CollectableBottles extends MoveableObject {
     width = 40;
 
     IMAGES_BOTTLE = [
-        'img/7.Marcadores/Icono/Botella.png'
+        'img/6.botella/2.Botella_enterrada2.png'
     ];
 
     constructor(x) {
-        super().loadImage('img/7.Marcadores/Icono/Botella.png');
+        super().loadImage('img/6.botella/2.Botella_enterrada2.png');
         this.loadImages(this.IMAGES_BOTTLE);
         this.x = x; // BETWEEN 200 AND 700
         this.y = 350;
         this.width = 70;
         this.height = 70;
-
     }
 }
