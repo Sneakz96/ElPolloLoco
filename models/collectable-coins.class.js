@@ -28,6 +28,7 @@ class CollectableCoins extends MoveableObject {
         this.level.coins.forEach((coin) => {
             if (this.char.isColliding(coin)) {
                 this.coinBar.setPercentage(this.coinBar.percentage +20);
+                this.level.collectableCoins.splice(1);
             }
         });
     }
