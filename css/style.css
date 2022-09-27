@@ -1,22 +1,31 @@
-body{
+@font-face {
+    font-family: 'zabars';
+    
+    src: 
+         url('zabars.ttf')  format('truetype'), /* Safari, Android, iOS */
+        
+}
+
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:rgba(153, 68, 9, 0.65)
+    background-image: url('/img/desert-bg.jpg');
+    background-position: center;
+    font-family: 'zabars';
 }
 
-canvas{
+canvas {
     background-color: black;
 }
 
-.control{
+.controls {
     color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 10px;
+
+    padding-top: 20px;
 }
 
-.control img{
-    height: 50px;
+.controls img {
+    padding-top: 20px;
+    height: 40px;
 }
