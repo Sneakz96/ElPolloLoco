@@ -13,4 +13,13 @@ class Level {
         this.coins = coins;
         this.bottles = bottles;
     }
+
+    startLevel() {
+        this.enemies.forEach(enemy => {
+            enemy.start();
+        });
+        this.clouds.forEach(cloud => {
+            cloud.start();
+        });
+    }
 }

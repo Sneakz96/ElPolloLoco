@@ -39,12 +39,27 @@
 
 <body onload="init()">
     <h1>My.El Pollo Loco</h1>
+    <div class="window">
+        <img onclick="startGame()"id="start-screen"
+        src="img/9.Intro _ Outro Image/Start Screen/Opciขn 1.png">
+        <canvas class="d-none" id="canvas" width="720" height="480">
 
-    <canvas id="canvas" width="720" height="480">
+        </canvas>
+        <img src="icons/volume-up-2-48.png" id="volume" class="d-none" onclick="mute()">
+        <img src="icons/mute-48.png" id="mute" onclick="volumeUp()">
 
-    </canvas>
-    <img src="icons/volume-up-2-48.png" id="volume" class="d-none" onclick="mute()">
-    <img src="icons/mute-48.png" id="mute" onclick="volumeUp()">
+        <img class="end-screen d-none" id="lost-screen"
+            src="./img/9.Intro _ Outro Image/_Game over_ screen/2.oh no you lost!.png">
+        <img class="end-screen d-none" id="game-over-screen"
+            src="./img/9.Intro _ Outro Image/_Game over_ screen/3.Game over.png">
+    </div>
+    
+
+    <div id="instruction">
+        <span>collect bottles to kill the endboss</span>
+        <span>kill chickens by trampling them</span>
+        <span>click on image to start game :-)</span>
+    </div>
     <div class="controls">
         <div class="control">
             <img src="./img/controls/arrow-left-64.png">

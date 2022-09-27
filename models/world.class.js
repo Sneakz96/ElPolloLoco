@@ -33,6 +33,13 @@ class World {
     this.play_sound.volume = 0.25;
 }
 
+startWorld() {
+    this.character.start();
+    //this.level.startLevel();
+    this.draw(); 
+    this.run(); 
+}
+
 draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 

@@ -1,14 +1,22 @@
 let canvas;
-let world;
+let world = 0;
 let keyboard = new Keyboard();
 let play_sound = new Audio('./audio/gamesound.mp3');
 play_sound.loop = true;
  
 function init(){
     canvas = document.getElementById('canvas');
+    initLevel();
     world = new World(canvas, keyboard);
 }
 
+function startGame() {
+    document.getElementById('start-screen').classList.add('d-none');
+    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('instruction').classList.add('d-none');
+    //document.getElementById('touchscreen-button-container').classList.remove('d-none');
+    this.world.startWorld();
+}
 
 document.addEventListener("keydown", (e) =>{
     if (e.keyCode == 39) {
