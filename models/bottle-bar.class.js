@@ -11,6 +11,7 @@ class BottleBar extends DrawableObject {
 
     percentage = 0;
 
+
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -40,7 +41,6 @@ class BottleBar extends DrawableObject {
             return 1;
         } else {
             return 0;
-
         }
     }
 }

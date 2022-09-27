@@ -30,12 +30,11 @@ class World {
     this.draw();
     this.setWorld();
     this.run();
-    this.play_sound.volume = 0.25;
 }
 
 startWorld() {
-    this.character.start();
-    //this.level.startLevel();
+    this.level.startLevel();
+    this.char.start();
     this.draw(); 
     this.run(); 
 }

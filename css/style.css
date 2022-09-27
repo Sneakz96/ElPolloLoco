@@ -74,7 +74,7 @@ canvas {
 
 #volume {
     position: relative;
-    left: 750px;
+    left: 400px;
     bottom: 50px;
     height: 45px;
 }
@@ -85,7 +85,7 @@ canvas {
 
 #mute {
     position: relative;
-    left: 745px;
+    left: 395px;
     bottom: 50px;
     height: 45px;
 }

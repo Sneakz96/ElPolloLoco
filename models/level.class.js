@@ -16,10 +16,10 @@ class Level {
 
     startLevel() {
         this.enemies.forEach(enemy => {
-            enemy.start();
+            enemy.animate();
         });
         this.clouds.forEach(cloud => {
-            cloud.start();
+            cloud.animate();
         });
     }
 }

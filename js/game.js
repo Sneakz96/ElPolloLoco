@@ -12,10 +12,10 @@ function init(){
 
 function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
-    document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('instruction').classList.add('d-none');
-    //document.getElementById('touchscreen-button-container').classList.remove('d-none');
-    this.world.startWorld();
+    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('controls').classList.remove('d-none');
+    //this.level.startWorld();
 }
 
 document.addEventListener("keydown", (e) =>{

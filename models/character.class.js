@@ -73,7 +73,7 @@ class Character extends MoveableObject {
                 //this.jumping_sound.play(); 
             }
             this.world.camera_x =- this.x + 20;
-        }, 1000 / 60);
+        }, 20);
 
         setInterval(() => {
             //this.walking_sound.pause();
@@ -82,9 +82,10 @@ class Character extends MoveableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 //this.dead_sound.play();
+                //endscreen animation function here and up in a timeout
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                //this.hurt_sound.play();
+                this.hurt_sound.play();
             } else if (this.isAboveGround()) {
                 //JUMP_ANIMATION
                 this.playAnimation(this.IMAGES_JUMPING);
