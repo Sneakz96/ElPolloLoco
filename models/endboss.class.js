@@ -2,6 +2,8 @@ class Endboss extends MoveableObject {
 
     width = 200;
     height = 200;
+    
+
 
     IMAGES_WALKING = [
         'img/4.Secuencias_Enemy_gigantขn-Doคa_Gallinota-/2.Ateciขn-ataque/1.Alerta/G5.png',

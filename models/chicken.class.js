@@ -9,16 +9,16 @@ class Chicken extends MoveableObject {
         'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/4.G_muerte.png'
     ];
     bottleHitChicken = false;
+    chicken_walking_sound = new Audio('./audio/chicken.mp3');
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
+        //this.chicken_walking_sound.volume = 0.055;
         this.loadImages(this.IMAGES_WALKING, this.IMAGES_DEAD);
         this.y = 360;
         this.x = 200 + Math.random() * 2800;//Zahl zwischen 200 und 700
-
         this.width = 65;
         this.height = 60;
-
         this.animate();
         this.speed = 1 + Math.random() * 1;
     }
@@ -30,6 +30,7 @@ class Chicken extends MoveableObject {
             } else {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
+                //this.chicken_walking_sound.play();
             }
         }, 100);
     }

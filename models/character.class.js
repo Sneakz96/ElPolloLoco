@@ -1,5 +1,8 @@
 class Character extends MoveableObject {
-
+    walking_sound = new Audio('./audio/walking.mp3');
+    jumping_sound = new Audio('./audio/jump.mp3');
+    hurt_sound = new Audio('./audio/hurt.mp3');
+    dead_sound = new Audio('./audio/dead.mp3');
     world;
     speed = 3;
     IMAGES_WALKING = [
@@ -47,29 +50,36 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
-       
     }
 
     animate() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
+                //this.walking_sound.play();
             }
             if (this.world.keyboard.LEFT && this.x > -100) {
                 this.moveLeft();
                 this.otherDirection = true;
+                //this.walking_sound.play();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                //this.jumping_sound.play(); 
             }
-            this.world.camera_x = -this.x + 20;
+            this.world.camera_x =- this.x + 20;
         }, 1000 / 60);
 
         setInterval(() => {
+            //this.walking_sound.pause();
+            //this.hurt_sound.pause();
+            //this.dead_sound.pause();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                //this.dead_sound.play();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                //this.hurt_sound.play();
             } else if (this.isAboveGround()) {
                 //JUMP_ANIMATION
                 this.playAnimation(this.IMAGES_JUMPING);
@@ -77,6 +87,7 @@ class Character extends MoveableObject {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     //WALK_ANIMATION    
                     this.playAnimation(this.IMAGES_WALKING);
+                    //this.walking_sound.play();
                 }
             }
         }, 100);
