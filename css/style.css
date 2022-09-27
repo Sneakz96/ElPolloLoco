@@ -1,31 +1,72 @@
 @font-face {
     font-family: 'zabars';
-    
-    src: 
-         url('zabars.ttf')  format('truetype'), /* Safari, Android, iOS */
-        
+    src: url('fonts/zabars.ttf') format('truetype')
+        /* Safari, Android, iOS */
 }
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('/img/desert-bg.jpg');
-    background-position: center;
-    font-family: 'zabars';
+    background-image: url('/img/desert-bg.png');
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    /*don't work why?*/
+}
+
+h1 {
+    font-size: 64px;
+    letter-spacing: 2.5px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 canvas {
     background-color: black;
+    display: block;
 }
 
 .controls {
-    color: white;
-
-    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    padding: 20px;
 }
 
-.controls img {
-    padding-top: 20px;
+.control img {
     height: 40px;
+}
+
+.control {
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.throw {
+    color: white;
+    font-size: 40px;
+}
+
+#volume {
+    position: relative;
+    left: 400px;
+    bottom: 50px;
+    height: 45px;
+}
+
+#volume:hover {
+    cursor: pointer;
+}
+
+#mute {
+    position: relative;
+    left: 395px;
+    bottom: 50px;
+    height: 45px;
+}
+
+#mute:hover {
+    cursor: pointer;
 }

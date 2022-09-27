@@ -14,7 +14,7 @@ class World {
     collectableCoins = [new CollectableCoins()];
     collectableBottles = [new CollectableBottles()];
 
-    play_sound = new Audio('./audio/gamesound.mp3');
+    
     throw_bottle_sound = new Audio('./audio/bottle-throwing.mp3');
     smash_bottle_sound = new Audio('./audio/smashing-glass.mp3');
     coin_collect_sound = new Audio('audio/collect-coin.mp3');
@@ -72,7 +72,6 @@ draw() {
 
 setWorld() {
     this.char.world = this;
-    //this.play_sound.play();
 }
 
 run() {

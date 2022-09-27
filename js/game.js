@@ -1,7 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
+let play_sound = new Audio('./audio/gamesound.mp3');
+play_sound.loop = true;
  
 function init(){
     canvas = document.getElementById('canvas');
@@ -50,3 +51,25 @@ document.addEventListener("keyup", (e) =>{
         keyboard.D = false;
     }
 });
+
+
+/**
+ * functions for able/enable sound
+ */
+function mute(){
+    let mute = document.getElementById('mute');
+    let loud = document.getElementById('volume');
+
+    mute.classList.remove('d-none');
+    loud.classList.add('d-none');
+    play_sound.pause();
+}
+
+function volumeUp(){
+    let mute = document.getElementById('mute');
+    let loud = document.getElementById('volume');
+
+    mute.classList.add('d-none');
+    loud.classList.remove('d-none');
+    play_sound.play();
+}
