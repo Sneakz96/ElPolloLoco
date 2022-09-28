@@ -3,7 +3,7 @@ class ThrowableObject extends MoveableObject {
     height = 80;
     width = 60;
     bottleHitsEnemy = false;
-    
+
     IMAGE = [
         'img/7.Marcadores/Icono/Botella.png'
     ]
@@ -11,7 +11,7 @@ class ThrowableObject extends MoveableObject {
     IMAGES_SALSA = [
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 4.png',
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 5.png',
-        'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png',
+        'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
     ]
 
     IMAGES_SALSA_SPLASH = [
@@ -20,17 +20,19 @@ class ThrowableObject extends MoveableObject {
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png',
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
-        'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png',
+        'img/6.botella/Rotaciขn/Splash de salsa/Mesa-de-trabajo-1-copia-12.png'
     ]
 
 
     constructor(x, y) {
         super().loadImage(this.IMAGE);
-        //this.loadImage(this.IMAGES_SALSA);
-        //this.loadImage(this.IMAGES_SALSA_SPLASH);
         this.x = x;
         this.y = y;
+        //this.loadImage(this.IMAGES_SALSA);
+        //this.loadImage(this.IMAGES_SALSA_SPLASH);
         this.trow();
+
+        this.bottleAnimation();
     }
 
     trow() {
@@ -39,21 +41,17 @@ class ThrowableObject extends MoveableObject {
         setInterval(() => {
             this.x += 11;
         }, 25)
-        
+
     }
 
     bottleAnimation() {
         setInterval(() => {
-            if (this.bottleHitsEnemy) {
+            if (this.bottleHitsEnemy = true) {
                 this.stopBottleAndSplash();
-            }
-        }, 100 / 60);
-        setInterval(() => {
-            if (!this.bottleHitsEnemy) {
+            } else {
                 this.spinBottle();
             }
-        }, 8000 / 60);
-        this.bottleHitsEnemy = false;
+        }, 100);
     }
 
     /**
