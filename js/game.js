@@ -6,11 +6,13 @@ play_sound.loop = true;
  
 function init(){
     canvas = document.getElementById('canvas');
-    initLevel();
+    this.initLevel();
     world = new World(canvas, keyboard);
+    
 }
 
 function startGame() {
+
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('instruction').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
@@ -60,6 +62,11 @@ document.addEventListener("keyup", (e) =>{
     }
 });
 
+function showStartScreen(){
+    document.getElementById('start-screen').classList.remove('d-none');
+    document.getElementById('lost-screen').classList.add('d-none');
+    document.getElementById('instruction').classList.remove('d-none');
+}
 
 /**
  * functions for able/enable sound

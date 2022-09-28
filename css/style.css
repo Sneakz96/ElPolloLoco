@@ -72,6 +72,15 @@ canvas {
     font-size: 40px;
 }
 
+#lost-screen{
+    height: 480px;
+    width: 720px;
+}
+
+#lost-screen:hover{
+    cursor: pointer;
+}
+
 #volume {
     position: relative;
     left: 400px;

@@ -65,12 +65,13 @@ function initLevel(){
             new CollectableCoins(300, 280),
             new CollectableCoins(500, 280),
             new CollectableCoins(750, 300),
-            new CollectableCoins(1000, 300),
+            new CollectableCoins(1000, 180),
             new CollectableCoins(1300, 280),
-            new CollectableCoins(1400, 320),
+            new CollectableCoins(1400, 180),
             new CollectableCoins(1500, 280),
             new CollectableCoins(1750, 300),
-            new CollectableCoins(2000, 300)
+            new CollectableCoins(2000, 300),
+            new CollectableCoins(2300, 200)
         ],
         [
             new CollectableBottles(400),
