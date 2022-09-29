@@ -2,7 +2,7 @@ class ThrowableObject extends MoveableObject {
 
     height = 80;
     width = 60;
-    bottleHitsEnemy = false;
+
 
     IMAGE = [
         'img/6_salsa_bottle/salsa_bottle.png'
@@ -35,6 +35,16 @@ class ThrowableObject extends MoveableObject {
         this.animate();
     }
 
+    animate() {
+        setInterval(() => {
+            if (this.isDead()) {
+                this.stopBottleAndSplash();
+            } else {
+                this.spinBottle()
+            }
+        }, 100);
+    }
+
     trow() {
         this.speed_Y = 20;
         this.applyGravity();
@@ -42,16 +52,6 @@ class ThrowableObject extends MoveableObject {
             this.x += 11;
         }, 25)
 
-    }
-
-    animate() {
-        setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_SALSA_SPLASH);
-            }else{
-                this.spinBottle();
-            }
-        }, 100);
     }
 
     /**
@@ -65,6 +65,7 @@ class ThrowableObject extends MoveableObject {
      * STOP ANIMATION -> SPLASH IMAGE
      */
     stopBottleAndSplash() {
+        this.energy = 0;
         this.playAnimation(this.IMAGES_SALSA_SPLASH);
     }
 }

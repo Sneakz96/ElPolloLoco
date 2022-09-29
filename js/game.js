@@ -62,10 +62,14 @@ document.addEventListener("keyup", (e) =>{
     }
 });
 
+/**
+ * functions for loading start screen
+ */
 function showStartScreen(){
-    document.getElementById('start-screen').classList.remove('d-none');
-    document.getElementById('instruction').classList.remove('d-none');
+    debugger;
     document.getElementById('lost-screen').classList.add('d-none');
+    document.getElementById('instruction').classList.remove('d-none');
+    document.getElementById('start-screen').classList.remove('d-none');
 }
 
 /**

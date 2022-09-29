@@ -41,14 +41,14 @@
     <h1>My.El Pollo Loco</h1>
     <div class="window">
         <img onclick="startGame()" id="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
+        <img class="d-none" id="lost-screen" onclick="showStartScreen()"
+        src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
         <canvas class="d-none" id="canvas" width="720" height="480">
 
         </canvas>
 
-        <div id="game-over">
-        <img class="d-none" id="lost-screen" onclick="showStartScreen()"
-            src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
-        </div>
+        
+       
     </div>
     <img src="icons/volume-up-2-48.png" id="volume" class="d-none" onclick="mute()">
     <img src="icons/mute-48.png" id="mute" onclick="volumeUp()">

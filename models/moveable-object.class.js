@@ -59,9 +59,17 @@ class MoveableObject extends DrawableObject {
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.energy -= 10;
+            this.energy -= 20;
             this.lastHit = new Date().getTime();
         }
+    }
+
+    isTrampling(mo) {
+        return this.x + this.width > mo.x &&
+        this.y + this.height > mo.y &&
+        this.x < mo.x &&
+        this.y < mo.y + mo.height &&
+        this.y < 131;
     }
 
     isHurt() {
@@ -72,5 +80,10 @@ class MoveableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+    }
+
+    isKilled() {
+        this.energy = 0;
+        this.speed = 0;
     }
 }
