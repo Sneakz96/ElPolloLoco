@@ -14,13 +14,13 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        try{
+        try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-       }catch(error){
-        console.warn('error loading image', error);
-        console.log('could not load', this.img.src);
-       }
-}
+        } catch (error) {
+            console.warn('error loading image', error);
+            console.log('could not load', this.img.src);
+        }
+    }
     /**
      * 
      * @param {array} arr - ['img/image1.png', 'img/image2.png', ...]
@@ -42,7 +42,7 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-    
+
     reflectImage(ctx) {
         if (this.otherDirection) {
             ctx.save();

@@ -100,7 +100,7 @@ class World {
             this.checkCollisionWithBottles();
             this.checkThrowObjects();
             this.checkCollisionThrowableObjectToEnemy();
-            this.checkGameOver()
+            this.checkGameOver();
         }, 200);
     }
 

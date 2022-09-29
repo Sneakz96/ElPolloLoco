@@ -29,8 +29,8 @@ class ThrowableObject extends MoveableObject {
 
         this.x = x;
         this.y = y;
-        //this.loadImage(this.IMAGES_ROTATION);
-        //this.loadImage(this.IMAGES_SALSA_SPLASH);
+        this.loadImage(this.IMAGES_ROTATION);
+        this.loadImage(this.IMAGES_SALSA_SPLASH);
         this.trow();
         this.bottleAnimation();
     }
@@ -47,7 +47,7 @@ class ThrowableObject extends MoveableObject {
     bottleAnimation() {
         setInterval(() => {
             if (this.bottleHitsEnemy = true) {
-                //this.stopBottleAndSplash();
+                this.stopBottleAndSplash();
             } else {
                 this.spinBottle();
             }
