@@ -5,31 +5,32 @@ class ThrowableObject extends MoveableObject {
     bottleHitsEnemy = false;
 
     IMAGE = [
-        'img/7.Marcadores/Icono/Botella.png'
+        'img/6_salsa_bottle/salsa_bottle.png'
     ]
 
-    IMAGES_SALSA = [
-        'img/6.botella/Rotación/Mesa de trabajo 1 copia 4.png',
-        'img/6.botella/Rotación/Mesa de trabajo 1 copia 5.png',
-        'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
+    IMAGES_ROTATION = [
+        'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ]
 
     IMAGES_SALSA_SPLASH = [
-        'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 7.png',
-        'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 8.png',
-        'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png',
-        'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
-        'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
-        'img/6.botella/Rotaciขn/Splash de salsa/Mesa-de-trabajo-1-copia-12.png'
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ]
 
 
     constructor(x, y) {
         super().loadImage(this.IMAGE);
+        //this.loadImage(this.IMAGES_ROTATION);
+        //this.loadImage(this.IMAGES_SALSA_SPLASH);
         this.x = x;
         this.y = y;
-        //this.loadImage(this.IMAGES_SALSA);
-        //this.loadImage(this.IMAGES_SALSA_SPLASH);
         this.trow();
 
         this.bottleAnimation();
@@ -58,7 +59,7 @@ class ThrowableObject extends MoveableObject {
      * PLAY ANIMATION -> LOAD ALL IMAGES TO ROTATE
      */
     spinBottle() {
-        this.playAnimation(this.IMAGES_SALSA);
+        this.playAnimation(this.IMAGES_ROTATION);
     }
 
     /**

@@ -1,12 +1,12 @@
 class Chicken extends MoveableObject {
 
     IMAGES_WALKING = [
-        './img/3.Secuencias_Enemy_b sico/Versi¢n_Gallinita (estas salen por orden de la gallina gigantona)/1.Ga_paso_derecho.png',
-        './img/3.Secuencias_Enemy_b sico/Versi¢n_Gallinita (estas salen por orden de la gallina gigantona)/2-Ga_centro.png',
-        './img/3.Secuencias_Enemy_b sico/Versi¢n_Gallinita (estas salen por orden de la gallina gigantona)/3.Ga_paso izquierdo.png'
+        'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
+        'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
+        'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
     IMAGES_DEAD = [
-        'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/4.G_muerte.png'
+        'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
     bottleHitChicken = false;
     chicken_walking_sound = new Audio('./audio/chicken.mp3');

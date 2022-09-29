@@ -2,10 +2,16 @@ class Cloud extends MoveableObject {
     width = 310;
     height = 250;
 
+    IMAGES_CLOUDS = [
+        'img/5_background/layers/4_clouds/1.png',
+        'img/5_background/layers/4_clouds/2.png'
+    ]
+
     constructor() {
-        super().loadImage('img/5.Fondo/Capas/4.nubes/1.png');
-        this.y = 40;
+        super().loadImage('img/5_background/layers/4_clouds/1.png');
+        this.loadImages(this.IMAGES_CLOUDS);
         this.x = 200 + Math.random() * 2800;//Zahl zwischen 200 und 700
+        this.y = 40;
         this.animate();
     }
 
