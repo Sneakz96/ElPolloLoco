@@ -6,9 +6,8 @@ play_sound.loop = true;
  
 function init(){
     canvas = document.getElementById('canvas');
-    this.initLevel();
+    initLevel();
     world = new World(canvas, keyboard);
-    
 }
 
 function startGame() {
@@ -16,8 +15,7 @@ function startGame() {
     document.getElementById('instruction').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('controls').classList.remove('d-none');
-    
-    //this.level.startWorld();
+    world.startWorld();
 }
 
 document.addEventListener("keydown", (e) =>{
@@ -66,7 +64,7 @@ document.addEventListener("keyup", (e) =>{
  * functions for loading start screen
  */
 function showStartScreen(){
-    debugger;
+    console.log('show start screen');
     document.getElementById('lost-screen').classList.add('d-none');
     document.getElementById('instruction').classList.remove('d-none');
     document.getElementById('start-screen').classList.remove('d-none');

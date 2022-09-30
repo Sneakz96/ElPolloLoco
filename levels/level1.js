@@ -1,7 +1,8 @@
 let level1;
 
 function initLevel(){
-    Level1 = new Level(
+    console.log('init level wird ausgeführt');
+    level1 = new Level(
         [
             new Chicken(),
             new Chicken(),

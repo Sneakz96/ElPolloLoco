@@ -2,7 +2,7 @@ class World {
     ctx;
     canvas;
     keyboard;
-    level = Level1;
+    level = level1;
     camera_x = 0;
 
     isGameOver = false;

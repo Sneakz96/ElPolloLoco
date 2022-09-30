@@ -47,29 +47,29 @@ class MoveableObject extends DrawableObject {
             return this.y < 230;
         }
     }
-    
+
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
             this.y < mo.y + mo.height
-        }
+    }
+
+    isTrampling(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height &&
+            this.y < 135;
+    }
 
     hit() {
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.energy -= 20;
+            this.energy -= 2;
             this.lastHit = new Date().getTime();
         }
-    }
-
-    isTrampling(mo) {
-        return this.x + this.width > mo.x &&
-        this.y + this.height > mo.y &&
-        this.x < mo.x &&
-        this.y < mo.y + mo.height &&
-        this.y < 131;
     }
 
     isHurt() {
