@@ -115,13 +115,12 @@ class World {
     /**
      * FUNCTIONS FOR CHECK COLLISION BOTTLE AND ENEMY
      */
-     checkCollisionThrowableObjectToEnemy() {
+    checkCollisionThrowableObjectToEnemy() {
         this.throwableObjects.forEach(bottle => {
             this.level.enemies.forEach((enemy, index) => {
                 if (enemy.isColliding(bottle)) {
-
-                    this.removeFromWorld(this.level.enemies, index, 3000);
-                }
+                    this.removeFromWorld(this.level.enemies, index, 1);
+                };
             });
         });
     }
@@ -133,16 +132,16 @@ class World {
         this.level.coins.forEach((coin, index) => {
             if (this.char.isColliding(coin)) {
                 this.level.coins.splice(index, 1);
-                this.coinBar.setPercentage(this.coinBar.percentage += 10);
+                this.coinBar.setPercentage(this.coinBar.percentage += 20);
                 //this.coin_collect_sound.play();
-            }
+            } 
         });
     }
 
     /**
-     * FUNCTIONS FOR CHECK COLLISION CHAR AND BOTTLES ON GROUND
+     * FUNCTIONS FOR CHECK COLLISION CHAR AND BOTTLES ON GROUND TO ADD
      */
-     checkCollisionWithBottles() {
+    checkCollisionWithBottles() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.char.isColliding(bottle)) {
                 this.level.bottles.splice(index, 1);
@@ -155,7 +154,7 @@ class World {
     /**
      * FUNCTIONS FOR CHECKING THROWING OBJECTS
      */
-     checkThrowObjects() {
+    checkThrowObjects() {
         if (this.bottleBar.percentage > 0 && this.keyboard.D) {
             let bottle = new ThrowableObject(this.char.x, this.char.y);
             this.throwableObjects.push(bottle);
@@ -165,23 +164,26 @@ class World {
         }
     }
 
-
     /**
-         * Function for check if Game Over
-         */
+     * FUNCTION TO CHECK GAME OVER
+     */
     checkGameOver() {
-        if (this.char.isDead()) {
+        if (this.char.isDead()|| this.level[Endboss]) {
             document.getElementById('canvas').classList.add('d-none');
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isGameOver = true;
             this.stopAll();
+            this.clearAllIntervals();
             //play death sound here
             //this.statusBar.setPercentage(this.char.energy, 100);
         }
 
     }
 
+    /**
+     * FUNCTIONS TO SET SPEED OF ENEMIES = 0
+     */
     stopAll() {
         this.level.enemies.forEach(enemy => {
             enemy.speed = 0;
@@ -204,6 +206,9 @@ class World {
         });
     }
 
+    /**
+     * FUNCTIONS TO ADD MO TO MAP 
+     */
     addToMap(mo) {//mo = movableObject
         mo.reflectImage(this.ctx);
         mo.draw(this.ctx);
@@ -211,9 +216,19 @@ class World {
         mo.reflectImageBack(this.ctx);
     }
 
+    /**
+     * FUNCTIONS TO REMOVE ITEM FROM WORLD
+     */
     removeFromWorld(array, index, timeout) {
         setTimeout(() => {
             array.splice(index, 1);
         }, timeout);
+    }
+
+    /**
+     * FUNCTIONS TO CLEAR ALL ARRAYS AFTER GAME STOP
+     */
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 }

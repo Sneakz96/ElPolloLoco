@@ -5,9 +5,22 @@
     canvas{
         width: 100%;
     }
-    .control{
-        display: none;
+    .controls{
+        display: none !important;
     }
+    #instruction{
+        display: none !important;
+    }
+    #mute{
+        display: none !important;
+    }
+    #volume{
+        display: none !important;
+    }
+    
+    /*MB_HUD*/
+
+
 }
 
 @media only screen and (max-height: 480px) {
@@ -17,7 +30,19 @@
     canvas{
         height: 100vh;
     }
-    .control{
-        display: none;
+    .controls{
+        display: none !important;
     }
+    #instruction{
+        display: none !important;
+    }
+    #mute{
+        display: none !important;
+    }
+    #volume{
+        display: none !important;
+    }
+
+    /*MB_HUD*/
+
 }

@@ -57,5 +57,4 @@ class DrawableObject {
             ctx.restore();//LOAD_START
         }
     }
-
 }

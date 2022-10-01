@@ -27,19 +27,31 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 25)
     }
 
+    /**
+     * FUNCTION TO MOVE RIGHT
+     */
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
 
+    /**
+     * FUNCTION TO MOVE LEFT
+     */
     moveLeft() {
         this.x -= this.speed;
     }
 
+    /**
+     * FUNCTION TO JUMP
+     */
     jump() {
         this.speed_Y = 30;
     }
 
+    /**
+     * FUNCTION TO CHECK IF ABOVE GROUND
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -48,6 +60,9 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * FUNCTION TO CHECK IF MO IS COLLIDING
+     */
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
@@ -55,6 +70,10 @@ class MoveableObject extends DrawableObject {
             this.y < mo.y + mo.height
     }
 
+    /**
+     * FUNCTION TO CHECK IF MO IS COLLIDING WITH CHAR 
+     * JUMP ON CHICKEN 
+     */
     isTrampling(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
@@ -63,6 +82,9 @@ class MoveableObject extends DrawableObject {
             this.y < 135;
     }
 
+    /**
+     * FUNCTION TO CHECK HIT
+     */
     hit() {
         if (this.energy < 0) {
             this.energy = 0;
@@ -72,16 +94,25 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * FUNCTION TO CHECK TIME WHEN LAST HIT WAS 
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // DIFFERENCE IN MS
         timepassed = timepassed / 1000; // DIFFERENCE IN S
         return timepassed < 0.75;
     }
 
+    /**
+     * FUNCTION TO RETURN ENERGY
+     */
     isDead() {
         return this.energy == 0;
     }
 
+    /**
+     * FUNCTION TO SET PARAMETER TO MO
+     */
     isKilled() {
         this.energy = 0;
         this.speed = 0;

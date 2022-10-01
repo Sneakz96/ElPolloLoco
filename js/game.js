@@ -3,62 +3,28 @@ let world = 0;
 let keyboard = new Keyboard();
 let play_sound = new Audio('./audio/gamesound.mp3');
 play_sound.loop = true;
- 
+
+/**
+ * function for init world by loading page
+ */
 function init(){
     canvas = document.getElementById('canvas');
     initLevel();
     world = new World(canvas, keyboard);
+    keyboard.mobileEvents();
 }
 
+/**
+ * function for start the game by clicking on picture
+ */
 function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('instruction').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('controls').classList.remove('d-none');
-    world.startWorld();
+    init();
+    //console.log(this.world.startWorld);
 }
-
-document.addEventListener("keydown", (e) =>{
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-    if (e.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-    if (e.keyCode == 38) {
-        keyboard.UP = true;
-    }
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-    if (e.keyCode == 68) {
-        keyboard.D = true;
-    }
-});
-
-document.addEventListener("keyup", (e) =>{
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-    if (e.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-    if (e.keyCode == 38) {
-        keyboard.UP = false;
-    }
-    if (e.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-    if (e.keyCode == 68) {
-        keyboard.D = false;
-    }
-});
 
 /**
  * functions for loading start screen
@@ -71,7 +37,7 @@ function showStartScreen(){
 }
 
 /**
- * functions for able/enable sound
+ * functions for enable sound
  */
 function mute(){
     let mute = document.getElementById('mute');
@@ -82,6 +48,9 @@ function mute(){
     play_sound.pause();
 }
 
+/**
+ * functions for able sound
+ */
 function volumeUp(){
     let mute = document.getElementById('mute');
     let loud = document.getElementById('volume');

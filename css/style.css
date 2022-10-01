@@ -11,6 +11,8 @@ body {
     background-image: url('/img/desert-bg.png');
     background-position: center;
     font-family: 'zabars', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -25,8 +27,8 @@ h1 {
 }
 
 #start-screen {
-    height: 480px;
-    width: 720px;
+    max-height: 480px;
+    max-width: 720px;
 }
 
 #start-screen:hover {
@@ -72,12 +74,12 @@ canvas {
     font-size: 40px;
 }
 
-#lost-screen{
+#lost-screen {
     height: 480px;
     width: 720px;
 }
 
-#lost-screen:hover{
+#lost-screen:hover {
     cursor: pointer;
 }
 
@@ -100,5 +102,27 @@ canvas {
 }
 
 #mute:hover {
+    cursor: pointer;
+}
+
+/*MB_HUD*/
+
+#hudl img {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+    padding: 3px;
+}
+
+#hudr img {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+    padding: 3px;
+}
+
+#hudl img:hover {
+    cursor: pointer;
+}
+
+#hudr img:hover {
     cursor: pointer;
 }

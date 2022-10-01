@@ -40,21 +40,33 @@
 <body onload="init()">
     <h1>My.El Pollo Loco</h1>
     <div class="window">
+
+        <div id="hudl">
+            <div class="hud-wrapper">
+                <img src="img/controls/mb/arrow-99-64.png" id="btnLeft">
+                <img src="img/controls/mb/arrow-34-64.png" id="btnRight">
+            </div>
+        </div>
+
         <img onclick="startGame()" id="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
-        <img class="d-none" id="lost-screen" onclick="showStartScreen()"
-        src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
+        <img onclick="showStartScreen()" class="d-none" id="lost-screen"
+            src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
         <canvas class="d-none" id="canvas" width="720" height="480">
 
         </canvas>
 
-        
-       
+        <div id="hudr">
+            <img src="img/controls/mb/bottle-5-64.png" id="btnThrow">
+            <img src="img/controls/mb/arrow-151-64.png" id="btnJump">
+        </div>
+
     </div>
     <img src="icons/volume-up-2-48.png" id="volume" class="d-none" onclick="mute()">
     <img src="icons/mute-48.png" id="mute" onclick="volumeUp()">
 
     <div id="instruction">
-        <span>~collect bottles to kill the endboss</span>
+        <span>~collect bottles and coins</span>
+        <span>~throw bottles by pressing D to kill enemies</span>
         <span>~kill chickens by jumping on them</span>
         <span>~click on image to start the game !!!</span>
         <span>~click on game over to restart the game !!!</span>
