@@ -29,28 +29,23 @@ class ThrowableObject extends MoveableObject {
         super().loadImage(this.IMAGE);
         this.x = x;
         this.y = y;
-        this.loadImages(this.IMAGES_SALSA_SPLASH);
         this.loadImages(this.IMAGES_ROTATION);
+        this.loadImages(this.IMAGES_SALSA_SPLASH);
         this.trow();
-        this.animate();
     }
 
-    animate() {
-        setInterval(() => {
-            this.spinBottle();
-        }, 100);
-    }
-
+    
     trow() {
-        this.speed_Y = 20;
+        this.speed_Y = 20;//FALLGESCHWINDIGKEIT
         this.applyGravity();
 
         setInterval(() => {
-            this.x += 11;
-            if (!this.collision) {
+            this.x += 11;//WEITE
+            if (!this.collision && this.isAboveGround()) {
                 this.spinBottle();
             } else {
                 this.stopBottleAndSplash();
+                //splice
             }
         }, 25)
     }

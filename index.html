@@ -39,7 +39,7 @@
 
 <body onload="init()">
     <h1>My.El Pollo Loco</h1>
-    <div class="window">
+    <div class="window" id="window">
 
         <div id="hudl">
             <div class="hud-wrapper">
@@ -56,13 +56,19 @@
         </canvas>
 
         <div id="hudr">
-            <img src="img/controls/mb/bottle-5-64.png" id="btnThrow">
-            <img src="img/controls/mb/arrow-151-64.png" id="btnJump">
+            <div class="hud-wrapper">
+                <img src="img/controls/mb/bottle-5-64.png" id="btnThrow">
+                <img src="img/controls/mb/arrow-151-64.png" id="btnJump">
+            </div>
         </div>
 
     </div>
+
     <img src="icons/volume-up-2-48.png" id="volume" class="d-none" onclick="mute()">
     <img src="icons/mute-48.png" id="mute" onclick="volumeUp()">
+
+    <img src="icons/fullscreen-enter-64.png" id="fullScreenEnter" onclick="openFullScreen()">
+    <img src="icons/fullscreen-exit-64.png" id="fullScreenExit" class="d-none" onclick="exitFullScreen()">
 
     <div id="instruction">
         <span>~collect bottles and coins</span>

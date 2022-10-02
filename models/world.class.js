@@ -116,10 +116,13 @@ class World {
      * FUNCTIONS FOR CHECK COLLISION BOTTLE AND ENEMY
      */
     checkCollisionThrowableObjectToEnemy() {
-        this.throwableObjects.forEach(bottle => {
+        this.throwableObjects.forEach((bottle, i) => {
             this.level.enemies.forEach((enemy, index) => {
                 if (enemy.isColliding(bottle)) {
                     this.removeFromWorld(this.level.enemies, index, 1);
+                    console.log(bottle);
+                    bottle.collision = true;
+                    //this.removeFromWorld(this.level.throwableObjects, i, 10);
                 };
             });
         });
