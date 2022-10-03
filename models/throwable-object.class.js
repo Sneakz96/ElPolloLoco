@@ -31,11 +31,12 @@ class ThrowableObject extends MoveableObject {
 
     constructor(x, y, world) {
         super().loadImage(this.IMAGE);
+        this.loadImages(this.IMAGES_ROTATION);
+        this.loadImages(this.IMAGES_SALSA_SPLASH);
+        this.bottleAnimation();
         this.x = x;
         this.y = y;
         this.world = world;
-        this.loadImages(this.IMAGES_ROTATION);
-        this.loadImages(this.IMAGES_SALSA_SPLASH);
         this.throw();
     }
 
@@ -46,6 +47,10 @@ class ThrowableObject extends MoveableObject {
         this.speed_Y = 20;//FALLGESCHWINDIGKEIT
         this.applyGravity();
 
+       
+    }
+
+    bottleAnimation() {
         let clearBottle = setInterval(() => {
             this.x += 11;//WEITE
             if (!this.collision && this.isAboveGround()) {
@@ -55,14 +60,15 @@ class ThrowableObject extends MoveableObject {
                 clearInterval(clearBottle);
             }
         }, 45)
-    }
+        this.collision = false;
+    };
 
     /**
      * PLAY ANIMATION -> LOAD ALL IMAGES TO ROTATE
      */
     spinBottle() {
         this.playAnimation(this.IMAGES_ROTATION);
-        this.playThrowingSound();
+        //this.playThrowingSound();
     }
 
     /**

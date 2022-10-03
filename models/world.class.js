@@ -8,6 +8,9 @@ class World {
 
     isGameOver = false;
     
+    //ARRAYS
+    collectedBottles = [];
+
     //STATIC_BARS
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
@@ -121,8 +124,6 @@ class World {
             this.level.enemies.forEach((enemy, index) => {
                 if (enemy.isColliding(bottle)) {
                     this.removeFromWorld(this.level.enemies, index, 1);
-                    console.log(bottle);
-                    bottle.collision = true;
                     //this.removeFromWorld(this.throwableObjects[i], i, 10);
                 };
             });
@@ -149,6 +150,7 @@ class World {
         this.level.bottles.forEach((bottle, index) => {
             if (this.char.isColliding(bottle)) {
                 this.level.bottles.splice(index, 1);
+                this.collectedBottles.push(this.level.CollectableBottles);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 20);
                 //this.bottle_collect_sound.play();
             }
@@ -179,7 +181,6 @@ class World {
             this.stopAll();
             this.clearAllIntervals();
         }
-
     }
 
     /**

@@ -1,5 +1,8 @@
 class Chicken extends MoveableObject {
 
+    bottleHitsChicken = false;
+    level;
+
     //IMAGES
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -23,7 +26,7 @@ class Chicken extends MoveableObject {
         this.width = 65;
         this.height = 60;
         this.animate();
-        this.speed = 1 + Math.random() * 1;
+        this.speed = 2 + Math.random() * 1;
     }
 
     animate() {
@@ -37,9 +40,7 @@ class Chicken extends MoveableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.speed > 0){
                 this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.loadImage('img/3_enemies_chicken/chicken_normal/1_walk/2_w.png');
-            }
+            } 
         }, 150);
     }
 }

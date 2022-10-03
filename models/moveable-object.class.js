@@ -1,5 +1,5 @@
 class MoveableObject extends DrawableObject {
-    
+
     speed = 0.15;
     otherDirection = false;
     xMulty;
@@ -70,6 +70,10 @@ class MoveableObject extends DrawableObject {
             this.y < mo.y + mo.height //CHAR UNTEN OBJECT OBEN
     }
 
+
+
+
+
     /**
      * FUNCTION TO CHECK IF MO IS COLLIDING WITH CHAR 
      * JUMP ON CHICKEN 
@@ -81,6 +85,18 @@ class MoveableObject extends DrawableObject {
             this.y < mo.y + mo.height &&
             this.y < 135;
     }
+    
+    //OR
+    jumpsOnTop(jo) {
+        return this.y + this.height > jo.y &&
+            this.y + this.height < jo.y + jo.height &&
+            this.x + this.width > jo.x &&
+            this.x + this.width < (jo.x + jo.width + 50);
+    }
+
+
+
+
 
     /**
      * FUNCTION TO CHECK HIT
