@@ -1,4 +1,5 @@
 class MoveableObject extends DrawableObject {
+    
     speed = 0.15;
     otherDirection = false;
     xMulty;
@@ -7,10 +8,6 @@ class MoveableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-    constructor() {
-        super();
-    }
-
     playAnimation(images) {
         let i = this.currentImage % images.length;// let i = 7 % 6; => 1 REST 1
         let path = images[i];
@@ -18,6 +15,9 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
+    /**
+     * FUNCTION FOR GRAVITY 
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speed_Y > 0) {
@@ -64,10 +64,10 @@ class MoveableObject extends DrawableObject {
      * FUNCTION TO CHECK IF MO IS COLLIDING
      */
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height
+        return this.x + this.width > mo.x && //CHAR RECHTS OBJECT LINKS 
+            this.y + this.height > mo.y && //CHAR OBEN OBJECT UNTEN
+            this.x < mo.x && //CHAR LINKS OBJECT RECHTS 
+            this.y < mo.y + mo.height //CHAR UNTEN OBJECT OBEN
     }
 
     /**

@@ -1,5 +1,6 @@
 class CollectableCoins extends MoveableObject {
 
+    //IMAGES
     IMAGES_COINS = [
         'img/8_coin/coin_1.png',
         'img/8_coin/coin_2.png'

@@ -10,7 +10,22 @@
 
     /*MB_HUD*/
 
+    #hudl{
+        display: flex !important;
+    }
+    #hudr{
+        display: flex !important;
+    }
     
+    /*FULLSCREEN*/
+
+    #fullScreenEnter{
+        display: none;
+    }
+    
+    #fullScreenExit{
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 720px) {

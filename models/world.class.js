@@ -1,4 +1,5 @@
 class World {
+    
     ctx;
     canvas;
     keyboard;
@@ -6,21 +7,21 @@ class World {
     camera_x = 0;
 
     isGameOver = false;
-
-    char = new Character();
+    
+    //STATIC_BARS
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
-
+    
+    //OBJECTS
+    char = new Character();
     throwableObjects = [new ThrowableObject()];
     collectableCoins = [new CollectableCoins()];
     collectableBottles = [new CollectableBottles()];
-
-
-    throw_bottle_sound = new Audio('./audio/bottle-throwing.mp3');
-    smash_bottle_sound = new Audio('./audio/smashing-glass.mp3');
+    
+    //SOUNDS
     coin_collect_sound = new Audio('audio/collect-coin.mp3');
-    bottle_collect_sound = new Audio('audio/bottle_collect.mp3');
+    bottle_collect_sound = new Audio();
     win_world_sound = new Audio('audio/win.mp3');
     loose_world_sound = new Audio('audio/loose.mp3');
 
@@ -92,10 +93,10 @@ class World {
     checkCollisions() {
         setInterval(() => {
             this.checkCollisionsWhithEnemys();//FOR CHAR AND ENEMY
+            this.checkThrowObjects();//CHAR AND BOTTLE ON GROUND
             this.checkCollisionThrowableObjectToEnemy();//BOTTLE AND ENEMY
             this.checkCollisionWithCoins();//FOR GRABBING
             this.checkCollisionWithBottles();//FOR GRABBING
-            this.checkThrowObjects();//CHAR AND BOTTLE ON GROUND
             this.checkGameOver();//IF LP=0 -> GAME OVER 
         }, 60);
     }
@@ -122,7 +123,7 @@ class World {
                     this.removeFromWorld(this.level.enemies, index, 1);
                     console.log(bottle);
                     bottle.collision = true;
-                    //this.removeFromWorld(this.level.throwableObjects, i, 10);
+                    //this.removeFromWorld(this.throwableObjects[i], i, 10);
                 };
             });
         });
@@ -137,7 +138,7 @@ class World {
                 this.level.coins.splice(index, 1);
                 this.coinBar.setPercentage(this.coinBar.percentage += 20);
                 //this.coin_collect_sound.play();
-            } 
+            }
         });
     }
 
@@ -163,7 +164,6 @@ class World {
             this.throwableObjects.push(bottle);
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
             //this.throw_bottle_sound.play();
-            this.checkCollisionThrowableObjectToEnemy();
         }
     }
 
@@ -171,15 +171,13 @@ class World {
      * FUNCTION TO CHECK GAME OVER
      */
     checkGameOver() {
-        if (this.char.isDead()|| this.level[Endboss]) {
+        if (this.char.isDead()) {
             document.getElementById('canvas').classList.add('d-none');
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isGameOver = true;
             this.stopAll();
             this.clearAllIntervals();
-            //play death sound here
-            //this.statusBar.setPercentage(this.char.energy, 100);
         }
 
     }

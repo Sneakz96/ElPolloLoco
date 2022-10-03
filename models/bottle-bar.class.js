@@ -1,5 +1,6 @@
 class BottleBar extends DrawableObject {
 
+    //IMAGES
     IMAGES = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
@@ -21,6 +22,7 @@ class BottleBar extends DrawableObject {
         this.height = 60;
         this.setPercentage(this.percentage);
     }
+    
     //set percentage(50);
     setPercentage(percentage) {
         this.percentage = percentage; // => 0...5 

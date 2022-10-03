@@ -3,7 +3,12 @@ class ThrowableObject extends MoveableObject {
     height = 80;
     width = 60;
     collision = false;
+    
+    //SOUNDS
+    SPLASH_SOUND = new Audio('./audio/smashing-glass.mp3');
+    THROW_BOTTLE_SOUND = new Audio('./audio/bottle-throwing.mp3');
 
+    //IMAGES
     IMAGE = [
         'img/6_salsa_bottle/salsa_bottle.png'
     ];
@@ -24,30 +29,32 @@ class ThrowableObject extends MoveableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
-
-    constructor(x, y) {
+    constructor(x, y, world) {
         super().loadImage(this.IMAGE);
         this.x = x;
         this.y = y;
+        this.world = world;
         this.loadImages(this.IMAGES_ROTATION);
         this.loadImages(this.IMAGES_SALSA_SPLASH);
-        this.trow();
+        this.throw();
     }
 
-    
-    trow() {
+    /**
+     * THROW ANIMATION -> LOAD ALL IMAGES TO ROTATE
+     */
+    throw() {
         this.speed_Y = 20;//FALLGESCHWINDIGKEIT
         this.applyGravity();
 
-        setInterval(() => {
+        let clearBottle = setInterval(() => {
             this.x += 11;//WEITE
             if (!this.collision && this.isAboveGround()) {
                 this.spinBottle();
             } else {
                 this.stopBottleAndSplash();
-                //splice
+                clearInterval(clearBottle);
             }
-        }, 25)
+        }, 45)
     }
 
     /**
@@ -55,6 +62,7 @@ class ThrowableObject extends MoveableObject {
      */
     spinBottle() {
         this.playAnimation(this.IMAGES_ROTATION);
+        this.playThrowingSound();
     }
 
     /**
@@ -62,5 +70,19 @@ class ThrowableObject extends MoveableObject {
      */
     stopBottleAndSplash() {
         this.playAnimation(this.IMAGES_SALSA_SPLASH);
+        this.playSplashSound();        
+    }
+
+    /**
+     * SOUND FUNCTIONS 
+     */
+    playSplashSound() {
+        this.SPLASH_SOUND.volume = 0.8;
+        this.SPLASH_SOUND.play();
+    }
+
+    playThrowingSound(){
+        this.THROW_BOTTLE_SOUND.play();
+        this.THROW_BOTTLE_SOUND.volume = 0.7;
     }
 }

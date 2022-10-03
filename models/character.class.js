@@ -1,10 +1,28 @@
 class Character extends MoveableObject {
+
+    world;
+    speed = 3;
+
+    //SOUNDS
     walking_sound = new Audio('./audio/walking.mp3');
     jumping_sound = new Audio('./audio/jump.mp3');
     hurt_sound = new Audio('./audio/hurt.mp3');
     dead_sound = new Audio('./audio/dead.mp3');
-    world;
-    speed = 3;
+    
+
+    //IMAGES
+    IMAGES_IDLE = [
+        'img/2_character_pepe/1_idle/idle/I-1.png',
+        'img/2_character_pepe/1_idle/idle/I-2.png',
+        'img/2_character_pepe/1_idle/idle/I-3.png',
+        'img/2_character_pepe/1_idle/idle/I-4.png',
+        'img/2_character_pepe/1_idle/idle/I-5.png',
+        'img/2_character_pepe/1_idle/idle/I-6.png',
+        'img/2_character_pepe/1_idle/idle/I-7.png',
+        'img/2_character_pepe/1_idle/idle/I-8.png',
+        'img/2_character_pepe/1_idle/idle/I-9.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png'
+    ];
 
     IMAGES_WALK = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -43,11 +61,9 @@ class Character extends MoveableObject {
         'img/2_character_pepe/5_dead/D-57.png'
     ];
     
-
-
-
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_JUMP);
         this.loadImages(this.IMAGES_DEAD);
@@ -76,6 +92,12 @@ class Character extends MoveableObject {
                 this.jump();
                 //this.jumping_sound.play(); 
             }
+            //IDLE
+            if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.SPACE && !this.world.keyboard.D) {
+        
+                this.playAnimation(this.IMAGES_IDLE);
+                
+            }
             this.world.camera_x =- this.x + 20;
         }, 20);
 
@@ -87,14 +109,6 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 //this.dead_sound.play(); //<--in a timeout  and after ->
                 //setTimeout(this.dead_sound.play(), 1000)
-                //endscreen animation function here in a timeout, then show menu
-
-
-
-
-
-
-
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 //this.hurt_sound.play();
