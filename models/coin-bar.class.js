@@ -1,4 +1,5 @@
 class CoinBar extends DrawableObject {
+    
     //SET VARIABLE
     percentage = 0;
 

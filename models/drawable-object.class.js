@@ -1,6 +1,6 @@
 class DrawableObject {
 
-    //SET VARIABLE
+    //SET VARIABLES
     x = 20;
     y = 230;
     height = 190;

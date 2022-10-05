@@ -1,4 +1,4 @@
-//SET VARIABLE
+//SET VARIABLES
 let canvas;
 let world = 0;
 

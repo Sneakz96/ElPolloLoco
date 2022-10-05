@@ -1,6 +1,6 @@
 class World {
 
-    //SET VARIABLE
+    //SET VARIABLES
     level = level1;
     camera_x = 0;
 
@@ -25,11 +25,12 @@ class World {
     collectableBottles = [new CollectableBottles()];
 
     ///CONDITIONS
+    isWin = false;
     isGameOver = false;
 
     //SOUNDS
-    coin_collect_sound = new Audio('audio/collect-coin.mp3');
-    bottle_collect_sound = new Audio();
+    COIN_COLLECT_SOUND = new Audio('audio/collect-coin.mp3');
+    BOTTLE_COLLECT_SOUND = new Audio('audio/bottle_collect.mp3');
     win_world_sound = new Audio('audio/win.mp3');
     loose_world_sound = new Audio('audio/loose.mp3');
 
@@ -101,11 +102,12 @@ class World {
             this.checkCollisionCharToChickens();//CHAR AND ENEMY?
             this.checkCollisionCharToEndboss();//CHAR AND ENDBOSS?
             this.checkThrowObjectsOnGround();//CHAR AND BOTTLE ON GROUND?
-            this.checkCollisionBottleToEnemy();//BOTTLE AND ENEMY?
+            this.checkCollisionsBottleToChicken();//BOTTLE AND ENEMY?
             this.checkCollisionsBottleToEndboss();//BOTTLE AND ENDBOSS?
             this.checkCollisionWithCoins();//GRAB COINS?
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
+            this.checkWin();
         }, 60);
     }
 
@@ -115,7 +117,8 @@ class World {
     checkCollisionCharToChickens() {
         this.level.enemies.forEach((chicken) => {
             if (this.char.isColliding(chicken)) {
-                this.char.hit();
+                this.char.hit(2);
+                this.level.enemies.charHitsChicken = true;
                 this.statusBar.setPercentage(this.char.energy);
                 console.log('char get hit by enemy');
             }
@@ -128,18 +131,17 @@ class World {
     checkCollisionCharToEndboss() {
         this.level.endboss.forEach((endboss) => {
             if (this.char.isColliding(endboss)) {
-                this.char.hit();
+                this.char.hit(20);
                 this.statusBar.setPercentage(this.char.energy);
                 console.log('char get hit by boss');
             }
         });
     }
 
-
     /**
      * FUNCTION FOR CHECK COLLISION BOTTLE AND ENEMY
      */
-    checkCollisionBottleToEnemy() {
+    checkCollisionsBottleToChicken() {
         this.level.enemies.forEach((enemy, index) => {
             this.throwableObjects.forEach((bottle, i) => {
                 if (bottle.isColliding(enemy) && !bottle.bottleHitsChicken) { //2 BEDINGUNG FALSCH
@@ -153,19 +155,25 @@ class World {
     }
 
     /**
-         * Checks if a bottle is colliding the endboss
-         */
+     * FUNCTION TO CHECK COLLISION BOTTLE TO ENDBOSS
+     * 
+     * 2MAL AUSGEFÜHRT - WHY?
+     */
     checkCollisionsBottleToEndboss() {
         this.level.endboss.forEach(endboss => {
             this.throwableObjects.forEach((bottle, i) => {
-                if (bottle.isColliding(endboss)) {
+                if (endboss.isColliding(bottle)) {
                     bottle.bottleHitsChicken = true;
                     endboss.bottleHitsEndboss = true;
+                    this.endboss.lifepoints -= 20;//SET LP OF ENDBOSS
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
-                    this.endboss.hit();
-                } else if (this.endboss.energy == 0) {
+                    console.log('boss hitted', this.endboss.lifepoints );
+                }
+                if (this.endboss.lifepoints == 0) {
                     endboss.bossDead = true;
+                    this.removeFromWorld(this.level.endboss, i, 600);//REMOVE ENDBOSS
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
+                    this.win_world_sound.play();
                 }
             });
         });
@@ -180,6 +188,7 @@ class World {
                 this.level.coins.splice(index, 1);
                 this.coinBar.setPercentage(this.coinBar.percentage += 20);
                 console.log('coin collected');
+                this.COIN_COLLECT_SOUND.play();
             }
         });
     }
@@ -189,11 +198,13 @@ class World {
      */
     checkCollisionWithBottles() {
         this.level.bottles.forEach((bottle, index) => {
+            //MAX 5 BOTTLES 
             if (this.char.isColliding(bottle)) {
                 this.level.bottles.splice(index, 1);
                 this.collectedBottles.push(this.collectableBottles, index);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 20);
                 console.log('bottle collected');
+                this.BOTTLE_COLLECT_SOUND.play();
             }
         });
     }
@@ -211,6 +222,21 @@ class World {
     }
 
     /**
+     * FUNCTION TO CHECK WIN
+     */
+    checkWin(){
+        if (this.endboss.lifepoints <= 0) {
+            document.getElementById('canvas').classList.add('d-none');
+            document.getElementById('controls').classList.add('d-none');
+            document.getElementById('lost-screen').classList.remove('d-none');
+            this.isWin = true;
+            this.stopAll();
+            this.clearAllIntervals();
+            console.log('you won!');
+        }
+    }
+    
+    /**
      * FUNCTION TO CHECK GAME OVER
      */
     checkGameOver() {
@@ -221,7 +247,7 @@ class World {
             this.isGameOver = true;
             this.stopAll();
             this.clearAllIntervals();
-            console.log('game over?');
+            console.log('game over!');
         }
     }
 

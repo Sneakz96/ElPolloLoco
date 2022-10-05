@@ -1,6 +1,6 @@
 class Endboss extends MoveableObject {
 
-    //SET VARIABLE
+    //SET VARIABLES
     width = 200;
     height = 200;
 
@@ -64,25 +64,17 @@ class Endboss extends MoveableObject {
         this.y = 220;
         this.x = 3000;
         this.animate();
+        this.move();
         this.lifepoints = 100;
     }
 
-    start() {
-        this.animate();
-    }
+    
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-
-        setInterval(() => {
-            if (this.isDead()) {
-                this.speed = 0;
+            if (this.lifepoints == 0) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.isHurt()) {
-                this.bottleHitsEndboss = true;
-                this.speed = 0;
+            } else if (this.hit()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.attack) {
                 this.playAnimation(this.IMAGES_ATTACK);
@@ -91,6 +83,12 @@ class Endboss extends MoveableObject {
             } else if(this.firstContact){
                 this.playAnimation(this.IMAGES_ALERT);
             }
-        }, 150);
+        }, 60);
+    }
+
+    move(){
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60);
     }
 }

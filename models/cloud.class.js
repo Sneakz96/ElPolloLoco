@@ -1,6 +1,6 @@
 class Cloud extends MoveableObject {
 
-    //SET VARIABLE
+    //SET VARIABLES
     width = 310;
     height = 250;
 

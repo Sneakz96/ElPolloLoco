@@ -1,15 +1,15 @@
 class ThrowableObject extends MoveableObject {
 
-    //SET VARIABLE
+    //SET VARIABLES
     height = 80;
     width = 60;
 
-    //CONDITIONS
+    //CONDITION
     bottleHitsChicken = false;
     
     //SOUNDS
-    SPLASH_SOUND = new Audio('./audio/smashing-glass.mp3');
     THROW_BOTTLE_SOUND = new Audio('./audio/bottle-throwing.mp3');
+    SPLASH_SOUND = new Audio('./audio/smashing-glass.mp3');
 
     //IMAGES
     IMAGE = [
@@ -36,11 +36,10 @@ class ThrowableObject extends MoveableObject {
         super().loadImage(this.IMAGE);
         this.loadImages(this.IMAGES_ROTATION);
         this.loadImages(this.IMAGES_SALSA_SPLASH);
-        
+        this.throw();
         this.x = x;
         this.y = y;
         this.world = world;
-        this.throw();
     }
 
     /**
@@ -63,7 +62,7 @@ class ThrowableObject extends MoveableObject {
                 console.log('bottle should splash');
                 clearInterval(clearBottle);
             }
-        }, 45)
+        }, 60)
         this.bottleHitsChicken = false;
     };
 

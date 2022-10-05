@@ -1,13 +1,21 @@
 class MoveableObject extends DrawableObject {
 
+    //SET VARIABLES
     speed = 0.15;
-    otherDirection = false;
-    xMulty;
     speed_Y = 0
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
 
+    //CONDITIONS
+    otherDirection = false;
+    
+    //TAKEOVER
+    xMulty;
+    
+    /**
+     * FUNCTION FOR PLAY ANIMATION 
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;// let i = 7 % 6; => 1 REST 1
         let path = images[i];
@@ -70,51 +78,15 @@ class MoveableObject extends DrawableObject {
             this.x < mo.x && //CHAR LINKS OBJECT RECHTS 
             this.y < mo.y + mo.height //CHAR UNTEN OBJECT OBEN
     }
-
-
-
-
-
-
-
-    /**
-     * FUNCTION TO CHECK IF MO IS COLLIDING WITH CHAR 
-     * JUMP ON CHICKEN 
-     */
-    isTrampling(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height &&
-            this.y < 135;
-    }
-    
-    //OR
-    jumpsOnTop(jo) {
-        return this.y + this.height > jo.y &&
-            this.y + this.height < jo.y + jo.height &&
-            this.x + this.width > jo.x &&
-            this.x + this.width < (jo.x + jo.width + 50);
-    }
-
-
-
-
-
-
-
-
-
-
-    
+        
     /**
      * FUNCTION TO CHECK HIT
      */
-    hit() {
+    hit(damage) {
+        this.energy -= damage;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.energy -= 2;
             this.lastHit = new Date().getTime();
         }
     }
