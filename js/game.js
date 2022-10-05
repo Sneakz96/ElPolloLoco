@@ -81,9 +81,9 @@ function openFullScreen() {
 function enterFullScreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+    } else if (element.msRequestFullscreen) {//FOR INTERNETEXPLORER11
         element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+    } else if (element.webkitRequestFullscreen) {//IOS Safari
         element.webkitRequestFullscreen();
     }
 }
