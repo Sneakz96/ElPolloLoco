@@ -64,7 +64,7 @@ class Endboss extends MoveableObject {
         this.y = 220;
         this.x = 3000;
         this.animate();
-        this.moveLeft();
+        this.move();
         this.lifepoints = 100;
     }
 
@@ -91,7 +91,7 @@ class Endboss extends MoveableObject {
         }, 60);
     }
 
-    moveLeft(){
+    move(){
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
