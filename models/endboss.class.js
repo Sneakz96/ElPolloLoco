@@ -1,9 +1,15 @@
 class Endboss extends MoveableObject {
 
+    //SET VARIABLE
     width = 200;
     height = 200;
+
+    //TAKEOVER
     lifepoints;
+
+    //CONDITIONS
     firstContact = false;
+    bottleHitsEndboss = false;
 
     //IMAGES
     IMAGES_WALKING = [
@@ -74,15 +80,16 @@ class Endboss extends MoveableObject {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
+                this.bottleHitsEndboss = true;
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.attack) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.speed > 0) {
                 this.playAnimation(this.IMAGES_WALKING);
-            } else {
+            } else if(this.firstContact){
                 this.playAnimation(this.IMAGES_ALERT);
-            }      
+            }
         }, 150);
     }
 }

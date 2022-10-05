@@ -1,11 +1,16 @@
 class DrawableObject {
 
+    //SET VARIABLE
     x = 20;
     y = 230;
     height = 190;
     width = 120;
     currentImage = 0;
+
+    //ARRAY
     imageCache = {};
+
+    //TAKEOVER
     img;
 
 

@@ -1,6 +1,9 @@
 class Chicken extends MoveableObject {
 
     bottleHitsChicken = false;
+    chickenDead = false;
+    
+    //TAKEOVER
     level;
 
     //IMAGES
@@ -34,7 +37,7 @@ class Chicken extends MoveableObject {
         }, 1000 / 15);
 
         setInterval(() => {
-            if (this.isDead()) {
+            if (this.isDead() || this.bottleHitsChicken) {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.speed > 0){

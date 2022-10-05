@@ -1,5 +1,6 @@
 class CollectableBottles extends MoveableObject {
 
+    //SET VARIABLE
     height = 70;
     width = 40;
 

@@ -1,7 +1,10 @@
 class Character extends MoveableObject {
 
-    world;
+    //SET VARIABLE
     speed = 3;
+
+    //TAKEOVER
+    world;
 
     //SOUNDS
     walking_sound = new Audio('./audio/walking.mp3');

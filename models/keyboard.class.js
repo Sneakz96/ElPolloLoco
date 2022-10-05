@@ -1,4 +1,6 @@
 class Keyboard {
+
+    //CONDITIONS
     LEFT = false;
     RIGHT = false;
     UP = false;

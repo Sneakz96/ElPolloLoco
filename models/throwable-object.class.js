@@ -1,7 +1,10 @@
 class ThrowableObject extends MoveableObject {
 
+    //SET VARIABLE
     height = 80;
     width = 60;
+
+    //CONDITIONS
     bottleHitsChicken = false;
     
     //SOUNDS
@@ -54,7 +57,7 @@ class ThrowableObject extends MoveableObject {
             this.x += 14;//WEITE
             if (!this.bottleHitsChicken) {
                 this.spinBottle();
-            } else if (this.bottleHitsChicken) {
+            } else if (this.bottleHitsChicken || this.y < 220) { //2 OPERATOR NICHT GENOMMEN
                 console.log('bottle hits chicken')
                 this.stopBottleAndSplash();
                 console.log('bottle should splash');
@@ -64,7 +67,6 @@ class ThrowableObject extends MoveableObject {
         this.bottleHitsChicken = false;
     };
 
-    /**
     /**
      * PLAY ANIMATION -> LOAD ALL IMAGES TO ROTATE
      */

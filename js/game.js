@@ -1,7 +1,12 @@
+//SET VARIABLE
 let canvas;
 let world = 0;
+
+//TAKEOVER
 let keyboard = new Keyboard();
 let play_sound = new Audio('./audio/gamesound.mp3');
+
+//SOUND
 play_sound.loop = true;
 
 /**
@@ -23,6 +28,7 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    debugger;
     keyboard.mobileEvents();
     console.log('you started the game');
 }

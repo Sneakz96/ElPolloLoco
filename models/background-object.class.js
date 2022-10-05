@@ -1,5 +1,6 @@
 class BackgroundObject extends DrawableObject {
 
+    //SET VARIABLE
     width = 720;
     height = 480;
 

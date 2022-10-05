@@ -46,17 +46,18 @@ class MoveableObject extends DrawableObject {
      * FUNCTION TO JUMP
      */
     jump() {
-        this.speed_Y = 30;
+        this.speed_Y = 35;
     }
 
     /**
      * FUNCTION TO CHECK IF ABOVE GROUND
+     * IF NOT FALL DOWN
      */
     isAboveGround() {
-        if (this instanceof ThrowableObject) {
-            return this.y < 350;
+        if (this instanceof ThrowableObject) { 
+            return true;
         } else {
-            return this.y < 230;
+            return this.y < 220;
         }
     }
 
@@ -69,6 +70,8 @@ class MoveableObject extends DrawableObject {
             this.x < mo.x && //CHAR LINKS OBJECT RECHTS 
             this.y < mo.y + mo.height //CHAR UNTEN OBJECT OBEN
     }
+
+
 
 
 
@@ -98,6 +101,12 @@ class MoveableObject extends DrawableObject {
 
 
 
+
+
+
+
+
+    
     /**
      * FUNCTION TO CHECK HIT
      */

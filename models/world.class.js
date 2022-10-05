@@ -1,12 +1,13 @@
 class World {
-
-    ctx;
-    canvas;
-    keyboard;
+    
+    //SET VARIABLE
     level = level1;
     camera_x = 0;
 
-    isGameOver = false;
+    //TAKEOVER
+    ctx;
+    canvas;
+    keyboard;
 
     //ARRAYS
     collectedBottles = [];
@@ -18,9 +19,13 @@ class World {
 
     //OBJECTS
     char = new Character();
+    endboss = new Endboss();
     throwableObjects = [new ThrowableObject()];
     collectableCoins = [new CollectableCoins()];
     collectableBottles = [new CollectableBottles()];
+
+    ///CONDITIONS
+    isGameOver = false;
 
     //SOUNDS
     coin_collect_sound = new Audio('audio/collect-coin.mp3');
@@ -42,13 +47,13 @@ class World {
      * FUNCTION FOR DRAWING GIVEN PICTURES IN CANVAS
      */
     draw() {
+        //CLEAR CANVAS
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+        //FIX CAMERA
         this.ctx.translate(this.camera_x, 0);
+        //BACKGROUND
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
-
-
         //LIFEBAR
         this.ctx.translate(-this.camera_x, 0);//BACK
         this.addToMap(this.statusBar);
@@ -61,15 +66,17 @@ class World {
         this.ctx.translate(-this.camera_x, 0);//BACK
         this.addToMap(this.coinBar);
         this.ctx.translate(this.camera_x, 0);//FORWARD
-
+        //CHAR
+        this.addToMap(this.char);
+        //ENEMIES
         this.addObjectsToMap(this.level.enemies);
-
+        this.addObjectsToMap(this.level.endboss);
+        //COLLECTABLE
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        this.addToMap(this.char);
+        //THROWABLE
         this.addObjectsToMap(this.throwableObjects);
-
-
+        //FIX CAMERA BACK
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;
@@ -91,7 +98,7 @@ class World {
      */
     checkCollisions() {
         setInterval(() => {
-            this.checkCollisionCharToEnemys();//FOR CHAR AND ENEMY
+            this.checkCollisionCharToChickens();//FOR CHAR AND ENEMY
             this.checkThrowObjectsOnGround();//CHAR AND BOTTLE ON GROUND
             this.checkCollisionBottleToEnemy();//BOTTLE AND ENEMY
             this.checkCollisionWithCoins();//FOR GRABBING
@@ -101,11 +108,11 @@ class World {
     }
 
     /**
-     * FUNCTION FOR CHECK COLLISION CHAR AND ENEMIES
+     * FUNCTION FOR CHECK COLLISION CHAR AND CHICKENS
      */
-    checkCollisionCharToEnemys() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.char.isColliding(enemy)) {
+    checkCollisionCharToChickens() {
+        this.level.enemies.forEach((chicken) => {
+            if (this.char.isColliding(chicken)) {
                 this.char.hit();
                 this.statusBar.setPercentage(this.char.energy);
                 console.log('char get hit by enemy');
@@ -113,11 +120,11 @@ class World {
         });
     }
 
+
     /**
      * FUNCTION FOR CHECK COLLISION BOTTLE AND ENEMY
      */
     checkCollisionBottleToEnemy() {
-
         this.level.enemies.forEach((enemy, index) => {
             this.throwableObjects.forEach((bottle, i) => {
                 if (bottle.isColliding(enemy) && !bottle.bottleHitsChicken) { //2 BEDINGUNG FALSCH
