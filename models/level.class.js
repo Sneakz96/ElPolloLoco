@@ -15,13 +15,4 @@ class Level {
         this.bottles = bottles;
         this.enemies = enemies;
     }
-
-    startLevel() {
-        this.enemies.forEach(enemy => {
-            enemy.animate();
-        });
-        this.clouds.forEach(cloud => {
-            cloud.animate();
-        });
-    }
 }

@@ -5,29 +5,30 @@ let play_sound = new Audio('./audio/gamesound.mp3');
 play_sound.loop = true;
 
 /**
- * function for init world by loading page
+ * FUNCTION TO INIT BY ONLOAD
  */
 function init() {
-    canvas = document.getElementById('canvas');
     initLevel();
-    world = new World(canvas, keyboard);
+    console.log('init completed');
 }
 
 /**
- * function for start the game by clicking on picture
+ * FUNCTION TO START GAME BY CLICK
  */
 function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('instruction').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('controls').classList.remove('d-none');
-    init();
-    //console.log(this.world.startWorld);
+    initLevel();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
     keyboard.mobileEvents();
+    console.log('you started the game');
 }
 
 /**
- * functions for loading start screen
+ * FUNCTION TO LOAD START SCREEN
  */
 function showStartScreen() {
     console.log('show start screen');
@@ -37,7 +38,7 @@ function showStartScreen() {
 }
 
 /**
- * functions for enable sound
+ * FUNCTION TO ENABLE SOUND
  */
 function mute() {
     let mute = document.getElementById('mute');
@@ -49,7 +50,7 @@ function mute() {
 }
 
 /**
- * functions for able sound
+ * DUNCTION FOR ABLE SOUND
  */
 function volumeUp() {
     let mute = document.getElementById('mute');

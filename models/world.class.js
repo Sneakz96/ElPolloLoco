@@ -1,5 +1,5 @@
 class World {
-    
+
     ctx;
     canvas;
     keyboard;
@@ -7,7 +7,7 @@ class World {
     camera_x = 0;
 
     isGameOver = false;
-    
+
     //ARRAYS
     collectedBottles = [];
 
@@ -15,13 +15,13 @@ class World {
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
-    
+
     //OBJECTS
     char = new Character();
     throwableObjects = [new ThrowableObject()];
     collectableCoins = [new CollectableCoins()];
     collectableBottles = [new CollectableBottles()];
-    
+
     //SOUNDS
     coin_collect_sound = new Audio('audio/collect-coin.mp3');
     bottle_collect_sound = new Audio();
@@ -38,6 +38,9 @@ class World {
         this.checkCollisions();
     }
 
+    /**
+     * FUNCTION FOR DRAWING GIVEN PICTURES IN CANVAS
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -75,29 +78,22 @@ class World {
         });
     }
 
+    /**
+     * FUNCTION TO SET WORLD
+     */
     setWorld() {
         this.char.world = this;
         this.throwableObjects.world = this;
     }
 
     /**
-     * FUNCTIONS FOR START THE NEW LEVEL
-     */
-    startWorld() {
-        this.char.start();
-        this.level.startLevel();
-        this.draw();
-        this.checkCollisions();
-    }
-
-    /**
-     * FUNCTIONS FOR CHECKING COLLISIONS BY RUNNING - PERMANENTLY - 200MS
+     * FUNCTION FOR CHECKING COLLISIONS BY RUNNING - PERMANENTLY - 200MS
      */
     checkCollisions() {
         setInterval(() => {
-            this.checkCollisionsWhithEnemys();//FOR CHAR AND ENEMY
-            this.checkThrowObjects();//CHAR AND BOTTLE ON GROUND
-            this.checkCollisionThrowableObjectToEnemy();//BOTTLE AND ENEMY
+            this.checkCollisionCharToEnemys();//FOR CHAR AND ENEMY
+            this.checkThrowObjectsOnGround();//CHAR AND BOTTLE ON GROUND
+            this.checkCollisionBottleToEnemy();//BOTTLE AND ENEMY
             this.checkCollisionWithCoins();//FOR GRABBING
             this.checkCollisionWithBottles();//FOR GRABBING
             this.checkGameOver();//IF LP=0 -> GAME OVER 
@@ -105,67 +101,71 @@ class World {
     }
 
     /**
-     * FUNCTIONS FOR CHECK COLLISION CHAR AND ENEMIES
+     * FUNCTION FOR CHECK COLLISION CHAR AND ENEMIES
      */
-    checkCollisionsWhithEnemys() {
+    checkCollisionCharToEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (this.char.isColliding(enemy)) {
                 this.char.hit();
                 this.statusBar.setPercentage(this.char.energy);
+                console.log('char get hit by enemy');
             }
         });
     }
 
     /**
-     * FUNCTIONS FOR CHECK COLLISION BOTTLE AND ENEMY
+     * FUNCTION FOR CHECK COLLISION BOTTLE AND ENEMY
      */
-    checkCollisionThrowableObjectToEnemy() {
-        this.throwableObjects.forEach((bottle, i) => {
-            this.level.enemies.forEach((enemy, index) => {
-                if (enemy.isColliding(bottle)) {
-                    this.removeFromWorld(this.level.enemies, index, 1);
-                    //this.removeFromWorld(this.throwableObjects[i], i, 10);
+    checkCollisionBottleToEnemy() {
+
+        this.level.enemies.forEach((enemy, index) => {
+            this.throwableObjects.forEach((bottle, i) => {
+                if (bottle.isColliding(enemy) && !bottle.bottleHitsChicken) { //2 BEDINGUNG FALSCH
+                    bottle.bottleHitsChicken = true;
+                    this.removeFromWorld(this.level.enemies, index, 600);//TIME !!!!! LOOK ON STAMP FUNCTION !!!!!!
+                    this.removeFromWorld(this.throwableObjects, i, 60);
+                    console.log('enemy hitted by bottle');
                 };
             });
         });
     }
 
     /**
-    * FUNCTIONS FOR CHECK COLLISION CHAR AND COINS
+    * FUNCTION FOR CHECK COLLISION CHAR AND COINS
     */
     checkCollisionWithCoins() {
         this.level.coins.forEach((coin, index) => {
             if (this.char.isColliding(coin)) {
                 this.level.coins.splice(index, 1);
                 this.coinBar.setPercentage(this.coinBar.percentage += 20);
-                //this.coin_collect_sound.play();
+                console.log('coin collected');
             }
         });
     }
 
     /**
-     * FUNCTIONS FOR CHECK COLLISION CHAR AND BOTTLES ON GROUND TO ADD
+     * FUNCTION FOR CHECK COLLISION CHAR AND BOTTLES ON GROUND TO ADD
      */
     checkCollisionWithBottles() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.char.isColliding(bottle)) {
                 this.level.bottles.splice(index, 1);
-                this.collectedBottles.push(this.level.CollectableBottles);
+                this.collectedBottles.push(this.collectableBottles, index);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 20);
-                //this.bottle_collect_sound.play();
+                console.log('bottle collected');
             }
         });
     }
 
     /**
-     * FUNCTIONS FOR CHECKING THROWING OBJECTS
+     * FUNCTION FOR CHECKING THROWING OBJECTS
      */
-    checkThrowObjects() {
+    checkThrowObjectsOnGround() {
         if (this.bottleBar.percentage > 0 && this.keyboard.D) {
             let bottle = new ThrowableObject(this.char.x, this.char.y);
             this.throwableObjects.push(bottle);
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
-            //this.throw_bottle_sound.play();
+            console.log('throw bottle');
         }
     }
 
@@ -180,27 +180,17 @@ class World {
             this.isGameOver = true;
             this.stopAll();
             this.clearAllIntervals();
+            console.log('game over?');
         }
     }
 
-    /**
-     * FUNCTIONS TO SET SPEED OF ENEMIES = 0
-     */
-    stopAll() {
-        this.level.enemies.forEach(enemy => {
-            enemy.speed = 0;
-        });
-    }
 
-    checkCollectableItem() {
-        if (this.bottleBar.percentage = 100) {
-            // maximum 5 Bottles collectable
-            // not able to collect
-        }
-    }
+
+
+
 
     /**
-     * FUNCTIONS FOR ADD OBJECTS TO CANVAS
+     * FUNCTION FOR ADD OBJECTS TO CANVAS
      */
     addObjectsToMap(objects) {
         objects.forEach(o => {
@@ -209,7 +199,7 @@ class World {
     }
 
     /**
-     * FUNCTIONS TO ADD MO TO MAP 
+     * FUNCTION TO ADD MO TO MAP 
      */
     addToMap(mo) {//mo = movableObject
         mo.reflectImage(this.ctx);
@@ -218,8 +208,21 @@ class World {
         mo.reflectImageBack(this.ctx);
     }
 
+
+
+
+
     /**
-     * FUNCTIONS TO REMOVE ITEM FROM WORLD
+     * FUNCTION TO SET SPEED OF ENEMIES = 0
+     */
+    stopAll() {
+        this.level.enemies.forEach(enemy => {
+            enemy.speed = 0;
+        });
+    }
+
+    /**
+     * FUNCTION TO REMOVE ITEM FROM WORLD
      */
     removeFromWorld(array, index, timeout) {
         setTimeout(() => {
@@ -228,7 +231,7 @@ class World {
     }
 
     /**
-     * FUNCTIONS TO CLEAR ALL ARRAYS AFTER GAME STOP
+     * FUNCTION TO CLEAR ALL ARRAYS AFTER GAME STOP
      */
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);

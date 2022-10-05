@@ -2,7 +2,7 @@ class ThrowableObject extends MoveableObject {
 
     height = 80;
     width = 60;
-    collision = false;
+    bottleHitsChicken = false;
     
     //SOUNDS
     SPLASH_SOUND = new Audio('./audio/smashing-glass.mp3');
@@ -33,7 +33,7 @@ class ThrowableObject extends MoveableObject {
         super().loadImage(this.IMAGE);
         this.loadImages(this.IMAGES_ROTATION);
         this.loadImages(this.IMAGES_SALSA_SPLASH);
-        this.bottleAnimation();
+        
         this.x = x;
         this.y = y;
         this.world = world;
@@ -45,24 +45,26 @@ class ThrowableObject extends MoveableObject {
      */
     throw() {
         this.speed_Y = 20;//FALLGESCHWINDIGKEIT
-        this.applyGravity();
-
-       
+        this.applyGravity();  
+        this.animation();
     }
 
-    bottleAnimation() {
+    animation() {
         let clearBottle = setInterval(() => {
-            this.x += 11;//WEITE
-            if (!this.collision && this.isAboveGround()) {
+            this.x += 14;//WEITE
+            if (!this.bottleHitsChicken) {
                 this.spinBottle();
-            } else {
+            } else if (this.bottleHitsChicken) {
+                console.log('bottle hits chicken')
                 this.stopBottleAndSplash();
+                console.log('bottle should splash');
                 clearInterval(clearBottle);
             }
         }, 45)
-        this.collision = false;
+        this.bottleHitsChicken = false;
     };
 
+    /**
     /**
      * PLAY ANIMATION -> LOAD ALL IMAGES TO ROTATE
      */
@@ -72,7 +74,7 @@ class ThrowableObject extends MoveableObject {
     }
 
     /**
-     * STOP ANIMATION -> SPLASH IMAGE
+     * STOP -> SHOW SPLASH IMAGE & PLAY SOUND
      */
     stopBottleAndSplash() {
         this.playAnimation(this.IMAGES_SALSA_SPLASH);
