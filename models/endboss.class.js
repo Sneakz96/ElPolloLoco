@@ -10,6 +10,7 @@ class Endboss extends MoveableObject {
     //CONDITIONS
     firstContact = false;
     bottleHitsEndboss = false;
+    bossDead = false;
 
     //IMAGES
     IMAGES_WALKING = [

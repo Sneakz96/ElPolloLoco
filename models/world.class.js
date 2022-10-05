@@ -1,5 +1,5 @@
 class World {
-    
+
     //SET VARIABLE
     level = level1;
     camera_x = 0;
@@ -98,12 +98,14 @@ class World {
      */
     checkCollisions() {
         setInterval(() => {
-            this.checkCollisionCharToChickens();//FOR CHAR AND ENEMY
-            this.checkThrowObjectsOnGround();//CHAR AND BOTTLE ON GROUND
-            this.checkCollisionBottleToEnemy();//BOTTLE AND ENEMY
-            this.checkCollisionWithCoins();//FOR GRABBING
-            this.checkCollisionWithBottles();//FOR GRABBING
-            this.checkGameOver();//IF LP=0 -> GAME OVER 
+            this.checkCollisionCharToChickens();//CHAR AND ENEMY?
+            this.checkCollisionCharToEndboss();//CHAR AND ENDBOSS?
+            this.checkThrowObjectsOnGround();//CHAR AND BOTTLE ON GROUND?
+            this.checkCollisionBottleToEnemy();//BOTTLE AND ENEMY?
+            this.checkCollisionsBottleToEndboss();//BOTTLE AND ENDBOSS?
+            this.checkCollisionWithCoins();//GRAB COINS?
+            this.checkCollisionWithBottles();//GRAB BOTTLES?
+            this.checkGameOver();//GAME OVER?
         }, 60);
     }
 
@@ -120,6 +122,19 @@ class World {
         });
     }
 
+    /**
+     * FUNCTION FOR CHECK COLLISION CHAR AND ENDBOSS
+     */
+    checkCollisionCharToEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.char.isColliding(endboss)) {
+                this.char.hit();
+                this.statusBar.setPercentage(this.char.energy);
+                console.log('char get hit by boss');
+            }
+        });
+    }
+
 
     /**
      * FUNCTION FOR CHECK COLLISION BOTTLE AND ENEMY
@@ -130,9 +145,28 @@ class World {
                 if (bottle.isColliding(enemy) && !bottle.bottleHitsChicken) { //2 BEDINGUNG FALSCH
                     bottle.bottleHitsChicken = true;
                     this.removeFromWorld(this.level.enemies, index, 600);//TIME !!!!! LOOK ON STAMP FUNCTION !!!!!!
-                    this.removeFromWorld(this.throwableObjects, i, 60);
+                    this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
                     console.log('enemy hitted by bottle');
                 };
+            });
+        });
+    }
+
+    /**
+         * Checks if a bottle is colliding the endboss
+         */
+    checkCollisionsBottleToEndboss() {
+        this.level.endboss.forEach(endboss => {
+            this.throwableObjects.forEach((bottle, i) => {
+                if (bottle.isColliding(endboss)) {
+                    bottle.bottleHitsChicken = true;
+                    endboss.bottleHitsEndboss = true;
+                    this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
+                    this.endboss.hit();
+                } else if (this.endboss.energy == 0) {
+                    endboss.bossDead = true;
+                    this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
+                }
             });
         });
     }
@@ -191,11 +225,6 @@ class World {
         }
     }
 
-
-
-
-
-
     /**
      * FUNCTION FOR ADD OBJECTS TO CANVAS
      */
@@ -214,10 +243,6 @@ class World {
         mo.drawFrame(this.ctx);
         mo.reflectImageBack(this.ctx);
     }
-
-
-
-
 
     /**
      * FUNCTION TO SET SPEED OF ENEMIES = 0

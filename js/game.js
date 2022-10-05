@@ -28,7 +28,6 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    debugger;
     keyboard.mobileEvents();
     console.log('you started the game');
 }
