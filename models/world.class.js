@@ -167,13 +167,11 @@ class World {
                     endboss.bottleHitsEndboss = true;
                     this.endboss.lifepoints -= 20;//SET LP OF ENDBOSS
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
-                    console.log('boss hitted', this.endboss.lifepoints );
-                }
-                if (this.endboss.lifepoints == 0) {
-                    endboss.bossDead = true;
+                    console.log('boss hitted', this.endboss.lifepoints);
+                } else if (this.endboss.lifepoints == 0) {
+                    endboss.endbossDead = true;
                     this.removeFromWorld(this.level.endboss, i, 600);//REMOVE ENDBOSS
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
-                    this.win_world_sound.play();
                 }
             });
         });
@@ -224,18 +222,19 @@ class World {
     /**
      * FUNCTION TO CHECK WIN
      */
-    checkWin(){
+    checkWin() {
         if (this.endboss.lifepoints <= 0) {
             document.getElementById('canvas').classList.add('d-none');
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isWin = true;
+            this.win_world_sound.play();
             this.stopAll();
             this.clearAllIntervals();
             console.log('you won!');
         }
     }
-    
+
     /**
      * FUNCTION TO CHECK GAME OVER
      */
@@ -245,6 +244,7 @@ class World {
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isGameOver = true;
+            this.loose_world_sound.play();
             this.stopAll();
             this.clearAllIntervals();
             console.log('game over!');

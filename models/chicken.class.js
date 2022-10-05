@@ -24,27 +24,39 @@ class Chicken extends MoveableObject {
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
-        this.loadImages(this.IMAGES_WALKING, this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
         this.y = 360;
         this.x = 200 + Math.random() * 2800;//Zahl zwischen 200 und 700
         this.width = 65;
         this.height = 60;
-        this.animate();
         this.speed = 2 + Math.random() * 1;
+        this.moveChicken();
+        this.animateChicken();
     }
 
-    animate() {
+    moveChicken(){
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 15);
+    }
 
+    animateChicken() {
         setInterval(() => {
             if (this.bottleHitsChicken) {
-                this.speed = 0;
-                this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.speed > 0){
-                this.playAnimation(this.IMAGES_WALKING);
+                this.deadChicken();
+            } else if (!this.bottleHitsChicken){
+                this.walkingChicken();
             } 
-        }, 60);
+        }, 600);
+    }
+
+    walkingChicken(){
+        this.playAnimation(this.IMAGES_WALKING);
+    }
+
+    deadChicken(){
+        this.speed = 0;
+        this.playAnimation(this.IMAGES_DEAD);
     }
 }

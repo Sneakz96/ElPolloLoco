@@ -63,46 +63,57 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.y = 220;
         this.x = 3000;
-        this.animate();
-        this.move();
         this.lifepoints = 100;
+        this.animateEndboss();
+        this.moveEndboss();
     }
 
-    
 
-    animate() {
+
+    animateEndboss() {
         setInterval(() => {
             if (this.lifepoints == 0) {
-                this.playAnimation(this.IMAGES_DEAD);
+                this.endbossDead();
+                console.log('dead');
 
-            } else if (this.hit()) {
-                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.bottleHitsEndboss) {
+                this.hurtEndboss();
+                console.log('hurt');
 
-            } else if (this.attack) {
+            } else if (this.firstContact) {
                 this.playAnimation(this.IMAGES_ATTACK);
+                console.log('attack');
 
             } else if (this.speed > 0) {
-                this.playAnimation(this.IMAGES_WALKING);
+                this.walkingEndboss();
 
-            } else if(this.firstContact){
+            } else if (this.lifepoints == 80) {
                 this.playAnimation(this.IMAGES_ALERT);
-
+                console.log('first contact');
+                
             }
         }, 60);
     }
 
-    move(){
+    moveEndboss() {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     }
-
-    deadAnimation(){
-
-    }
-
-    hurtAnimation(){
-
-    }
     
+    walkingEndboss(){
+        this.playAnimation(this.IMAGES_WALKING);
+    }
+
+    hurtEndboss() {
+        this.playAnimation(this.IMAGES_DAMAGE);
+        setTimeout(() => {
+            this.bottleHitsEndboss = false;
+        }, 1500);
+    }
+
+    endbossDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.endbossDead = true;
+    }
 }
