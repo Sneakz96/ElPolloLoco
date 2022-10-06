@@ -197,7 +197,9 @@ class World {
     checkCollisionWithBottles() {
         this.level.bottles.forEach((bottle, index) => {
             //MAX 5 BOTTLES 
-            if (this.char.isColliding(bottle)) {
+
+
+            if (this.char.isColliding(bottle) && this.bottleBar.percentage < 100) {
                 this.level.bottles.splice(index, 1);
                 this.collectedBottles.push(this.collectableBottles, index);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 20);
@@ -274,6 +276,7 @@ class World {
      * FUNCTION TO SET SPEED OF ENEMIES = 0
      */
     stopAll() {
+        console.log('stop');
         this.level.enemies.forEach(enemy => {
             enemy.speed = 0;
         });

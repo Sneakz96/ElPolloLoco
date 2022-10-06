@@ -53,7 +53,7 @@ class ThrowableObject extends MoveableObject {
 
     animation() {
         let clearBottle = setInterval(() => {
-            this.x += 14;//WEITE
+            this.x += 18;//WEITE
             if (!this.bottleHitsChicken) {
                 this.spinBottle();
             } else if (this.bottleHitsChicken || this.y < 220) { //2 OPERATOR NICHT GENOMMEN
