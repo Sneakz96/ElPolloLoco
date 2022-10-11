@@ -1,6 +1,7 @@
 class MoveableObject extends DrawableObject {
 
     //SET VARIABLES
+    groundPosition = 0;
     speed = 0.15;
     speed_Y = 0
     acceleration = 2.5;
@@ -58,6 +59,16 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
+     *  FUNCTION TO CHECK COLLISION ON TOP OF CHICKEN
+     */
+     jumpsOnTop(chicken) {
+        return this.y + this.height > chicken.y &&
+            this.y + this.height < chicken.y + chicken.height &&
+            this.x + this.width > chicken.x &&
+            this.x + this.width < (chicken.x + chicken.width + 50);
+    }
+
+    /**
      * FUNCTION TO CHECK IF ABOVE GROUND
      * IF NOT FALL DOWN
      */
@@ -65,7 +76,7 @@ class MoveableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { 
             return true;
         } else {
-            return this.y < 220;
+            return this.y < this.groundPosition;
         }
     }
 
@@ -76,7 +87,7 @@ class MoveableObject extends DrawableObject {
         return this.x + this.width > mo.x && //CHAR RECHTS OBJECT LINKS 
             this.y + this.height > mo.y && //CHAR OBEN OBJECT UNTEN
             this.x < mo.x && //CHAR LINKS OBJECT RECHTS 
-            this.y < mo.y + mo.height //CHAR UNTEN OBJECT OBEN
+            this.y < mo.y + mo.height ;//CHAR UNTEN OBJECT OBEN
     }
         
     /**

@@ -2,6 +2,10 @@ class BottleBar extends DrawableObject {
 
     //SET VARIABLE
     percentage = 0;
+    x = 40;
+    y = 50;
+    width = 200;
+    height= 60;
 
     //IMAGES
     IMAGES = [
@@ -16,7 +20,7 @@ class BottleBar extends DrawableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.x = 40;
+        this.x = this.x;
         this.y = 50;
         this.width = 200;
         this.height = 60;

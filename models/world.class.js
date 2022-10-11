@@ -31,8 +31,8 @@ class World {
     //SOUNDS
     COIN_COLLECT_SOUND = new Audio('audio/collect-coin.mp3');
     BOTTLE_COLLECT_SOUND = new Audio('audio/bottle_collect.mp3');
-    win_world_sound = new Audio('audio/win.mp3');
-    loose_world_sound = new Audio('audio/loose.mp3');
+    WIN_WORLD_SOUND = new Audio('audio/win.mp3');
+    GAME_OVER_SOUND = new Audio('audio/loose.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -107,7 +107,7 @@ class World {
             this.checkCollisionWithCoins();//GRAB COINS?
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
-            this.checkWin();
+            this.checkWin();//WIN?
         }, 60);
     }
 
@@ -115,8 +115,11 @@ class World {
      * FUNCTION FOR CHECK COLLISION CHAR AND CHICKENS
      */
     checkCollisionCharToChickens() {
-        this.level.enemies.forEach((chicken) => {
-            if (this.char.isColliding(chicken)) {
+        this.level.enemies.forEach((chicken, index) => {
+            if (this.char.jumpsOnTop(chicken, index)) {
+                console.log('char jump on chicken');
+                this.removeFromWorld(this.level.enemies, index, 1);
+            } else if (this.char.isColliding(chicken)) {
                 this.char.hit(2);
                 this.level.enemies.charHitsChicken = true;
                 this.statusBar.setPercentage(this.char.energy);
@@ -144,9 +147,9 @@ class World {
     checkCollisionsBottleToChicken() {
         this.level.enemies.forEach((enemy, index) => {
             this.throwableObjects.forEach((bottle, i) => {
-                if (bottle.isColliding(enemy) && !bottle.bottleHitsChicken) { //2 BEDINGUNG FALSCH
+                if (bottle.isColliding(enemy) || bottle.groundPosition < 230) { //2 BEDINGUNG FALSCH
                     bottle.bottleHitsChicken = true;
-                    this.removeFromWorld(this.level.enemies, index, 600);//TIME !!!!! LOOK ON STAMP FUNCTION !!!!!!
+                    this.removeFromWorld(this.level.enemies, index, 600);//TIME FOR DEAD ANIMATION
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
                     console.log('enemy hitted by bottle');
                 };
@@ -196,9 +199,6 @@ class World {
      */
     checkCollisionWithBottles() {
         this.level.bottles.forEach((bottle, index) => {
-            //MAX 5 BOTTLES 
-
-
             if (this.char.isColliding(bottle) && this.bottleBar.percentage < 100) {
                 this.level.bottles.splice(index, 1);
                 this.collectedBottles.push(this.collectableBottles, index);
@@ -230,7 +230,7 @@ class World {
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isWin = true;
-            this.win_world_sound.play();
+            this.WIN_WORLD_SOUND.play();
             this.stopAll();
             this.clearAllIntervals();
             console.log('you won!');
@@ -246,7 +246,7 @@ class World {
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isGameOver = true;
-            this.loose_world_sound.play();
+            this.GAME_OVER_SOUND.play();
             this.stopAll();
             this.clearAllIntervals();
             console.log('game over!');
@@ -269,8 +269,16 @@ class World {
         mo.reflectImage(this.ctx);
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+
+        this.ctx.beginPath();
+        this.ctx.lineWidth = '3';
+        this.ctx.strokeStyle = 'red';
+        this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
+        this.ctx.stroke();
+
         mo.reflectImageBack(this.ctx);
     }
+
 
     /**
      * FUNCTION TO SET SPEED OF ENEMIES = 0

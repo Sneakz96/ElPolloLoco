@@ -1,8 +1,9 @@
 class CollectableBottles extends MoveableObject {
 
     //SET VARIABLES
-    height = 70;
+    height = 60;
     width = 40;
+    y = 370;
 
     //SOUND
     BOTTLE_COLLECT_SOUND = new Audio('audio/bottle_collect.mp3');
@@ -13,10 +14,10 @@ class CollectableBottles extends MoveableObject {
     ];
 
     constructor(x) {
-        super().loadImage('img/6_salsa_bottle/2_salsa_bottle_on_ground.png');
+        super().loadImage(this.IMAGES_BOTTLE);
         this.x = x; // BETWEEN 200 AND 700
-        this.y = 350;
-        this.width = 70;
-        this.height = 70;
+        this.y = this.y;
+        this.width = this.width;
+        this.height = this.height;
     }
 }

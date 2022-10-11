@@ -3,6 +3,8 @@ class Cloud extends MoveableObject {
     //SET VARIABLES
     width = 310;
     height = 250;
+    x = 200;
+    y = 40;
 
     //IMAGES
     IMAGES_CLOUDS = [
@@ -13,8 +15,8 @@ class Cloud extends MoveableObject {
     constructor() {
         super().loadImage('img/5_background/layers/4_clouds/1.png');
         this.loadImages(this.IMAGES_CLOUDS);
-        this.x = 200 + Math.random() * 2800;//Zahl zwischen 200 und 700
-        this.y = 40;
+        this.x = this.x + Math.random() * 2800;//Zahl zwischen 200 und 700
+        this.y = this.y;
         this.animate();
     }
 

@@ -1,6 +1,7 @@
 class ThrowableObject extends MoveableObject {
 
     //SET VARIABLES
+    groundPosition = 320;
     height = 80;
     width = 60;
 
@@ -57,7 +58,7 @@ class ThrowableObject extends MoveableObject {
             if (!this.bottleHitsChicken) {
                 this.spinBottle();
             } else if (this.bottleHitsChicken || this.y < 220) { //2 OPERATOR NICHT GENOMMEN
-                console.log('bottle hits chicken')
+                console.log('bottle hits chicken');
                 this.stopBottleAndSplash();
                 console.log('bottle should splash');
                 clearInterval(clearBottle);
