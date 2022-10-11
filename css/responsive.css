@@ -18,19 +18,6 @@
         display: none !important;
     }
 
-    #start-screen {
-        height: 100vh !important;
-        width: 100% !important;
-        object-fit: cover !important;
-    }
-
-    #lost-screen {
-        height: 100vh !important;
-        width: 100% !important;
-        object-fit: cover !important;
-    }
-
-
     /*MB_HUD*/
 
     #hud{

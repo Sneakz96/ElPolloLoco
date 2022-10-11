@@ -10,7 +10,7 @@ class Cloud extends MoveableObject {
     IMAGES_CLOUDS = [
         'img/5_background/layers/4_clouds/1.png',
         'img/5_background/layers/4_clouds/2.png'
-    ]
+    ];
 
     constructor() {
         super().loadImage('img/5_background/layers/4_clouds/1.png');
@@ -23,6 +23,6 @@ class Cloud extends MoveableObject {
     animate() {
         setInterval(() => {
             this.moveLeft();
-        }, 1000 / 30)
+        }, 1000 / 30);
     }
 }

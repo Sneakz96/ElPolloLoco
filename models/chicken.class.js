@@ -39,9 +39,13 @@ class Chicken extends MoveableObject {
         setInterval(() => {
             if (this.bottleHitsChicken) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if (!this.bottleHitsChicken) {
+                this.CHICKEN_DEAD_SOUND.volume = 0.15;
+                this.CHICKEN_DEAD_SOUND.play();
+            } else if (!this.bottleHitsChicken && !this.charHitsChicken) {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
+                //this.CHICKEN_WALKING_SOUND.volume = 0.15;
+                //this.CHICKEN_WALKING_SOUND.play();
             }
         }, 100);
     }

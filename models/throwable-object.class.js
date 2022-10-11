@@ -7,7 +7,7 @@ class ThrowableObject extends MoveableObject {
 
     //CONDITION
     bottleHitsChicken = false;
-    
+
     //SOUNDS
     THROW_BOTTLE_SOUND = new Audio('./audio/bottle-throwing.mp3');
     SPLASH_SOUND = new Audio('./audio/smashing-glass.mp3');
@@ -48,7 +48,7 @@ class ThrowableObject extends MoveableObject {
      */
     throw() {
         this.speed_Y = 20;//FALLGESCHWINDIGKEIT
-        this.applyGravity();  
+        this.applyGravity();
         this.animation();
     }
 
@@ -57,10 +57,14 @@ class ThrowableObject extends MoveableObject {
             this.x += 18;//WEITE
             if (!this.bottleHitsChicken) {
                 this.spinBottle();
-            } else if (this.bottleHitsChicken || this.y < 220) { //2 OPERATOR NICHT GENOMMEN
+
+            } else if (this.bottleHitsChicken) {
                 console.log('bottle hits chicken');
                 this.stopBottleAndSplash();
-                console.log('bottle should splash');
+                clearInterval(clearBottle);
+            } else if (this.y == -250) {
+                console.log('bottle hits ground');
+                this.stopBottleAndSplash();
                 clearInterval(clearBottle);
             }
         }, 60)
@@ -80,7 +84,7 @@ class ThrowableObject extends MoveableObject {
      */
     stopBottleAndSplash() {
         this.playAnimation(this.IMAGES_SALSA_SPLASH);
-        this.playSplashSound();        
+        this.playSplashSound();
     }
 
     /**
@@ -91,7 +95,7 @@ class ThrowableObject extends MoveableObject {
         this.SPLASH_SOUND.play();
     }
 
-    playThrowingSound(){
+    playThrowingSound() {
         this.THROW_BOTTLE_SOUND.play();
         this.THROW_BOTTLE_SOUND.volume = 0.7;
     }

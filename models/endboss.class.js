@@ -3,8 +3,8 @@ class Endboss extends MoveableObject {
     //SET VARIABLES
     width = 200;
     height = 200;
-    groundPosition = 220;
-    
+    groundPosition = 240;
+
     //TAKEOVER
     lifepoints;
 
@@ -65,6 +65,7 @@ class Endboss extends MoveableObject {
         this.y = this.groundPosition;
         this.x = 3000;
         this.lifepoints = 100;
+        this.world = world;
         this.moveEndboss();
         this.animateEndboss();
     }
@@ -72,27 +73,35 @@ class Endboss extends MoveableObject {
 
 
     animateEndboss() {
+        let i = 0;
         setInterval(() => {
-            if (this.lifepoints == 0) {
-                this.endbossDead();
-                console.log('Endboss is dead');
-
+            if (i <= 7) {
+                this.alertEndboss();
+                console.log('alert');
+            } else if (i > 7 && i <= 15) {
+                this.attackingEndboss();
+                console.log('attack');
+            } else if (i > 15) {
+                this.walkingEndboss();
+            }
+            i++;
+            if (world.char.x > 2200 && !this.firstContact) {
+                console.log('first contact to boss');
+                i = 0;
+                this.firstContact = true;
             } else if (this.bottleHitsEndboss) {
                 this.hurtEndboss();
                 console.log('Endboss is hurt');
-
-            } else if (this.firstContact) {
-                this.attackingEndboss();
-                console.log('Endboss attacks');
-
-            } else if (this.speed > 0) {
-                this.walkingEndboss();
-
-            } else if (this.lifepoints == 80) {
-                this.alertEndboss();
-                console.log('first contact');
+            } else if (this.lifepoints == 0) {
+                this.endbossDead();
+                console.log('Endboss is dead');
             }
-        }, 120);
+        }, 120)
+
+
+
+
+
     }
 
     moveEndboss() {
@@ -114,7 +123,7 @@ class Endboss extends MoveableObject {
     }
 
     hurtEndboss() {
-        this.playAnimation(this.IMAGES_DAMAGE);
+        this.playAnimation(this.IMAGES_HURT);
         this.bottleHitsEndboss = false;
     }
 

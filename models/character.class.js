@@ -8,10 +8,10 @@ class Character extends MoveableObject {
     world;
 
     //SOUNDS
-    walking_sound = new Audio('./audio/walking.mp3');
-    jumping_sound = new Audio('./audio/jump.mp3');
-    hurt_sound = new Audio('./audio/hurt.mp3');
-    dead_sound = new Audio('./audio/dead.mp3');
+    WALKING_SOUND = new Audio('./audio/walking.mp3');
+    JUMPING_SOUND = new Audio('./audio/jump.mp3');
+    HURT_SOUND = new Audio('./audio/hurt.mp3');
+    DEAD_SOUND = new Audio('./audio/dead.mp3');
 
 
     //IMAGES
@@ -82,8 +82,8 @@ class Character extends MoveableObject {
 
     animate() {
         //INTERVAL FOR JUMP, LEFT, RIGHT;
+        
         setInterval(() => {
-
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
             }
@@ -103,18 +103,18 @@ class Character extends MoveableObject {
             this.pauseSounds();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.dead_sound.play();
+                this.DEAD_SOUND.play();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                this.hurt_sound.play();
+                this.HURT_SOUND.play();
             } else if (this.isAboveGround() && this.world.keyboard.SPACE) {
                 this.playAnimation(this.IMAGES_JUMP);//GIVE THE PICS FOR JUMP
-                this.jumping_sound.loop = false;
-                this.jumping_sound.play();
+                this.JUMPING_SOUND.loop = false;
+                this.JUMPING_SOUND.play();
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALK);
-                this.walking_sound.volume = 0.3;
-                this.walking_sound.play();
+                this.WALKING_SOUND.volume = 0.3;
+                this.WALKING_SOUND.play();
             } else if (!this.world.keyboard.LEFT || !this.world.keyboard.RIGHT || !this.world.keyboard.SPACE || !this.world.keyboard.D) {
                 this.playAnimation(this.IMAGES_IDLE);
 
@@ -123,9 +123,9 @@ class Character extends MoveableObject {
     }
 
     pauseSounds() {
-        this.dead_sound.pause();
-        this.hurt_sound.pause();
-        this.jumping_sound.pause();
-        this.walking_sound.pause();
+        this.DEAD_SOUND.pause();
+        this.HURT_SOUND.pause();
+        this.JUMPING_SOUND.pause();
+        this.WALKING_SOUND.pause();
     }
 }

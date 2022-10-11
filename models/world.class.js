@@ -147,7 +147,7 @@ class World {
     checkCollisionsBottleToChicken() {
         this.level.enemies.forEach((enemy, index) => {
             this.throwableObjects.forEach((bottle, i) => {
-                if (bottle.isColliding(enemy) || bottle.groundPosition < 230) { //2 BEDINGUNG FALSCH
+                if (bottle.isColliding(enemy)) {
                     bottle.bottleHitsChicken = true;
                     this.removeFromWorld(this.level.enemies, index, 600);//TIME FOR DEAD ANIMATION
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
@@ -172,7 +172,6 @@ class World {
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
                     console.log('boss hitted', this.endboss.lifepoints);
                 } else if (this.endboss.lifepoints == 0) {
-                    endboss.endbossDead = true;
                     this.removeFromWorld(this.level.endboss, i, 600);//REMOVE ENDBOSS
                     this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
                 }
@@ -225,7 +224,7 @@ class World {
      * FUNCTION TO CHECK WIN
      */
     checkWin() {
-        if (this.endboss.lifepoints <= 0) {
+        if (this.endboss.lifepoints == 0) {
             document.getElementById('canvas').classList.add('d-none');
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
@@ -269,13 +268,6 @@ class World {
         mo.reflectImage(this.ctx);
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
-
-        this.ctx.beginPath();
-        this.ctx.lineWidth = '3';
-        this.ctx.strokeStyle = 'red';
-        this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
-        this.ctx.stroke();
-
         mo.reflectImageBack(this.ctx);
     }
 

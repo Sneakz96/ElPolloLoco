@@ -26,6 +26,7 @@ class DrawableObject {
             console.warn('error loading image', error);    
         }
     }
+    
     /**
      * 
      * @param {array} arr - ['img/image1.png', 'img/image2.png', ...]
@@ -39,11 +40,11 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof CollectableCoins) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof CollectableCoins || this instanceof CollectableBottles) {
             ctx.beginPath();
-            //ctx.lineWidth = '3';
-            //ctx.strokeStyle = 'red';
-            //ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
     }
@@ -60,7 +61,7 @@ class DrawableObject {
     reflectImageBack(ctx) {
         if (this.otherDirection) {
             this.x = this.x * -1;
-            ctx.restore();//LOAD_START
+            ctx.restore();//LOAD NONREFLECTED PICTURE
         }
     }
 }
