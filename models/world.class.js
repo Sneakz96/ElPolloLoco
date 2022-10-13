@@ -118,6 +118,7 @@ class World {
         this.level.enemies.forEach((chicken, index) => {
             if (this.char.jumpsOnTop(chicken, index)) {
                 console.log('char jump on chicken');
+
                 this.removeFromWorld(this.level.enemies, index, 1);
             } else if (this.char.isColliding(chicken)) {
                 this.char.hit(2);
@@ -149,9 +150,9 @@ class World {
             this.throwableObjects.forEach((bottle, i) => {
                 if (bottle.isColliding(enemy)) {
                     bottle.bottleHitsChicken = true;
-                    this.removeFromWorld(this.level.enemies, index, 600);//TIME FOR DEAD ANIMATION
-                    this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
-                    console.log('enemy hitted by bottle');
+                    this.removeFromWorld(this.level.enemies, index, 60);//TIME FOR DEAD ANIMATION
+                    this.removeFromWorld(this.throwableObjects, i, 200);//REMOVE SPLASHED BOTTLE
+                    console.log('enemy hitted by bottle', this.level.enemies[index]);
                 };
             });
         });
@@ -168,12 +169,12 @@ class World {
                 if (endboss.isColliding(bottle)) {
                     bottle.bottleHitsChicken = true;
                     endboss.bottleHitsEndboss = true;
-                    this.endboss.lifepoints -= 20;//SET LP OF ENDBOSS
-                    this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
+                    this.endboss.lifepoints -= 30;//SET LP OF ENDBOSS
+                    this.removeFromWorld(this.throwableObjects, i, 100);//REMOVE SPLASHED BOTTLE
                     console.log('boss hitted', this.endboss.lifepoints);
-                } else if (this.endboss.lifepoints == 0) {
+                } else if (this.endboss.lifepoints <= 0) {
                     this.removeFromWorld(this.level.endboss, i, 600);//REMOVE ENDBOSS
-                    this.removeFromWorld(this.throwableObjects, i, 60);//REMOVE SPLASHED BOTTLE
+                    this.removeFromWorld(this.throwableObjects, i, 100);//REMOVE SPLASHED BOTTLE
                 }
             });
         });
@@ -224,7 +225,7 @@ class World {
      * FUNCTION TO CHECK WIN
      */
     checkWin() {
-        if (this.endboss.lifepoints == 0) {
+        if (this.endboss.lifepoints <= 0) {
             document.getElementById('canvas').classList.add('d-none');
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');

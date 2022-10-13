@@ -119,7 +119,7 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_IDLE);
 
             }
-        }, 60);
+        }, 120);
     }
 
     pauseSounds() {

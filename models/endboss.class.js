@@ -92,6 +92,7 @@ class Endboss extends MoveableObject {
             } else if (this.bottleHitsEndboss) {
                 this.hurtEndboss();
                 console.log('Endboss is hurt');
+                this.speed += 0.35;
             } else if (this.lifepoints == 0) {
                 this.endbossDead();
                 console.log('Endboss is dead');

@@ -10,5 +10,4 @@ class BackgroundObject extends DrawableObject {
         this.x = this.width * xMulty;
         this.y = this.y;
     }
-
 }

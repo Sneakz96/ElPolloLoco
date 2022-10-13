@@ -7,6 +7,7 @@ class ThrowableObject extends MoveableObject {
 
     //CONDITION
     bottleHitsChicken = false;
+    bottleHitsGround = false;
 
     //SOUNDS
     THROW_BOTTLE_SOUND = new Audio('./audio/bottle-throwing.mp3');
@@ -55,19 +56,20 @@ class ThrowableObject extends MoveableObject {
     animation() {
         let clearBottle = setInterval(() => {
             this.x += 18;//WEITE
-            if (!this.bottleHitsChicken) {
+            if (!this.bottleHitsChicken && !this.bottleHitsGround) {
                 this.spinBottle();
 
             } else if (this.bottleHitsChicken) {
                 console.log('bottle hits chicken');
                 this.stopBottleAndSplash();
                 clearInterval(clearBottle);
-            } else if (this.y == -250) {
-                console.log('bottle hits ground');
+            } else if (this.bottleHitsGround) {
+                console.log('bottle hits ground', this.bottleHitsGround);
                 this.stopBottleAndSplash();
                 clearInterval(clearBottle);
             }
         }, 60)
+        this.bottleHitsGround = false;
         this.bottleHitsChicken = false;
     };
 
