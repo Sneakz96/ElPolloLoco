@@ -13,7 +13,7 @@ play_sound.loop = true;
  * FUNCTION TO INIT BY ONLOAD
  */
 function init() {
-    
+    console.log('show start screen');
 }
 
 /**
@@ -47,7 +47,6 @@ function showStartScreen() {
 function mute() {
     let mute = document.getElementById('mute');
     let loud = document.getElementById('volume');
-
     mute.classList.remove('d-none');
     loud.classList.add('d-none');
     play_sound.pause();

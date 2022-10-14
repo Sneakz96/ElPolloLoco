@@ -7,6 +7,7 @@ class ThrowableObject extends MoveableObject {
 
     //CONDITION
     bottleHitsChicken = false;
+    isBroken = false;
 
     //SOUNDS
     THROW_BOTTLE_SOUND = new Audio('./audio/bottle-throwing.mp3');
@@ -41,6 +42,7 @@ class ThrowableObject extends MoveableObject {
         this.x = x;
         this.y = y;
         this.world = world;
+        this.speed = 0.15;
     }
 
     /**
@@ -53,22 +55,17 @@ class ThrowableObject extends MoveableObject {
     }
 
     animation() {
+        this.SPLASH_SOUND.pause();
         let clearBottle = setInterval(() => {
             this.x += 18;//WEITE
-            if (!this.bottleHitsChicken) {
+            if (!this.bottleHitsChicken && !this.isBroken) {
                 this.spinBottle();
-
-            } else if (this.bottleHitsChicken) {
+            } else if(this.bottleHitsChicken || this.isBroken){
                 console.log('bottle hits chicken');
-                this.stopBottleAndSplash();
-                clearInterval(clearBottle);
-            } else if (this.y == -250) {
-                console.log('bottle hits ground');
                 this.stopBottleAndSplash();
                 clearInterval(clearBottle);
             }
         }, 60)
-        this.bottleHitsChicken = false;
     };
 
     /**

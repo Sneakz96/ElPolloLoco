@@ -102,13 +102,14 @@ class World {
             this.checkCollisionCharToChickens();//CHAR AND ENEMY?
             this.checkCollisionCharToEndboss();//CHAR AND ENDBOSS?
             this.checkThrowObjectsOnGround();//CHAR AND BOTTLE ON GROUND?
+            this.checkCollisionsBottleToGround();//BOTTLE AND GROUND?
             this.checkCollisionsBottleToChicken();//BOTTLE AND ENEMY?
             this.checkCollisionsBottleToEndboss();//BOTTLE AND ENDBOSS?
             this.checkCollisionWithCoins();//GRAB COINS?
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
             this.checkWin();//WIN?
-        }, 60);
+        }, 120);
     }
 
     /**
@@ -118,7 +119,6 @@ class World {
         this.level.enemies.forEach((chicken, index) => {
             if (this.char.jumpsOnTop(chicken, index)) {
                 console.log('char jump on chicken');
-
                 this.removeFromWorld(this.level.enemies, index, 1);
             } else if (this.char.isColliding(chicken)) {
                 this.char.hit(2);
@@ -143,6 +143,22 @@ class World {
     }
 
     /**
+     * FUNCTION FOR CHECK COLLISION BOTTLE AND GROUND
+     */
+    checkCollisionsBottleToGround() {
+        this.throwableObjects.forEach((bottle, i) => {
+            if (bottle.y >= 340) {
+                bottle.isBroken = true;
+                bottle.acceleration = 0; 
+                bottle.speed = 0;
+                bottle.speed_Y = 0;
+                this.removeFromWorld(this.throwableObjects, i, 200);//REMOVE SPLASHED BOTTLE
+                console.log('bottle hit ground');
+            };
+        });
+    }
+
+    /**
      * FUNCTION FOR CHECK COLLISION BOTTLE AND ENEMY
      */
     checkCollisionsBottleToChicken() {
@@ -150,9 +166,9 @@ class World {
             this.throwableObjects.forEach((bottle, i) => {
                 if (bottle.isColliding(enemy)) {
                     bottle.bottleHitsChicken = true;
-                    this.removeFromWorld(this.level.enemies, index, 60);//TIME FOR DEAD ANIMATION
+                    this.removeFromWorld(this.level.enemies, index, 120);//TIME FOR DEAD ANIMATION
                     this.removeFromWorld(this.throwableObjects, i, 200);//REMOVE SPLASHED BOTTLE
-                    console.log('enemy hitted by bottle', this.level.enemies[index]);
+                    console.log('enemy hitted by bottle');
                 };
             });
         });
@@ -160,8 +176,6 @@ class World {
 
     /**
      * FUNCTION TO CHECK COLLISION BOTTLE TO ENDBOSS
-     * 
-     * 2MAL AUSGEFÜHRT - WHY?
      */
     checkCollisionsBottleToEndboss() {
         this.level.endboss.forEach(endboss => {

@@ -24,14 +24,4 @@ class CollectableCoins extends MoveableObject {
             this.playAnimation(this.IMAGES_COINS);
         }, 220);
     }
-
-    pickUp(index) {
-        this.level.coins.forEach((coin) => {
-            if (this.char.isColliding(coin)) {
-                console.log(this.coinBar.percentage);
-                this.coinBar.setPercentage(this.coinBar.percentage + 20);
-                this.level.collectableCoins.splice(index, 1);
-            }
-        });
-    }
 }
