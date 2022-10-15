@@ -2,7 +2,7 @@ class Chicken extends MoveableObject {
 
     //CONDITIONS
     bottleHitsChicken = false;
-    charHitsChicken = false;
+    charJumpOnChicken = false;
 
     //TAKEOVER
     level;
@@ -37,16 +37,18 @@ class Chicken extends MoveableObject {
 
     animateChicken() {
         setInterval(() => {
-            if (this.bottleHitsChicken && this.charHitsChicken) {
+            if (this.bottleHitsChicken || this.charJumpOnChicken) {
                 this.playAnimation(this.IMAGE_DEAD);
-                this.CHICKEN_DEAD_SOUND.volume = 0.15;
-                this.CHICKEN_DEAD_SOUND.play();
-            } else if (!this.bottleHitsChicken ) {
+                console.log('dead animation miss');
+                //this.CHICKEN_DEAD_SOUND.volume = 0.15;
+                //this.CHICKEN_DEAD_SOUND.play();
+            } else if (!this.bottleHitsChicken && !this.charJumpOnChicken) {
+                this.charJumpOnChicken = false;
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
-                this.CHICKEN_WALKING_SOUND.volume = 0.15;
+                this.CHICKEN_WALKING_SOUND.volume = 0.1;
                 this.CHICKEN_WALKING_SOUND.play();
             }
-        }, 100);
+        }, 60);
     }
 }

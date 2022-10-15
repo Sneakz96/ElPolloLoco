@@ -82,7 +82,7 @@ class Character extends MoveableObject {
 
     animate() {
         //INTERVAL FOR JUMP, LEFT, RIGHT;
-        
+
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -92,8 +92,7 @@ class Character extends MoveableObject {
                 this.otherDirection = true;
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();//HAVE TO JUMP
-                //this.jumping_sound.play(); 
+                this.jump();
             }
             this.world.camera_x = -this.x + 80;//X FOR CHARACTER ON CAMERA
         }, 20);
@@ -101,6 +100,7 @@ class Character extends MoveableObject {
         setInterval(() => {
             //INTERVAL FOR IDLE, WALK, JUMP, HURT, DEAD;
             this.pauseSounds();
+            let i = 0;
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.DEAD_SOUND.play();
@@ -115,9 +115,9 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_WALK);
                 this.WALKING_SOUND.volume = 0.3;
                 this.WALKING_SOUND.play();
-            } else if (!this.world.keyboard.LEFT || !this.world.keyboard.RIGHT || !this.world.keyboard.SPACE || !this.world.keyboard.D) {
+            } else if ((!this.world.keyboard.LEFT || !this.world.keyboard.RIGHT || !this.world.keyboard.SPACE || !this.world.keyboard.D) || i < 10) {
                 this.playAnimation(this.IMAGES_IDLE);
-
+                i++;
             }
         }, 120);
     }

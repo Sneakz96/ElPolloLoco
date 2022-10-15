@@ -97,7 +97,7 @@ class Endboss extends MoveableObject {
                 this.endbossDead();
                 console.log('Endboss is dead');
             }
-        }, 120);
+        }, 75);
     }
 
     moveEndboss() {

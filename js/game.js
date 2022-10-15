@@ -72,6 +72,7 @@ function openFullScreen() {
     let exit = document.getElementById('fullScreenExit');
     let fullScreen = document.getElementById('window');
     open.classList.add('d-none');
+    exit.classList.remove('d-none');
     enterFullScreen(fullScreen);
 }
 
@@ -88,6 +89,15 @@ function enterFullScreen(element) {
 /**
  * FUNCTION FOR EXIT FULLSCREEN
  */
+ function exitFullScreen() {
+    let open = document.getElementById('fullScreenEnter');
+    let exit = document.getElementById('fullScreenExit');
+    let fullScreen = document.getElementById('window');
+    exit.classList.add('d-none');
+    open.classList.remove('d-none');
+    closeFullScreen();
+}
+
 function closeFullScreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();

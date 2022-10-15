@@ -109,7 +109,7 @@ class World {
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
             this.checkWin();//WIN?
-        }, 120);
+        }, 80);
     }
 
     /**
@@ -118,11 +118,11 @@ class World {
     checkCollisionCharToChickens() {
         this.level.enemies.forEach((chicken, index) => {
             if (this.char.jumpsOnTop(chicken, index)) {
-                console.log('char jump on chicken');
-                this.removeFromWorld(this.level.enemies, index, 1);
+                chicken.charJumpOnChicken = true;
+                this.removeFromWorld(this.level.enemies, index, 400);
+                console.log('char jump on chicken', chicken.charJumpOnChicken);
             } else if (this.char.isColliding(chicken)) {
                 this.char.hit(2);
-                this.level.enemies.charHitsChicken = true;
                 this.statusBar.setPercentage(this.char.energy);
                 console.log('char get hit by enemy');
             }
@@ -149,7 +149,7 @@ class World {
         this.throwableObjects.forEach((bottle, i) => {
             if (bottle.y >= 340) {
                 bottle.isBroken = true;
-                bottle.acceleration = 0; 
+                bottle.acceleration = 0;
                 bottle.speed = 0;
                 bottle.speed_Y = 0;
                 this.removeFromWorld(this.throwableObjects, i, 200);//REMOVE SPLASHED BOTTLE

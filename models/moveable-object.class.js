@@ -10,10 +10,10 @@ class MoveableObject extends DrawableObject {
 
     //CONDITIONS
     otherDirection = false;
-    
+
     //TAKEOVER
     xMulty;
-    
+
     /**
      * FUNCTION FOR PLAY ANIMATION 
      */
@@ -59,21 +59,11 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     *  FUNCTION TO CHECK COLLISION ON TOP OF CHICKEN
-     */
-     jumpsOnTop(chicken) {
-        return this.y + this.height > chicken.y &&
-            this.y + this.height < chicken.y + chicken.height &&
-            this.x + this.width > chicken.x &&
-            this.x + this.width < chicken.x + chicken.width ;
-    }
-
-    /**
      * FUNCTION TO CHECK IF ABOVE GROUND
      * IF NOT FALL DOWN
      */
     isAboveGround() {
-        if (this instanceof ThrowableObject) { 
+        if (this instanceof ThrowableObject) {
             return true;
         } else {
             return this.y < this.groundPosition;
@@ -89,7 +79,18 @@ class MoveableObject extends DrawableObject {
             this.x <= mo.x + mo.width && //CHAR LINKS OBJECT RECHTS 
             this.y <= mo.y + mo.height;//CHAR UNTEN OBJECT OBEN
     }
-        
+
+
+    /**
+     *  FUNCTION TO CHECK COLLISION ON TOP OF CHICKEN
+     */
+    jumpsOnTop(chicken) {
+        return this.x + this.width > chicken.x + chicken.width &&
+            this.y + this.height > chicken.y &&
+            this.y < chicken.y + chicken.height &&
+            this.x < chicken.x + chicken.width;
+    }
+
     /**
      * FUNCTION TO CHECK HIT
      */

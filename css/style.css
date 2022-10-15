@@ -21,6 +21,7 @@ body {
 .window {
     display: flex;
     justify-content: center;
+    align-items: center;
     max-height: 100%;
     width: 100%;
 }
@@ -68,7 +69,7 @@ canvas {
     font-size: 40px;
 }
 
-/*START&LOSTSCREEN*/
+/*START_&_LOSTSCREEN*/
 
 #start-screen {
     display: block;
@@ -92,13 +93,13 @@ canvas {
     cursor: pointer;
 }
 
-/*VOLUME&MUTE*/
+/*VOLUME_&_MUTE*/
 
 #volume {
     position: relative;
-    left: 416px;
-    bottom: 60px;
-    height: 60px;
+    left: 266px;
+    bottom: 465px;
+    height: 40px;
 }
 
 #volume:hover {
@@ -107,9 +108,9 @@ canvas {
 
 #mute {
     position: relative;
-    left: 410px;
-    bottom: 60px;
-    height: 60px;
+    left: 270px;
+    bottom: 465px;
+    height: 40px;
 }
 
 #mute:hover {
@@ -119,17 +120,17 @@ canvas {
 /*FULLSCREEN*/
 
 #fullScreenEnter {
-    height: 50px;
+    height: 30px;
     position: relative;
-    left: 400px;
-    bottom: 180px;
+    left: 320px;
+    bottom: 500px;
 }
 
 #fullScreenExit {
-    height: 50px;
+    height: 30px;
     position: relative;
-    left: 400px;
-    bottom: 180px;
+    left: 320px;
+    bottom: 500px;
 }
 
 #fullScreenEnter:hover {
@@ -142,10 +143,11 @@ canvas {
 
 /*MB_HUD*/
 
-#hud{
+#hud {
     width: 100%;
     position: absolute;
-    bottom: 5px;;
+    bottom: 5px;
+    ;
     display: none;
     align-items: center;
     justify-content: space-around;
