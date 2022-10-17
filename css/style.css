@@ -151,9 +151,9 @@ canvas {
 
 #hud {
     width: 100%;
+    height: 40px;
     position: absolute;
     bottom: 5px;
-    ;
     display: none;
     align-items: center;
     justify-content: space-around;
