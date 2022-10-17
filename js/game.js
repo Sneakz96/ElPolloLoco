@@ -23,6 +23,7 @@ function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('instruction').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('mb-btn').classList.remove('d-none');
     document.getElementById('controls').classList.remove('d-none');
     initLevel();
     canvas = document.getElementById('canvas');
@@ -101,7 +102,6 @@ function enterFullScreen(element) {
 function closeFullScreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
-        open.classList.remove('d-none');
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
         open.classList.remove('d-none');

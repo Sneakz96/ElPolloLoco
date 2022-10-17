@@ -93,12 +93,18 @@ canvas {
     cursor: pointer;
 }
 
+/**/
+
+.mb-canvas{
+    position: relative;
+}
+
 /*VOLUME_&_MUTE*/
 
 #volume {
-    position: relative;
-    left: 266px;
-    bottom: 465px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
     height: 40px;
 }
 
@@ -107,9 +113,9 @@ canvas {
 }
 
 #mute {
-    position: relative;
-    left: 270px;
-    bottom: 465px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
     height: 40px;
 }
 
@@ -120,17 +126,17 @@ canvas {
 /*FULLSCREEN*/
 
 #fullScreenEnter {
+    position: absolute;
     height: 30px;
-    position: relative;
-    left: 320px;
-    bottom: 500px;
+    right: 80px;
+    top: 23px;
 }
 
 #fullScreenExit {
+    position: absolute;
     height: 30px;
-    position: relative;
-    left: 320px;
-    bottom: 500px;
+    right: 80px;
+    top: 23px;
 }
 
 #fullScreenEnter:hover {

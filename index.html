@@ -40,9 +40,18 @@
 <body onload="init()">
     <h1>My.El Pollo Loco</h1>
     <div class="window" id="window">
-        <canvas class="d-none" id="canvas" width="720" height="480">
+        <div class="mb-canvas">
+            <canvas id="canvas" class="d-none" width="720" height="480">
 
-        </canvas>
+            </canvas>
+            <div id="mb-btn" class="d-none">
+                <img src="icons/volume-up-2-48.png" id="volume" class="d-none" onclick="mute()">
+                <img src="icons/mute-48.png" id="mute" onclick="volumeUp()">
+
+                <img src="icons/fullscreen-enter-64.png" id="fullScreenEnter" onclick="openFullScreen()">
+                <img src="icons/fullscreen-exit-64.png" id="fullScreenExit" class="d-none" onclick="exitFullScreen()">
+            </div>
+        </div>
         <img onclick="startGame()" id="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
         <img onclick="showStartScreen()" class="d-none" id="lost-screen"
             src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
@@ -54,11 +63,7 @@
         </div>
 
     </div>
-    <img src="icons/volume-up-2-48.png" id="volume" class="d-none" onclick="mute()">
-    <img src="icons/mute-48.png" id="mute" onclick="volumeUp()">
-    
-    <img src="icons/fullscreen-enter-64.png" id="fullScreenEnter" onclick="openFullScreen()">
-    <img src="icons/fullscreen-exit-64.png" id="fullScreenExit" class="d-none" onclick="exitFullScreen()">
+
     <div id="instruction">
         <span>~collect bottles and coins</span>
         <span>~throw bottles by pressing D to kill enemies</span>

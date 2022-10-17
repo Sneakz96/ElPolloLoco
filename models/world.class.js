@@ -242,6 +242,7 @@ class World {
     checkWin() {
         if (this.endboss.lifepoints <= 0) {
             document.getElementById('canvas').classList.add('d-none');
+            document.getElementById('mb-btn').classList.add('d-none');
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isWin = true;
@@ -258,6 +259,7 @@ class World {
     checkGameOver() {
         if (this.char.isDead()) {
             document.getElementById('canvas').classList.add('d-none');
+            document.getElementById('mb-btn').classList.add('d-none');
             document.getElementById('controls').classList.add('d-none');
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isGameOver = true;
