@@ -109,17 +109,18 @@ class World {
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
             this.checkWin();//WIN?
-        }, 80);
+        }, 120);
     }
 
     /**
      * FUNCTION FOR CHECK COLLISION CHAR AND CHICKENS
      */
     checkCollisionCharToChickens() {
-        this.level.enemies.forEach((chicken, index) => {
-            if (this.char.jumpsOnTop(chicken, index)) {
+        this.level.enemies.forEach((chicken, i) => {
+
+            if (this.char.jumpsOnTop(chicken, i)) {
                 chicken.charJumpOnChicken = true;
-                this.removeFromWorld(this.level.enemies, index, 400);
+                this.removeFromWorld(this.level.enemies, i, 300);
                 console.log('char jump on chicken', chicken.charJumpOnChicken);
             } else if (this.char.isColliding(chicken)) {
                 this.char.hit(2);

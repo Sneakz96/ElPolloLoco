@@ -115,11 +115,10 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_WALK);
                 this.WALKING_SOUND.volume = 0.3;
                 this.WALKING_SOUND.play();
-            } else if ((!this.world.keyboard.LEFT || !this.world.keyboard.RIGHT || !this.world.keyboard.SPACE || !this.world.keyboard.D) || i < 10) {
+            } else if (!this.world.keyboard.LEFT || !this.world.keyboard.RIGHT || !this.world.keyboard.SPACE || !this.world.keyboard.D) {
                 this.playAnimation(this.IMAGES_IDLE);
-                i++;
             }
-        }, 120);
+        }, 60);
     }
 
     pauseSounds() {

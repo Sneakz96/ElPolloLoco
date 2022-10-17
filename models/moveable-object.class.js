@@ -74,10 +74,10 @@ class MoveableObject extends DrawableObject {
      * FUNCTION TO CHECK IF MO IS COLLIDING
      */
     isColliding(mo) {
-        return this.x + this.width >= mo.x && //CHAR RECHTS OBJECT LINKS 
-            this.y + this.height >= mo.y && //CHAR OBEN OBJECT UNTEN
-            this.x <= mo.x + mo.width && //CHAR LINKS OBJECT RECHTS 
-            this.y <= mo.y + mo.height;//CHAR UNTEN OBJECT OBEN
+        return this.x + this.width > mo.x && //CHAR RECHTS OBJECT LINKS 
+            this.y + this.height > mo.y && //CHAR OBEN OBJECT UNTEN
+            this.x < mo.x + mo.width && //CHAR LINKS OBJECT RECHTS 
+            this.y < mo.y + mo.height;//CHAR UNTEN OBJECT OBEN
     }
 
 
@@ -85,10 +85,10 @@ class MoveableObject extends DrawableObject {
      *  FUNCTION TO CHECK COLLISION ON TOP OF CHICKEN
      */
     jumpsOnTop(chicken) {
-        return this.x + this.width > chicken.x + chicken.width &&
-            this.y + this.height > chicken.y &&
-            this.y < chicken.y + chicken.height &&
-            this.x < chicken.x + chicken.width;
+        return this.y + this.height > chicken.y &&
+        this.y + this.height < chicken.y + chicken.height &&
+        this.x + this.width > chicken.x &&
+        this.x + this.width < chicken.x + chicken.width ;
     }
 
     /**
