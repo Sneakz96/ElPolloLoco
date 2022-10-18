@@ -61,7 +61,7 @@ class ThrowableObject extends MoveableObject {
             if (!this.bottleHitsChicken && !this.isBroken) {
                 this.spinBottle();
             } else if(this.bottleHitsChicken || this.isBroken){
-                console.log('bottle hits chicken');
+                console.log('bottle breaks');
                 this.stopBottleAndSplash();
                 clearInterval(clearBottle);
             }
@@ -81,7 +81,7 @@ class ThrowableObject extends MoveableObject {
      */
     stopBottleAndSplash() {
         this.playAnimation(this.IMAGES_SALSA_SPLASH);
-        this.playSplashSound();
+        //this.playSplashSound();
     }
 
     /**

@@ -25,6 +25,7 @@ function startGame() {
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('mb-btn').classList.remove('d-none');
     document.getElementById('controls').classList.remove('d-none');
+    document.getElementById('mb-hud').classList.remove('d-none');
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -38,6 +39,7 @@ function startGame() {
 function showStartScreen() {
     console.log('show start screen');
     document.getElementById('lost-screen').classList.add('d-none');
+    document.getElementById('mb-hud').classList.add('d-none');
     document.getElementById('instruction').classList.remove('d-none');
     document.getElementById('start-screen').classList.remove('d-none');
 }

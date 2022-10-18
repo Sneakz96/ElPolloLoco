@@ -38,17 +38,20 @@ class Chicken extends MoveableObject {
     animateChicken() {
         setInterval(() => {
             if (this.bottleHitsChicken || this.charJumpOnChicken) {
-                this.playAnimation(this.IMAGE_DEAD);
-                console.log('dead animation miss');
+                setTimeout(() => {
+                    this.playAnimation(this.IMAGE_DEAD);
+                }, 100);
                 //this.CHICKEN_DEAD_SOUND.volume = 0.15;
                 //this.CHICKEN_DEAD_SOUND.play();
-            } else if (!this.bottleHitsChicken && !this.charJumpOnChicken) {
                 this.charJumpOnChicken = false;
+                this.bottleHitsChicken = false;
+            } else {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
                 this.CHICKEN_WALKING_SOUND.volume = 0.1;
                 this.CHICKEN_WALKING_SOUND.play();
             }
-        }, 60);
+        }, 100);
+
     }
 }

@@ -77,10 +77,8 @@ class Endboss extends MoveableObject {
         setInterval(() => {
             if (i <= 7) {
                 this.alertEndboss();
-                console.log('alert');
             } else if (i > 7 && i <= 15) {
                 this.attackingEndboss();
-                console.log('attack');
             } else if (i > 15) {
                 this.walkingEndboss();
             }
@@ -91,13 +89,11 @@ class Endboss extends MoveableObject {
                 this.firstContact = true;
             } else if (this.bottleHitsEndboss) {
                 this.hurtEndboss();
-                console.log('Endboss is hurt');
                 this.speed += 0.35;
-            } else if (this.lifepoints == 0) {
+            } else if (this.bossDead) {
                 this.endbossDead();
-                console.log('Endboss is dead');
             }
-        }, 75);
+        }, 100);
     }
 
     moveEndboss() {
@@ -125,6 +121,5 @@ class Endboss extends MoveableObject {
 
     endbossDead() {
         this.playAnimation(this.IMAGES_DEAD);
-        this.endbossDead = true;
     }
 }

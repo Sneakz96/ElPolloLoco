@@ -4,19 +4,19 @@ class Level {
     level_end_x = 2750;
     
     //TAKEOVER
-    enemies;
+    chickens;
     endboss;
     clouds;
     backgroundObjects;
     coins;
     bottles;
 
-    constructor(enemies, endboss, clouds, backgroundObjects, coins, bottles) {
+    constructor(chickens, endboss, clouds, backgroundObjects, coins, bottles) {
         this.backgroundObjects = backgroundObjects;
         this.clouds = clouds;
         this.coins = coins;
         this.bottles = bottles;
-        this.enemies = enemies;
+        this.chickens = chickens;
         this.endboss = endboss;
     }
 }
