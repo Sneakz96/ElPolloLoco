@@ -117,17 +117,11 @@ class World {
      * FUNCTION FOR CHECK COLLISION CHAR AND CHICKENS
      */
     checkCollisionCharToChickens() {
-        this.level.chickens.forEach((chicken, i) => {
-            if (this.char.jumpsOnTop(chicken, i)) {
+        this.level.chickens.forEach((chicken, index) => {
+            if (this.char.jumpsOnTop(chicken, index)) {
                 chicken.charJumpOnChicken = true;
-                setTimeout(() => {
-                    this.level.chickens.splice(i, 1);
-                }, 200);
-
-
-                console.log('you jump on',this.level.chickens[i]);
-
-
+                this.removeDeadChicken(index);
+                console.log('you jump on', this.level.chickens[index]);
             } else if (this.char.isColliding(chicken)) {
                 this.char.hit(2);
                 this.statusBar.setPercentage(this.char.energy);
@@ -154,13 +148,12 @@ class World {
     checkCollisionsBottleToGround() {
         this.throwableObjects.forEach((bottle, i) => {
             if (bottle.y >= 340 && !bottle.isBroken) {
+                bottle.THROW_BOTTLE_SOUND.pause();
                 bottle.isBroken = true;
                 bottle.acceleration = 0;
                 bottle.speed = 0;
                 bottle.speed_Y = 0;
-                setTimeout(() => {
-                    this.throwableObjects.splice(i);//REMOVE SPLASHED BOTTLE
-                }, 100)
+                this.removeSplashedBottle(i);//REMOVE SPLASHED BOTTLE
             };
         });
     }
@@ -172,15 +165,12 @@ class World {
         this.level.chickens.forEach((chicken, index) => {
             this.throwableObjects.forEach((bottle, i) => {
                 if (bottle.isColliding(chicken)) {
+                    bottle.THROW_BOTTLE_SOUND.pause();
                     chicken.bottleHitsChicken = true;
                     bottle.bottleHitsChicken = true;
-                    setTimeout(() => {
-                        this.level.chickens.splice(index, 1);
-                    }, 200);//TIME FOR DEAD ANIMATION
-                    setTimeout(() => {
-                        this.throwableObjects.splice(i);//REMOVE SPLASHED BOTTLE
-                    }, 200);
-                    console.log('chicken hitted by bottle', bottle.bottleHitsChicken);
+                    this.removeDeadChicken(index);
+                    this.removeSplashedBottle(i);//REMOVE SPLASHED BOTTLE
+                    console.log('bottle hit', chicken);
                 };
             });
         });
@@ -193,17 +183,13 @@ class World {
         this.level.endboss.forEach(endboss => {
             this.throwableObjects.forEach((bottle, i) => {
                 if (endboss.isColliding(bottle)) {
+                    bottle.THROW_BOTTLE_SOUND.pause();
                     bottle.bottleHitsChicken = true;
                     endboss.bottleHitsEndboss = true;
                     this.endboss.lifepoints -= 30;//SET LP OF ENDBOSS
-                    setTimeout(() => {
-                        this.throwableObjects.splice(i);//REMOVE SPLASHED BOTTLE
-                    }, 100);
+                    this.removeSplashedBottle(i);
                 } else if (this.endboss.lifepoints <= 0) {
                     this.endboss.bossDead = true;
-                    setTimeout(() => {
-                        this.level.endboss.splice(i);//REMOVE ENDBOSS
-                    }, 200);
                 }
             });
         });
@@ -232,6 +218,7 @@ class World {
                 this.collectedBottles.push(this.collectableBottles);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 20);
                 this.BOTTLE_COLLECT_SOUND.play();
+                console.log('', this.collectedBottles);
             }
         });
     }
@@ -245,6 +232,8 @@ class World {
             this.collectedBottles.splice(bottle, 1);
             this.throwableObjects.push(bottle);
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
+            console.log('', this.collectedBottles);
+            bottle.THROW_BOTTLE_SOUND.play();
         }
     }
 
@@ -282,6 +271,24 @@ class World {
             this.clearAllIntervals();
             console.log('game over!');
         }
+    }
+
+    /**
+    * FUNCTION FOR REMOVING SPLASHED BOTTLE
+    */
+    removeDeadChicken(index) {
+        setTimeout(() => {
+            this.level.chickens.splice(index, 1);
+        }, 100);//TIME FOR ANIMATION
+    }
+
+    /**
+    * FUNCTION FOR REMOVING SPLASHED BOTTLE
+    */
+    removeSplashedBottle(i) {
+        setTimeout(() => {
+            this.throwableObjects.splice(i, 1);//REMOVE SPLASHED BOTTLE
+        }, 100);
     }
 
     /**

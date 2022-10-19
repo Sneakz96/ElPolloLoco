@@ -108,7 +108,7 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_HURT);
                 this.HURT_SOUND.play();
             } else if (this.isAboveGround() && this.world.keyboard.SPACE) {
-                this.playAnimation(this.IMAGES_JUMP);//GIVE THE PICS FOR JUMP
+                this.playAnimation(this.IMAGES_JUMP);
                 this.JUMPING_SOUND.loop = false;
                 this.JUMPING_SOUND.play();
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
@@ -116,9 +116,13 @@ class Character extends MoveableObject {
                 this.WALKING_SOUND.volume = 0.3;
                 this.WALKING_SOUND.play();
             } else if (!this.world.keyboard.LEFT || !this.world.keyboard.RIGHT || !this.world.keyboard.SPACE || !this.world.keyboard.D) {
-                this.playAnimation(this.IMAGES_IDLE);
+                if (i < 10) {
+                    this.playAnimation(this.IMAGES_IDLE);
+                    console.log('char idle');
+                }
+                i++;
             }
-        }, 60);
+        }, 10000 / 60);
     }
 
     pauseSounds() {

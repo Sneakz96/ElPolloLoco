@@ -38,9 +38,7 @@ class Chicken extends MoveableObject {
     animateChicken() {
         setInterval(() => {
             if (this.bottleHitsChicken || this.charJumpOnChicken) {
-                setTimeout(() => {
-                    this.playAnimation(this.IMAGE_DEAD);
-                }, 100);
+                this.playAnimation(this.IMAGE_DEAD);
                 //this.CHICKEN_DEAD_SOUND.volume = 0.15;
                 //this.CHICKEN_DEAD_SOUND.play();
                 this.charJumpOnChicken = false;

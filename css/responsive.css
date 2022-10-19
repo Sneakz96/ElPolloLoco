@@ -7,8 +7,12 @@
     #instruction {
         display: none !important;
     }
+    #mb-hud_sec{
+        display: flex !important;
+    }
 
 }
+
 @media only screen and (max-width: 1200px) {
 
     .controls {
@@ -19,6 +23,9 @@
         display: none !important;
     }
 
+    #mb-hud_sec{
+        display: flex !important;
+    }
 
     /*FULLSCREEN*/
 
@@ -42,11 +49,6 @@
         width: 100% !important;
     }
     
-    canvas {
-        height: 100vh !important;
-        width: 100% !important;
-    }
-
     #start-screen {
         height: 100vh !important;
         width: 100% !important;
@@ -64,8 +66,7 @@
     #instruction {
         display: none !important;
     }
-
-
+ 
     #fullScreenEnter {
         display: none !important;
     }
@@ -74,6 +75,9 @@
         display: none !important;
     }
 
+    #mb-hud_sec{
+        display: flex !important;
+    }
 }
 
 @media only screen and (max-height: 480px) {
@@ -116,5 +120,9 @@
 
     #fullScreenExit {
         display: none !important;
+    }
+
+    #mb-hud_sec{
+        display: flex !important;
     }
 }

@@ -59,9 +59,8 @@ class ThrowableObject extends MoveableObject {
         let clearBottle = setInterval(() => {
             this.x += 18;//WEITE
             if (!this.bottleHitsChicken && !this.isBroken) {
-                this.spinBottle();
-            } else if(this.bottleHitsChicken || this.isBroken){
-                console.log('bottle breaks');
+                this.playAnimation(this.IMAGES_ROTATION);
+            } else if (this.bottleHitsChicken || this.isBroken) {
                 this.stopBottleAndSplash();
                 clearInterval(clearBottle);
             }
@@ -69,19 +68,11 @@ class ThrowableObject extends MoveableObject {
     };
 
     /**
-     * PLAY ANIMATION -> LOAD ALL IMAGES TO ROTATE
-     */
-    spinBottle() {
-        this.playAnimation(this.IMAGES_ROTATION);
-        //this.playThrowingSound();
-    }
-
-    /**
      * STOP -> SHOW SPLASH IMAGE & PLAY SOUND
      */
     stopBottleAndSplash() {
         this.playAnimation(this.IMAGES_SALSA_SPLASH);
-        //this.playSplashSound();
+        this.playSplashSound();
     }
 
     /**
@@ -94,6 +85,6 @@ class ThrowableObject extends MoveableObject {
 
     playThrowingSound() {
         this.THROW_BOTTLE_SOUND.play();
-        this.THROW_BOTTLE_SOUND.volume = 0.7;
+        this.THROW_BOTTLE_SOUND.volume = 0.3;
     }
 }
