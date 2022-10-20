@@ -22,6 +22,7 @@ function init() {
 function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('instruction').classList.add('d-none');
+    document.getElementById('mb-canvas').classList.remove('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('mb-btn').classList.remove('d-none');
     document.getElementById('controls').classList.remove('d-none');
@@ -39,6 +40,7 @@ function startGame() {
 function showStartScreen() {
     console.log('show start screen');
     document.getElementById('lost-screen').classList.add('d-none');
+    document.getElementById('mb-canvas').classList.add('d-none');
     document.getElementById('mb-hud').classList.add('d-none');
     document.getElementById('instruction').classList.remove('d-none');
     document.getElementById('start-screen').classList.remove('d-none');

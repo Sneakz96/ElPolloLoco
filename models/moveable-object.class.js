@@ -85,10 +85,10 @@ class MoveableObject extends DrawableObject {
      *  FUNCTION TO CHECK COLLISION ON TOP OF CHICKEN
      */
     jumpsOnTop(chicken) {
-        return this.y + this.height > chicken.y && //CHAR LINKS
-        this.y + this.height < chicken.y + chicken.height &&//CHAR HÖHE
-        this.x + this.width > chicken.x &&
-        this.x <= chicken.x;
+        return this.y + this.height > chicken.y && //CHAR JUMP OVER 360p?
+            this.y + this.height < chicken.y + chicken.height &&//CHAR HÖHE
+            this.x + this.width > chicken.x &&
+            this.x > (chicken.x - 50);
     }
 
     /**

@@ -118,7 +118,6 @@ class Character extends MoveableObject {
             } else if (!this.world.keyboard.LEFT || !this.world.keyboard.RIGHT || !this.world.keyboard.SPACE || !this.world.keyboard.D) {
                 if (i < 10) {
                     this.playAnimation(this.IMAGES_IDLE);
-                    console.log('char idle');
                 }
                 i++;
             }

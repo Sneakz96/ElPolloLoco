@@ -99,7 +99,7 @@ canvas {
 
 /**/
 
-.mb-canvas {
+.mb-canvas {display: none;
     position: relative;
 }
 
