@@ -1,7 +1,7 @@
 class Character extends MoveableObject {
 
     //SET VARIABLE
-    speed = 3;
+    speed = 5;
     groundPosition = 220;
 
     //TAKEOVER

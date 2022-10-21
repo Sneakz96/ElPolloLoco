@@ -110,7 +110,7 @@ class World {
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
             this.checkWin();//WIN?
-        }, 120);
+        }, 60);
     }
 
     /**
@@ -123,9 +123,9 @@ class World {
                 this.removeDeadChicken(index);
                 console.log('you jump on', this.level.chickens[index]);
             } else if (this.char.isColliding(chicken)) {
-                this.char.hit(2);
+                this.char.hit(20);
                 this.statusBar.setPercentage(this.char.energy);
-            }
+            };
         });
     }
 
@@ -135,10 +135,9 @@ class World {
     checkCollisionCharToEndboss() {
         this.level.endboss.forEach((endboss) => {
             if (this.char.isColliding(endboss)) {
-                this.char.hit(20);
+                this.char.hit(40);
                 this.statusBar.setPercentage(this.char.energy);
-                console.log('char get hit by boss');
-            }
+            };
         });
     }
 
@@ -170,7 +169,7 @@ class World {
                     bottle.bottleHitsChicken = true;
                     this.removeDeadChicken(index);
                     this.removeSplashedBottle(i);//REMOVE SPLASHED BOTTLE
-                    console.log('bottle hit', chicken);
+                    console.log('log');
                 };
             });
         });
@@ -190,7 +189,7 @@ class World {
                     this.removeSplashedBottle(i);
                 } else if (this.endboss.lifepoints <= 0) {
                     this.endboss.bossDead = true;
-                }
+                };
             });
         });
     }
@@ -204,7 +203,7 @@ class World {
                 this.level.coins.splice(index, 1);
                 this.coinBar.setPercentage(this.coinBar.percentage += 20);
                 this.COIN_COLLECT_SOUND.play();
-            }
+            };
         });
     }
 
@@ -218,8 +217,7 @@ class World {
                 this.collectedBottles.push(this.collectableBottles);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 20);
                 this.BOTTLE_COLLECT_SOUND.play();
-                console.log('', this.collectedBottles);
-            }
+            };
         });
     }
 
@@ -234,7 +232,7 @@ class World {
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
             console.log('', this.collectedBottles);
             bottle.THROW_BOTTLE_SOUND.play();
-        }
+        };
     }
 
     /**
@@ -253,7 +251,7 @@ class World {
             this.stopAll();
             this.clearAllIntervals();
             console.log('you won!');
-        }
+        };
     }
 
     /**
@@ -272,7 +270,7 @@ class World {
             this.stopAll();
             this.clearAllIntervals();
             console.log('game over!');
-        }
+        };
     }
 
     /**

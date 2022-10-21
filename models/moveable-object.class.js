@@ -56,6 +56,7 @@ class MoveableObject extends DrawableObject {
      */
     jump() {
         this.speed_Y = 35;
+        console.log(this.y)
     }
 
     /**
@@ -88,7 +89,8 @@ class MoveableObject extends DrawableObject {
         return this.y + this.height > chicken.y && //CHAR JUMP OVER 360p?
             this.y + this.height < chicken.y + chicken.height &&//CHAR HÖHE
             this.x + this.width > chicken.x &&
-            this.x > (chicken.x - 50);
+            this.x + this.height > chicken.x &&
+            this.x + this.height > 131;
     }
 
     /**

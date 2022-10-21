@@ -52,7 +52,7 @@ class DrawableObject {
     reflectImage(ctx) {
         if (this.otherDirection) {
             ctx.save();
-            ctx.translate(this.width / 2, 0);
+            ctx.translate(this.width, 0);
             ctx.scale(-1, 1);
             this.x = this.x * -1;
         }

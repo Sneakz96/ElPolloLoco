@@ -42,22 +42,51 @@ class ThrowableObject extends MoveableObject {
         this.x = x;
         this.y = y;
         this.world = world;
-        this.speed = 0.15;
     }
 
     /**
-     * THROW ANIMATION -> LOAD ALL IMAGES TO ROTATE
+     * THROW ANIMATION
      */
     throw() {
         this.speed_Y = 20;//FALLGESCHWINDIGKEIT
         this.applyGravity();
         this.animation();
+        this.checkDirection();
+    }
+
+    /**
+     * CHECK THROW DIRECTION
+     */
+    checkDirection() {
+        setInterval(() => {
+            if (this.isAboveGround()) {
+                if (!world.char.otherDirection) {
+                    this.throwRight();
+                }
+                if (world.char.otherDirection) {
+                    this.throwLeft();
+                }
+            }
+        }, 60);
+    }
+
+    /**
+     * THROW TO RIGHT + x
+     */
+    throwRight() {
+        this.x += 15;//WEITE
+    }
+
+    /**
+     * THROW TO LEFT -x
+     */
+    throwLeft() {
+        this.x -= 15;//WEITE
     }
 
     animation() {
         this.SPLASH_SOUND.pause();
         let clearBottle = setInterval(() => {
-            this.x += 18;//WEITE
             if (!this.bottleHitsChicken && !this.isBroken) {
                 this.playAnimation(this.IMAGES_ROTATION);
             } else if (this.bottleHitsChicken || this.isBroken) {
