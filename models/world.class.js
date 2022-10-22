@@ -3,6 +3,7 @@ class World {
     //SET VARIABLES
     level = level1;
     camera_x = 0;
+    direction = 1;
 
     //TAKEOVER
     ctx;
@@ -169,7 +170,6 @@ class World {
                     bottle.bottleHitsChicken = true;
                     this.removeDeadChicken(index);
                     this.removeSplashedBottle(i);//REMOVE SPLASHED BOTTLE
-                    console.log('log');
                 };
             });
         });
@@ -221,31 +221,38 @@ class World {
         });
     }
 
+
+
+
+
+
     /**
      * FUNCTION FOR CHECK IF A BOTTLE IS THROWED
      */
     checkThrowingABottle() {
         if (this.bottleBar.percentage > 0 && this.keyboard.D) {
-            let bottle = new ThrowableObject(this.char.x, this.char.y);
+            let bottle = new ThrowableObject(this.char.x, this.char.y, this.direction);
             this.collectedBottles.splice(bottle, 1);
             this.throwableObjects.push(bottle);
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
-            console.log('', this.collectedBottles);
             bottle.THROW_BOTTLE_SOUND.play();
         };
     }
+
+
+
+
+
+
+
 
     /**
      * FUNCTION TO CHECK WIN
      */
     checkWin() {
         if (this.endboss.lifepoints <= 0) {
-            document.getElementById('canvas').classList.add('d-none');
-            document.getElementById('mb-canvas').classList.add('d-none');
-            document.getElementById('mb-btn').classList.add('d-none');
-            document.getElementById('controls').classList.add('d-none');
-            document.getElementById('mb-hud').classList.add('d-none');
-            document.getElementById('lost-screen').classList.remove('d-none');
+            this.changeMenu();
+            document.getElementById('win-screen').classList.remove('d-none');
             this.isWin = true;
             this.WIN_WORLD_SOUND.play();
             this.stopAll();
@@ -259,11 +266,7 @@ class World {
      */
     checkGameOver() {
         if (this.char.isDead()) {
-            document.getElementById('canvas').classList.add('d-none');
-            document.getElementById('mb-canvas').classList.add('d-none');
-            document.getElementById('mb-btn').classList.add('d-none');
-            document.getElementById('mb-hud').classList.add('d-none');
-            document.getElementById('controls').classList.add('d-none');
+            this.changeMenu();
             document.getElementById('lost-screen').classList.remove('d-none');
             this.isGameOver = true;
             this.GAME_OVER_SOUND.play();
@@ -271,6 +274,17 @@ class World {
             this.clearAllIntervals();
             console.log('game over!');
         };
+    }
+
+    /**
+     * FUNCTION TO CHANGE END PIC TO MENU
+     */
+    changeMenu() {
+        document.getElementById('canvas').classList.add('d-none');
+        document.getElementById('mb-canvas').classList.add('d-none');
+        document.getElementById('mb-btn').classList.add('d-none');
+        document.getElementById('controls').classList.add('d-none');
+        document.getElementById('mb-hud').classList.add('d-none');
     }
 
     /**
@@ -315,7 +329,6 @@ class World {
      * FUNCTION TO SET SPEED OF ENEMIES = 0
      */
     stopAll() {
-        console.log('stop');
         this.level.chickens.forEach(enemy => {
             enemy.speed = 0;
         });

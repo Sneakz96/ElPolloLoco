@@ -39,6 +39,7 @@ function startGame() {
  */
 function showStartScreen() {
     console.log('show start screen');
+    document.getElementById('win-screen').classList.add('d-none');
     document.getElementById('lost-screen').classList.add('d-none');
     document.getElementById('mb-canvas').classList.add('d-none');
     document.getElementById('mb-hud').classList.add('d-none');

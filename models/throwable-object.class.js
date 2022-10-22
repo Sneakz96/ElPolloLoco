@@ -4,6 +4,7 @@ class ThrowableObject extends MoveableObject {
     groundPosition = 320;
     height = 80;
     width = 60;
+    throwDirection = 1;
 
     //CONDITION
     bottleHitsChicken = false;
@@ -34,14 +35,14 @@ class ThrowableObject extends MoveableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
-    constructor(x, y, world) {
+    constructor(x, y, direction) {
         super().loadImage(this.IMAGE);
         this.loadImages(this.IMAGES_ROTATION);
         this.loadImages(this.IMAGES_SALSA_SPLASH);
         this.throw();
         this.x = x;
         this.y = y;
-        this.world = world;
+        this.throwDirection = direction;
     }
 
     /**
@@ -60,28 +61,9 @@ class ThrowableObject extends MoveableObject {
     checkDirection() {
         setInterval(() => {
             if (this.isAboveGround()) {
-                if (!world.char.otherDirection) {
-                    this.throwRight();
-                }
-                if (world.char.otherDirection) {
-                    this.throwLeft();
-                }
-            }
+                this.x += (this.throwDirection * 15);
+            };
         }, 60);
-    }
-
-    /**
-     * THROW TO RIGHT + x
-     */
-    throwRight() {
-        this.x += 15;//WEITE
-    }
-
-    /**
-     * THROW TO LEFT -x
-     */
-    throwLeft() {
-        this.x -= 15;//WEITE
     }
 
     animation() {
@@ -92,9 +74,9 @@ class ThrowableObject extends MoveableObject {
             } else if (this.bottleHitsChicken || this.isBroken) {
                 this.stopBottleAndSplash();
                 clearInterval(clearBottle);
-            }
-        }, 60)
-    };
+            };
+        }, 60);
+    }
 
     /**
      * STOP -> SHOW SPLASH IMAGE & PLAY SOUND

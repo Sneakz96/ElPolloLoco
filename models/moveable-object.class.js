@@ -8,9 +8,6 @@ class MoveableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-    //CONDITIONS
-    otherDirection = false;
-
     //TAKEOVER
     xMulty;
 
@@ -32,8 +29,8 @@ class MoveableObject extends DrawableObject {
             if (this.isAboveGround() || this.speed_Y > 0) {
                 this.y -= this.speed_Y;
                 this.speed_Y -= this.acceleration;
-            }
-        }, 1000 / 25)
+            };
+        }, 40);
     }
 
     /**
@@ -56,7 +53,6 @@ class MoveableObject extends DrawableObject {
      */
     jump() {
         this.speed_Y = 35;
-        console.log(this.y)
     }
 
     /**
