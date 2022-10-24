@@ -3,7 +3,7 @@ class Character extends MoveableObject {
     //SET VARIABLE
     speed = 5;
     groundPosition = 220;
-   
+
     //CONDITIONS
     otherDirection = false;
 
@@ -114,7 +114,13 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_JUMP);
                 this.JUMPING_SOUND.loop = false;
                 this.JUMPING_SOUND.play();
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (this.world.keyboard.RIGHT) {
+                this.world.direction = 1;
+                this.playAnimation(this.IMAGES_WALK);
+                this.WALKING_SOUND.volume = 0.3;
+                this.WALKING_SOUND.play();
+            } else if (this.world.keyboard.LEFT) {
+                this.world.direction = -1;
                 this.playAnimation(this.IMAGES_WALK);
                 this.WALKING_SOUND.volume = 0.3;
                 this.WALKING_SOUND.play();

@@ -10,6 +10,7 @@ class MoveableObject extends DrawableObject {
 
     //TAKEOVER
     xMulty;
+    world;
 
     /**
      * FUNCTION FOR PLAY ANIMATION 

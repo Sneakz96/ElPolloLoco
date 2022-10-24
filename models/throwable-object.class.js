@@ -9,6 +9,8 @@ class ThrowableObject extends MoveableObject {
     //CONDITION
     bottleHitsChicken = false;
     isBroken = false;
+    throwable = true;
+
 
     //SOUNDS
     THROW_BOTTLE_SOUND = new Audio('./audio/bottle-throwing.mp3');
