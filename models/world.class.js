@@ -29,6 +29,7 @@ class World {
     ///CONDITIONS
     isWin = false;
     isGameOver = false;
+    throwable = true;
 
     //SOUNDS
     COIN_COLLECT_SOUND = new Audio('audio/collect-coin.mp3');
@@ -148,9 +149,6 @@ class World {
     checkCollisionsBottleToGround() {
         this.throwableObjects.forEach((bottle, i) => {
             if (bottle.y >= 340 && !bottle.isBroken) {
-                //VARIABLEN FALSE GEBEN
-                bottle.throwable = true;
-
                 bottle.THROW_BOTTLE_SOUND.pause();
                 bottle.isBroken = true;
                 bottle.acceleration = 0;
@@ -168,9 +166,6 @@ class World {
         this.level.chickens.forEach((chicken, index) => {
             this.throwableObjects.forEach((bottle, i) => {
                 if (bottle.isColliding(chicken)) {
-                    //VARIABLEN FALSE GEBEN
-                    bottle.throwable = true;
-
                     bottle.THROW_BOTTLE_SOUND.pause();
                     chicken.bottleHitsChicken = true;
                     bottle.bottleHitsChicken = true;
@@ -188,9 +183,6 @@ class World {
         this.level.endboss.forEach(endboss => {
             this.throwableObjects.forEach((bottle, i) => {
                 if (endboss.isColliding(bottle)) {
-                    //VARIABLEN FALSE GEBEN
-                    bottle.throwable = true;
-
                     bottle.THROW_BOTTLE_SOUND.pause();
                     bottle.bottleHitsChicken = true;
                     endboss.bottleHitsEndboss = true;
@@ -230,20 +222,16 @@ class World {
         });
     }
 
-
-
-
-
-
     /**
      * FUNCTION FOR CHECK IF A BOTTLE IS THROWED
      */
     checkThrowingABottle() {
-        if (this.bottleBar.percentage > 0 && this.keyboard.D && !this.throwableObjects.throwable) {//BEDINGUUNG = VARIABLE TRUE = WERFBAR
+        if (this.bottleBar.percentage > 0 && this.keyboard.D && this.throwable) {//BEDINGUUNG = VARIABLE TRUE = WERFBAR
             let bottle = new ThrowableObject(this.char.x, this.char.y, this.direction);
             //VARIABLEN TRUE GEBEN BIS BROKE
-            this.throwableObjects.throwable = false;
-
+            this.throwable = false;
+            this.checkThrowable();
+            console.log(this.throwable);
             this.collectedBottles.splice(bottle, 1);
             this.throwableObjects.push(bottle);
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
@@ -251,12 +239,14 @@ class World {
         };
     }
 
-
-
-
-
-
-
+    /**
+     * FUNCTION TO SET TIMEOUT AT THROWING
+     */
+    checkThrowable() {
+        setTimeout(() => {
+            this.throwable = true;
+        }, 1000);
+    }
 
     /**
      * FUNCTION TO CHECK WIN
