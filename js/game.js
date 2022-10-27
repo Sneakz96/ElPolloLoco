@@ -47,6 +47,11 @@ function showStartScreen() {
     document.getElementById('start-screen').classList.remove('d-none');
 }
 
+
+
+
+
+
 /**
  * FUNCTION TO ENABLE SOUND
  */
@@ -70,15 +75,22 @@ function volumeUp() {
     play_sound.play();
 }
 
+
+
+
+
+
+
+
 /**
  * FUNCTION FOR OPEN FULLSCREEN
  */
 function openFullScreen() {
     let open = document.getElementById('fullScreenEnter');
     let exit = document.getElementById('fullScreenExit');
-    let fullScreen = document.getElementById('window');
     open.classList.add('d-none');
     exit.classList.remove('d-none');
+    let fullScreen = document.getElementById('window');
     enterFullScreen(fullScreen);
 }
 
@@ -111,5 +123,4 @@ function closeFullScreen() {
         document.webkitExitFullscreen();
         open.classList.remove('d-none');
     }
-    
 }

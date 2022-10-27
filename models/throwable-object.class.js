@@ -9,6 +9,7 @@ class ThrowableObject extends MoveableObject {
     //CONDITION
     bottleHitsChicken = false;
     isBroken = false;
+    bottleHitted = false;
 
     //SOUNDS
     THROW_BOTTLE_SOUND = new Audio('./audio/bottle-throwing.mp3');
@@ -69,10 +70,12 @@ class ThrowableObject extends MoveableObject {
     animation() {
         this.SPLASH_SOUND.pause();
         let clearBottle = setInterval(() => {
-            if (!this.bottleHitsChicken && !this.isBroken) {
+            if (!this.bottleHitsChicken && !this.isBroken && !this.bottleHitted) {
                 this.playAnimation(this.IMAGES_ROTATION);
-            } else if (this.bottleHitsChicken || this.isBroken) {
+                this.bottleHitted = false;
+            } else if (this.bottleHitsChicken || this.isBroken || this.bottleHitted) {
                 this.stopBottleAndSplash();
+                this.bottleHitted = true;
                 clearInterval(clearBottle);
             };
         }, 60);
@@ -85,6 +88,14 @@ class ThrowableObject extends MoveableObject {
         this.playAnimation(this.IMAGES_SALSA_SPLASH);
         this.playSplashSound();
     }
+
+
+
+
+
+
+
+
 
     /**
      * SOUND FUNCTIONS 

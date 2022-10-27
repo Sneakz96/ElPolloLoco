@@ -93,13 +93,13 @@ class Endboss extends MoveableObject {
             } else if (this.bossDead) {
                 this.endbossDead();
             }
-        }, 100);
+        }, 60);
     }
 
     moveEndboss() {
         setInterval(() => {
             this.moveLeft();
-        }, 100 / 6);
+        }, 60);
     }
 
     alertEndboss() {

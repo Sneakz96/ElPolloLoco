@@ -44,6 +44,11 @@
         display: none;
     }
 
+    canvas {
+        height: 100vh !important;
+        width: 100% !important;
+    }
+
     .mb-canvas{
         height: 100vh !important;
         width: 100% !important;

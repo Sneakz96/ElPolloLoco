@@ -49,7 +49,6 @@ class Chicken extends MoveableObject {
                 this.CHICKEN_WALKING_SOUND.volume = 0.1;
                 this.CHICKEN_WALKING_SOUND.play();
             }
-        }, 100);
-
+        }, 60);
     }
 }

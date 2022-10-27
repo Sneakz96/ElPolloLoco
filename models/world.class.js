@@ -30,6 +30,7 @@ class World {
     isWin = false;
     isGameOver = false;
     throwable = true;
+    isHitting = false;
 
     //SOUNDS
     COIN_COLLECT_SOUND = new Audio('audio/collect-coin.mp3');
@@ -112,7 +113,7 @@ class World {
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
             this.checkWin();//WIN?
-        }, 60);
+        }, 120);
     }
 
     /**
@@ -124,8 +125,11 @@ class World {
                 chicken.charJumpOnChicken = true;
                 this.removeDeadChicken(index);
                 console.log('you jump on', this.level.chickens[index]);
-            } else if (this.char.isColliding(chicken)) {
-                this.char.hit(20);
+            } else if (this.char.isColliding(chicken) && !this.isHitting) {
+                this.isHitting = true;
+                this.checkHit();
+                console.log(this.isHitting);
+                this.char.hit(1);
                 this.statusBar.setPercentage(this.char.energy);
             };
         });
@@ -150,6 +154,7 @@ class World {
         this.throwableObjects.forEach((bottle, i) => {
             if (bottle.y >= 340 && !bottle.isBroken) {
                 bottle.THROW_BOTTLE_SOUND.pause();
+                bottle.bottleHitted = true;
                 bottle.isBroken = true;
                 bottle.acceleration = 0;
                 bottle.speed = 0;
@@ -167,10 +172,12 @@ class World {
             this.throwableObjects.forEach((bottle, i) => {
                 if (bottle.isColliding(chicken)) {
                     bottle.THROW_BOTTLE_SOUND.pause();
+                    bottle.bottleHitted = true;
                     chicken.bottleHitsChicken = true;
                     bottle.bottleHitsChicken = true;
                     this.removeDeadChicken(index);
                     this.removeSplashedBottle(i);
+                    console.log('bottle hit chicken');
                 };
             });
         });
@@ -184,11 +191,14 @@ class World {
             this.throwableObjects.forEach((bottle, i) => {
                 if (endboss.isColliding(bottle)) {
                     bottle.THROW_BOTTLE_SOUND.pause();
+                    bottle.bottleHitted = true;
                     bottle.bottleHitsChicken = true;
                     endboss.bottleHitsEndboss = true;
                     this.endboss.lifepoints -= 30;
                     this.removeSplashedBottle(i);
+                    console.log('bottle hits endboss');
                 } else if (this.endboss.lifepoints <= 0) {
+                    bottle.bottleHitted = true;
                     this.endboss.bossDead = true;
                 };
             });
@@ -226,7 +236,7 @@ class World {
      * FUNCTION FOR CHECK IF A BOTTLE IS THROWED
      */
     checkThrowingABottle() {
-        if (this.bottleBar.percentage > 0 && this.keyboard.D && this.throwable) {//BEDINGUUNG = VARIABLE TRUE = WERFBAR
+        if (this.bottleBar.percentage > 0 && this.keyboard.D && this.throwable) {//BEDINGUNG = VARIABLE TRUE = WERFBAR
             let bottle = new ThrowableObject(this.char.x, this.char.y, this.direction);
             //VARIABLEN TRUE GEBEN BIS BROKE
             this.throwable = false;
@@ -237,6 +247,12 @@ class World {
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
             bottle.THROW_BOTTLE_SOUND.play();
         };
+    }
+
+    checkHit() {
+        setTimeout(() => {
+            this.isHitting = false;
+        }, 1000);
     }
 
     /**
