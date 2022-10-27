@@ -84,22 +84,21 @@ class Endboss extends MoveableObject {
             }
             i++;
             if (world.char.x > 2200 && !this.firstContact) {
-                console.log('first contact to boss');
                 i = 0;
                 this.firstContact = true;
             } else if (this.bottleHitsEndboss) {
                 this.hurtEndboss();
-                this.speed += 0.35;
+                this.speed += this.speed * 1.2;
             } else if (this.bossDead) {
                 this.endbossDead();
             }
-        }, 60);
+        }, 80);
     }
 
     moveEndboss() {
         setInterval(() => {
             this.moveLeft();
-        }, 60);
+        }, 10);
     }
 
     alertEndboss() {

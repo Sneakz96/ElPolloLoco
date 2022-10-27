@@ -39,7 +39,13 @@
 
 <body onload="init()">
     <h1>My.El Pollo Loco</h1>
+
+
+
     <div class="window" id="window">
+
+        <img onclick="startGame()" id="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
+        
         <div id="mb-canvas" class="mb-canvas d-none">
             <canvas id="canvas" class="d-none" width="720" height="480">
 
@@ -60,12 +66,25 @@
                 </div>
             </div>
         </div>
-        <img onclick="startGame()" id="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
+        
+        
         <img onclick="showStartScreen()" class="d-none" id="lost-screen"
             src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
         <img onclick="showStartScreen()" class="d-none" id="win-screen"
             src="img/9_intro_outro_screens/game_over/game over!.png">
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
     <div id="instruction">
         <span>~collect bottles and coins</span>
         <span>~throw bottles by pressing D to kill enemies</span>

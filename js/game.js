@@ -101,8 +101,11 @@ function enterFullScreen(element) {
         element.msRequestFullscreen();
     } else if (element.webkitRequestFullscreen) {//IOS Safari
         element.webkitRequestFullscreen();
-    }
+    }e
 }
+
+
+
 
 /**
  * FUNCTION FOR EXIT FULLSCREEN
@@ -110,7 +113,6 @@ function enterFullScreen(element) {
  function exitFullScreen() {
     let open = document.getElementById('fullScreenEnter');
     let exit = document.getElementById('fullScreenExit');
-    let fullScreen = document.getElementById('window');
     exit.classList.add('d-none');
     open.classList.remove('d-none');
     closeFullScreen();

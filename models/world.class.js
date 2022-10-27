@@ -113,7 +113,7 @@ class World {
             this.checkCollisionWithBottles();//GRAB BOTTLES?
             this.checkGameOver();//GAME OVER?
             this.checkWin();//WIN?
-        }, 120);
+        }, 60);
     }
 
     /**
@@ -129,7 +129,7 @@ class World {
                 this.isHitting = true;
                 this.checkHit();
                 console.log(this.isHitting);
-                this.char.hit(1);
+                this.char.hit(10);
                 this.statusBar.setPercentage(this.char.energy);
             };
         });
@@ -152,7 +152,7 @@ class World {
      */
     checkCollisionsBottleToGround() {
         this.throwableObjects.forEach((bottle, i) => {
-            if (bottle.y >= 340 && !bottle.isBroken) {
+            if (bottle.y >= 340 && !bottle.isBroken && !bottle.bottleHitted) {
                 bottle.THROW_BOTTLE_SOUND.pause();
                 bottle.bottleHitted = true;
                 bottle.isBroken = true;
@@ -170,7 +170,7 @@ class World {
     checkCollisionsBottleToChicken() {
         this.level.chickens.forEach((chicken, index) => {
             this.throwableObjects.forEach((bottle, i) => {
-                if (bottle.isColliding(chicken)) {
+                if (bottle.isColliding(chicken) && !bottle.bottleHitted) {
                     bottle.THROW_BOTTLE_SOUND.pause();
                     bottle.bottleHitted = true;
                     chicken.bottleHitsChicken = true;
@@ -189,17 +189,18 @@ class World {
     checkCollisionsBottleToEndboss() {
         this.level.endboss.forEach(endboss => {
             this.throwableObjects.forEach((bottle, i) => {
-                if (endboss.isColliding(bottle)) {
+                if (endboss.isColliding(bottle) && !bottle.bottleHitted) {
                     bottle.THROW_BOTTLE_SOUND.pause();
                     bottle.bottleHitted = true;
                     bottle.bottleHitsChicken = true;
                     endboss.bottleHitsEndboss = true;
                     this.endboss.lifepoints -= 30;
                     this.removeSplashedBottle(i);
-                    console.log('bottle hits endboss');
-                } else if (this.endboss.lifepoints <= 0) {
-                    bottle.bottleHitted = true;
-                    this.endboss.bossDead = true;
+                    console.log(bottle);
+                    if (this.endboss.lifepoints <= 0) {
+                        bottle.bottleHitted = true;
+                        this.endboss.bossDead = true;
+                    };
                 };
             });
         });
@@ -311,7 +312,7 @@ class World {
     removeDeadChicken(index) {
         setTimeout(() => {
             this.level.chickens.splice(index, 1);
-        }, 100);//TIME FOR ANIMATION
+        }, 200);//TIME FOR ANIMATION
     }
 
     /**
@@ -320,7 +321,7 @@ class World {
     removeSplashedBottle(i) {
         setTimeout(() => {
             this.throwableObjects.splice(i, 1);//REMOVE SPLASHED BOTTLE
-        }, 100);
+        }, 200);
     }
 
     /**
