@@ -1,4 +1,4 @@
-.d-none{
+.d-none {
     display: none !important;
 }
 
@@ -9,4 +9,8 @@ h1 {
     font-size: 64px;
     letter-spacing: 2.5px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.w-100 {
+    width: 100%;
 }

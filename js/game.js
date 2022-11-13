@@ -87,9 +87,20 @@ function volumeUp() {
  */
 function openFullScreen() {
     let open = document.getElementById('fullScreenEnter');
-    let exit = document.getElementById('fullScreenExit');
     open.classList.add('d-none');
+
+    let exit = document.getElementById('fullScreenExit');
     exit.classList.remove('d-none');
+
+    let canvas = document.getElementById('canvas');
+    canvas.classList.add('w-100');
+
+    let mb_Canvas = document.getElementById('mb-canvas');
+    mb_Canvas.classList.add('mb-canvas_fs');
+
+    let mb_Buttons = document.getElementById('mb-btn');
+    mb_Buttons.classList.add('mb-btn_sec');
+
     let fullScreen = document.getElementById('window');
     enterFullScreen(fullScreen);
 }
@@ -110,11 +121,22 @@ function enterFullScreen(element) {
 /**
  * FUNCTION FOR EXIT FULLSCREEN
  */
- function exitFullScreen() {
+function exitFullScreen() {
     let open = document.getElementById('fullScreenEnter');
+    open.classList.remove('d-none');
+
     let exit = document.getElementById('fullScreenExit');
     exit.classList.add('d-none');
-    open.classList.remove('d-none');
+
+    let mb_Canvas = document.getElementById('mb-canvas')
+    mb_Canvas.classList.remove('mb-canvas_fs');
+
+    let mb_Buttons = document.getElementById('mb-btn');
+    mb_Buttons.classList.remove('mb-btn_sec');
+
+    let canvas = document.getElementById('canvas');
+    canvas.classList.remove('w-100');
+
     closeFullScreen();
 }
 
@@ -123,6 +145,6 @@ function closeFullScreen() {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-        open.classList.remove('d-none');
+        //open.classList.remove('d-none');
     }
 }

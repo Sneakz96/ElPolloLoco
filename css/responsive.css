@@ -131,3 +131,20 @@
         display: flex !important;
     }
 }
+
+/*POSITIONS_FULLSCREEN*/
+
+.mb-canvas_fs{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mb-btn_sec {
+    background: transparent;
+    width: 100%;
+    aspect-ratio: auto 720 / 480;
+    position: absolute;
+}
