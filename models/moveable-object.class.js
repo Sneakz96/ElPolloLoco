@@ -85,9 +85,10 @@ class MoveableObject extends DrawableObject {
     jumpsOnTop(chicken) {
         return this.y + this.height > chicken.y && //CHAR JUMP OVER 360p?
             this.y + this.height < chicken.y + chicken.height &&//CHAR HÖHE
-            this.x + this.width > chicken.x &&
-            this.x + this.height > chicken.x &&
-            this.x + this.height > 131;
+            this.x + this.height > chicken.x && 
+            this.x < chicken.x + chicken.height && 
+            this.speed_Y<= 0 &&
+            this.speed_Y >= -35;
     }
 
     /**

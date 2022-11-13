@@ -101,7 +101,7 @@ function enterFullScreen(element) {
         element.msRequestFullscreen();
     } else if (element.webkitRequestFullscreen) {//IOS Safari
         element.webkitRequestFullscreen();
-    }e
+    }
 }
 
 

@@ -121,7 +121,7 @@ class World {
      */
     checkCollisionCharToChickens() {
         this.level.chickens.forEach((chicken, index) => {
-            if (this.char.jumpsOnTop(chicken, index)) {
+            if (this.char.jumpsOnTop(chicken)) {
                 chicken.charJumpOnChicken = true;
                 this.removeDeadChicken(index);
                 console.log('you jump on', this.level.chickens[index]);
