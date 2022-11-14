@@ -15,6 +15,10 @@
 
 @media only screen and (max-width: 1200px) {
 
+    h1 {
+        display: none;
+    }
+
     .controls {
         display: none !important;
     }
@@ -35,6 +39,26 @@
     
     #fullScreenExit{
         display: none;
+    }
+
+    canvas {
+        height: 100vh !important;
+        width: 100% !important;
+    }
+
+    .mb-canvas{
+        height: 100vh !important;
+        width: 100% !important;
+    }
+    
+    #start-screen {
+        height: 100vh !important;
+        width: 100% !important;
+    }
+
+    #lost-screen {
+        height: 100vh !important;
+        width: 100% !important;
     }
 }
 
@@ -138,13 +162,12 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .mb-btn_sec {
     background: transparent;
     width: 100%;
+    height: 100%;
     aspect-ratio: auto 720 / 480;
     position: absolute;
 }

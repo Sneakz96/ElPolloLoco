@@ -128,16 +128,16 @@ function exitFullScreen() {
     let exit = document.getElementById('fullScreenExit');
     exit.classList.add('d-none');
 
+    let canvas = document.getElementById('canvas');
+    canvas.classList.remove('w-100');
+
     let mb_Canvas = document.getElementById('mb-canvas')
     mb_Canvas.classList.remove('mb-canvas_fs');
 
     let mb_Buttons = document.getElementById('mb-btn');
     mb_Buttons.classList.remove('mb-btn_sec');
-
-    let canvas = document.getElementById('canvas');
-    canvas.classList.remove('w-100');
-
-    closeFullScreen();
+    let fullScreen = document.getElementById('window');
+    closeFullScreen(fullScreen);
 }
 
 function closeFullScreen() {

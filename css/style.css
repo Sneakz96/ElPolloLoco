@@ -23,15 +23,12 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .mb-canvas{
     position: relative;
-    display: block;
-}
-
-canvas{
-    display: block;
+    display: flex;
 }
 
 /*INSTRUCTION*/
