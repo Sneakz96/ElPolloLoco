@@ -2,8 +2,8 @@ class ThrowableObject extends MoveableObject {
 
     //SET VARIABLES
     groundPosition = 320;
-    height = 80;
-    width = 60;
+    height = 90;
+    width = 75;
     throwDirection = 1;
 
     //CONDITION

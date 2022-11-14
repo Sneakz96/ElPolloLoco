@@ -141,7 +141,7 @@ class World {
     checkCollisionCharToEndboss() {
         this.level.endboss.forEach((endboss) => {
             if (this.char.isColliding(endboss)) {
-                this.char.hit(40);
+                this.char.hit(20);
                 this.statusBar.setPercentage(this.char.energy);
             };
         });
@@ -312,7 +312,7 @@ class World {
     removeDeadChicken(index) {
         setTimeout(() => {
             this.level.chickens.splice(index, 1);
-        }, 200);//TIME FOR ANIMATION
+        }, 110);//TIME FOR ANIMATION
     }
 
     /**

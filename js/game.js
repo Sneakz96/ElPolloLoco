@@ -47,11 +47,6 @@ function showStartScreen() {
     document.getElementById('start-screen').classList.remove('d-none');
 }
 
-
-
-
-
-
 /**
  * FUNCTION TO ENABLE SOUND
  */
@@ -74,13 +69,6 @@ function volumeUp() {
     loud.classList.remove('d-none');
     play_sound.play();
 }
-
-
-
-
-
-
-
 
 /**
  * FUNCTION FOR OPEN FULLSCREEN
@@ -114,9 +102,6 @@ function enterFullScreen(element) {
         element.webkitRequestFullscreen();
     }
 }
-
-
-
 
 /**
  * FUNCTION FOR EXIT FULLSCREEN

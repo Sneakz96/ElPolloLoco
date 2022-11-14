@@ -1,9 +1,9 @@
 class CollectableBottles extends MoveableObject {
 
     //SET VARIABLES
-    height = 60;
-    width = 40;
-    y = 370;
+    height = 80;
+    width = 60;
+    y = 350;
 
     //SOUND
     BOTTLE_COLLECT_SOUND = new Audio('audio/bottle_collect.mp3');
