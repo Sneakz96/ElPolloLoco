@@ -10,11 +10,9 @@ function initLevel() {
             new Chicken(),
             new Chicken()
         ],
-
         [
             new Endboss()
         ],
-
         [
             new Cloud(),
             new Cloud(),
@@ -32,7 +30,6 @@ function initLevel() {
             new Cloud(),
             new Cloud()
         ],
-
         [
             new BackgroundObject('img/5_background/layers/air.png', -0.99),
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -0.99),
@@ -61,7 +58,6 @@ function initLevel() {
             new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 3.990),
             new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 3.989)
         ],
-
         [
             new CollectableCoins(700, 100),
             new CollectableCoins(1000, 180),
@@ -70,7 +66,6 @@ function initLevel() {
             new CollectableCoins(2000, 300)
 
         ],
-
         [
             new CollectableBottles(400),
             new CollectableBottles(700),

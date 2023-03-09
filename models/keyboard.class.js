@@ -8,6 +8,7 @@ class Keyboard {
     SPACE = false;
     D = false;
 
+    // 
     constructor() {
         this.bindKeyPressEvents();
     }

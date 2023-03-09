@@ -48,7 +48,7 @@ function showStartScreen() {
 }
 
 /**
- * FUNCTION TO ENABLE SOUND
+ * ENABLE SOUND
  */
 function mute() {
     let mute = document.getElementById('mute');
@@ -59,7 +59,7 @@ function mute() {
 }
 
 /**
- * DUNCTION FOR ABLE SOUND
+ *  ABLE SOUND
  */
 function volumeUp() {
     let mute = document.getElementById('mute');
@@ -71,27 +71,37 @@ function volumeUp() {
 }
 
 /**
- * FUNCTION FOR OPEN FULLSCREEN
+ * OPEN FULLSCREEN
  */
 function openFullScreen() {
-    let open = document.getElementById('fullScreenEnter');
-    open.classList.add('d-none');
-
-    let exit = document.getElementById('fullScreenExit');
-    exit.classList.remove('d-none');
-
-    let canvas = document.getElementById('canvas');
-    canvas.classList.add('w-100');
-
-    let mb_Canvas = document.getElementById('mb-canvas');
-    mb_Canvas.classList.add('mb-canvas_fs');
-
-    let mb_Buttons = document.getElementById('mb-btn');
-    mb_Buttons.classList.add('mb-btn_sec');
-
+    const elementIds = [
+      'fullScreenEnter',
+      'fullScreenExit',
+      'canvas',
+      'mb-canvas',
+      'mb-btn',
+    ];
+  
+    for (const elementId of elementIds) {
+      const element = document.getElementById(elementId);
+      if (element) {
+        if (elementId === 'fullScreenEnter') {
+          element.classList.add('d-none');
+        } else if (elementId === 'fullScreenExit') {
+          element.classList.remove('d-none');
+        } else if (elementId === 'canvas') {
+          element.classList.add('w-100');
+        } else if (elementId === 'mb-canvas') {
+          element.classList.add('mb-canvas_fs');
+        } else if (elementId === 'mb-btn') {
+          element.classList.add('mb-btn_sec');
+        }
+      }
+    }
+  
     let fullScreen = document.getElementById('window');
     enterFullScreen(fullScreen);
-}
+  }
 
 function enterFullScreen(element) {
     if (element.requestFullscreen) {

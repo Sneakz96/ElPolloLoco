@@ -38,7 +38,7 @@ class World {
     WIN_WORLD_SOUND = new Audio('audio/win.mp3');
     GAME_OVER_SOUND = new Audio('audio/loose.mp3');
 
-
+    // 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -250,6 +250,7 @@ class World {
         };
     }
 
+    // 
     checkHit() {
         setTimeout(() => {
             this.isHitting = false;
@@ -276,7 +277,7 @@ class World {
             this.WIN_WORLD_SOUND.play();
             this.stopAll();
             this.clearAllIntervals();
-            console.log('you won!');
+            mute();
         };
     }
 
@@ -291,21 +292,29 @@ class World {
             this.GAME_OVER_SOUND.play();
             this.stopAll();
             this.clearAllIntervals();
-            console.log('game over!');
+            mute();
         };
     }
 
     /**
      * FUNCTION TO CHANGE END PIC TO MENU
      */
-    changeMenu() {
-        document.getElementById('canvas').classList.add('d-none');
-        document.getElementById('mb-canvas').classList.add('d-none');
-        document.getElementById('mb-btn').classList.add('d-none');
-        document.getElementById('controls').classList.add('d-none');
-        document.getElementById('mb-hud').classList.add('d-none');
-    }
-
+   changeMenu() {
+        let hideElements = [
+          'canvas',
+          'mb-canvas',
+          'mb-btn',
+          'controls',
+          'mb-hud'
+        ];
+      
+        for (let elementId of hideElements) {
+          let element = document.getElementById(elementId);
+          if (element) {
+            element.classList.add('d-none');
+          }
+        }
+      }
     /**
     * FUNCTION FOR REMOVING SPLASHED BOTTLE
     */
