@@ -30,26 +30,23 @@ function startGame() {
 }
 
 // 
-function handleGame(){
-    document.getElementById('start-screen').classList.add('d-none');
-    document.getElementById('instruction').classList.add('d-none');
-    document.getElementById('mb-canvas').classList.remove('d-none');
-    document.getElementById('canvas').classList.remove('d-none');
-    document.getElementById('mb-btn').classList.remove('d-none');
-    document.getElementById('controls').classList.remove('d-none');
-    document.getElementById('mb-hud').classList.remove('d-none');
+function handleGame() {
+    let elementsToShow = ['mb-canvas', 'canvas', 'mb-btn', 'controls', 'mb-hud'];
+    let elementsToHide = ['start-screen', 'instruction'];
+
+    elementsToShow.forEach(id => document.getElementById(id).classList.remove('d-none'));
+    elementsToHide.forEach(id => document.getElementById(id).classList.add('d-none'));
 }
 
 /**
  * FUNCTION TO LOAD START SCREEN
  */
 function showStartScreen() {
-    document.getElementById('win-screen').classList.add('d-none');
-    document.getElementById('lost-screen').classList.add('d-none');
-    document.getElementById('mb-canvas').classList.add('d-none');
-    document.getElementById('mb-hud').classList.add('d-none');
-    document.getElementById('instruction').classList.remove('d-none');
-    document.getElementById('start-screen').classList.remove('d-none');
+    let elementsToShow = ['instruction', 'start-screen'];
+    let elementsToHide = ['win-screen', 'lost-screen', 'mb-canvas', 'mb-hud'];
+
+    elementsToShow.forEach(id => document.getElementById(id).classList.remove('d-none'));
+    elementsToHide.forEach(id => document.getElementById(id).classList.add('d-none'));
 }
 
 /**
