@@ -13,20 +13,21 @@ class DrawableObject {
     //TAKEOVER
     img;
 
-
+    // 
     loadImage(path) {
         this.img = new Image();// this.img = document.getElementedByID('image')
         this.img.src = path;
     }
 
+    // 
     draw(ctx) {
         try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         } catch (error) {
-            console.warn('error loading image', error);    
+            console.warn('error loading image', error);
         }
     }
-    
+
     /**
      * 
      * @param {array} arr - ['img/image1.png', 'img/image2.png', ...]
@@ -39,16 +40,7 @@ class DrawableObject {
         });
     }
 
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof CollectableCoins || this instanceof CollectableBottles) {
-            //ctx.beginPath();
-            //ctx.lineWidth = '3';
-            //ctx.strokeStyle = 'red';
-            //ctx.rect(this.x, this.y, this.width, this.height);
-            //ctx.stroke();
-        }
-    }
-
+    // 
     reflectImage(ctx) {
         if (this.otherDirection) {
             ctx.save();
@@ -58,6 +50,7 @@ class DrawableObject {
         }
     }
 
+    // 
     reflectImageBack(ctx) {
         if (this.otherDirection) {
             this.x = this.x * -1;

@@ -37,6 +37,7 @@ class World {
     BOTTLE_COLLECT_SOUND = new Audio('audio/bottle_collect.mp3');
     WIN_WORLD_SOUND = new Audio('audio/win.mp3');
     GAME_OVER_SOUND = new Audio('audio/loose.mp3');
+    CHICKEN_WALKING_SOUND = new Audio('./audio/chicken.mp3');
 
     // 
     constructor(canvas, keyboard) {
@@ -45,6 +46,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.setSounds();
         this.checkCollisions();
     }
 
@@ -52,39 +54,39 @@ class World {
      * FUNCTION FOR DRAWING GIVEN PICTURES IN CANVAS
      */
     draw() {
-        //CLEAR CANVAS
+        let self = this;
+        // CLEAR CANVAS
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        //FIX CAMERA
+        // FIX CAMERA
         this.ctx.translate(this.camera_x, 0);
-        //BACKGROUND
+        // BACKGROUND
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
-        //LIFEBAR
+        // LIFEBAR
         this.ctx.translate(-this.camera_x, 0);//BACK
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0);//FORWARD
-        //BOTTLEBAR
+        // BOTTLEBAR
         this.ctx.translate(-this.camera_x, 0);//BACK
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);//FORWARD
-        //COINBAR
+        // COINBAR
         this.ctx.translate(-this.camera_x, 0);//BACK
         this.addToMap(this.coinBar);
         this.ctx.translate(this.camera_x, 0);//FORWARD
-        //CHAR
+        // CHAR
         this.addToMap(this.char);
-        //ENEMIES
+        // ENEMIES
         this.addObjectsToMap(this.level.chickens);
         this.addObjectsToMap(this.level.endboss);
-        //COLLECTABLE
+        // COLLECTABLE
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        //THROWABLE
+        // THROWABLE
         this.addObjectsToMap(this.throwableObjects);
-        //FIX CAMERA BACK
+        // FIX CAMERA BACK
         this.ctx.translate(-this.camera_x, 0);
-
-        let self = this;
+        // 
         requestAnimationFrame(function () {
             self.draw();
         });
@@ -96,6 +98,13 @@ class World {
     setWorld() {
         this.char.world = this;
         this.throwableObjects.world = this;
+    }
+
+    // 
+    setSounds() {
+        this.CHICKEN_WALKING_SOUND.volume = 0.1;
+        this.CHICKEN_WALKING_SOUND.loop = true;
+        this.CHICKEN_WALKING_SOUND.play();
     }
 
     /**
@@ -273,6 +282,7 @@ class World {
             this.stopAll();
             this.clearAllIntervals();
             mute();
+            this.CHICKEN_WALKING_SOUND.pause();
         };
     }
 
@@ -288,28 +298,30 @@ class World {
             this.stopAll();
             this.clearAllIntervals();
             mute();
+            this.CHICKEN_WALKING_SOUND.pause();
         };
     }
 
     /**
      * FUNCTION TO CHANGE END PIC TO MENU
      */
-   changeMenu() {
+    changeMenu() {
         let hideElements = [
-          'canvas',
-          'mb-canvas',
-          'mb-btn',
-          'controls',
-          'mb-hud'
+            'canvas',
+            'mb-canvas',
+            'mb-btn',
+            'controls',
+            'mb-hud'
         ];
-      
+
         for (let elementId of hideElements) {
-          let element = document.getElementById(elementId);
-          if (element) {
-            element.classList.add('d-none');
-          }
+            let element = document.getElementById(elementId);
+            if (element) {
+                element.classList.add('d-none');
+            }
         }
-      }
+    }
+
     /**
     * FUNCTION FOR REMOVING SPLASHED BOTTLE
     */
@@ -343,10 +355,8 @@ class World {
     addToMap(mo) {//mo = movableObject
         mo.reflectImage(this.ctx);
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
         mo.reflectImageBack(this.ctx);
     }
-
 
     /**
      * FUNCTION TO SET SPEED OF ENEMIES = 0

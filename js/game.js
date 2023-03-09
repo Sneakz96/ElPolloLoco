@@ -30,23 +30,19 @@ function startGame() {
 }
 
 // 
-function handleGame() {
-    let elementsToShow = ['mb-canvas', 'canvas', 'mb-btn', 'controls', 'mb-hud'];
-    let elementsToHide = ['start-screen', 'instruction'];
-
-    elementsToShow.forEach(id => document.getElementById(id).classList.remove('d-none'));
-    elementsToHide.forEach(id => document.getElementById(id).classList.add('d-none'));
+function toggleScreens(showIds, hideIds) {
+    showIds.forEach(id => document.getElementById(id).classList.remove('d-none'));
+    hideIds.forEach(id => document.getElementById(id).classList.add('d-none'));
 }
 
-/**
- * FUNCTION TO LOAD START SCREEN
- */
-function showStartScreen() {
-    let elementsToShow = ['instruction', 'start-screen'];
-    let elementsToHide = ['win-screen', 'lost-screen', 'mb-canvas', 'mb-hud'];
+// 
+function handleGame() {
+    toggleScreens(['mb-canvas', 'canvas', 'mb-btn', 'controls', 'mb-hud'], ['start-screen', 'instruction']);
+}
 
-    elementsToShow.forEach(id => document.getElementById(id).classList.remove('d-none'));
-    elementsToHide.forEach(id => document.getElementById(id).classList.add('d-none'));
+// 
+function showStartScreen() {
+    toggleScreens(['instruction', 'start-screen'], ['win-screen', 'lost-screen', 'mb-canvas', 'mb-hud']);
 }
 
 /**

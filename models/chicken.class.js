@@ -7,10 +7,6 @@ class Chicken extends MoveableObject {
     //TAKEOVER
     level;
 
-    //SOUND
-    CHICKEN_WALKING_SOUND = new Audio('./audio/chicken.mp3');
-    CHICKEN_DEAD_SOUND = new Audio();
-
     //IMAGES
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -39,15 +35,11 @@ class Chicken extends MoveableObject {
         setInterval(() => {
             if (this.bottleHitsChicken || this.charJumpOnChicken) {
                 this.playAnimation(this.IMAGE_DEAD);
-                //this.CHICKEN_DEAD_SOUND.volume = 0.15;
-                //this.CHICKEN_DEAD_SOUND.play();
                 this.charJumpOnChicken = false;
                 this.bottleHitsChicken = false;
             } else {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
-                this.CHICKEN_WALKING_SOUND.volume = 0.1;
-                this.CHICKEN_WALKING_SOUND.play();
             }
         }, 60);
     }
