@@ -124,11 +124,9 @@ class World {
             if (this.char.jumpsOnTop(chicken)) {
                 chicken.charJumpOnChicken = true;
                 this.removeDeadChicken(index);
-                console.log('you jump on', this.level.chickens[index]);
             } else if (this.char.isColliding(chicken) && !this.isHitting) {
                 this.isHitting = true;
                 this.checkHit();
-                console.log(this.isHitting);
                 this.char.hit(10);
                 this.statusBar.setPercentage(this.char.energy);
             };
@@ -177,7 +175,6 @@ class World {
                     bottle.bottleHitsChicken = true;
                     this.removeDeadChicken(index);
                     this.removeSplashedBottle(i);
-                    console.log('bottle hit chicken');
                 };
             });
         });
@@ -196,7 +193,6 @@ class World {
                     endboss.bottleHitsEndboss = true;
                     this.endboss.lifepoints -= 30;
                     this.removeSplashedBottle(i);
-                    console.log(bottle);
                     if (this.endboss.lifepoints <= 0) {
                         bottle.bottleHitted = true;
                         this.endboss.bossDead = true;
@@ -242,7 +238,6 @@ class World {
             //VARIABLEN TRUE GEBEN BIS BROKE
             this.throwable = false;
             this.checkThrowable();
-            console.log(this.throwable);
             this.collectedBottles.splice(bottle, 1);
             this.throwableObjects.push(bottle);
             this.bottleBar.setPercentage(this.bottleBar.percentage -= 20);
